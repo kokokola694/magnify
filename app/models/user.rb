@@ -1,10 +1,28 @@
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
+  validates :image_url, presence: true
+
+  has_one_attached :photo
+
+  has_many :playlists,
+    foreign_key: :author_id,
+    class_name: :Playlist
+
+# People that are following the user.
+  has_many :followers,
+    foreign_key: :followed_id,
+    class_name: :Follow
+
+# People that the user is following.
+  has_many :follows,
+    foreign_key: :follower_id,
+    class_name: :Follow
+
 
   attr_reader :password
 
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_photo
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -34,6 +52,10 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
+  end
+
+  def ensure_photo
+    self.image_url = 'default_user'
   end
 
 end
