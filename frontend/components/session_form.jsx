@@ -27,7 +27,7 @@ class SessionForm extends React.Component {
     const otherLinkVal = loginPage ? "Sign up" : "Log In";
     return (
       <>
-        <Link to={otherLinkPath}>{otherLinkVal} with Facebook</Link>
+        <Link to='/'>{otherLinkVal} with Facebook</Link>
         <form onSubmit={this.handleSubmit}>
           <label> Username
             <input type="text" onChange={this.update("username")}

@@ -1,36 +1,42 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-
+// Remove else logic - this comp is rendered when not logged in.
 const NavBar = ({currentUser, logout}) => {
   const sessionLinks = () => {
     if (currentUser) {
       return (
         <div>
-          <NavLink to='/'>{currentUser ? currentUser.username : "abc"}</NavLink>
+          <NavLink to='/'>{currentUser ? currentUser.username : ""}</NavLink>
           <button onClick={logout}>Log Out</button>
         </div>
       )
     } else {
       return (
-        <div>
+        <section className="nav-bar-session">
           <NavLink to='/signup'>Sign up</NavLink>
           <NavLink to='/login'>Log In</NavLink>
-        </div>
+        </section>
       )
     }
 
   }
 
   return (
-    <header>
-      <div>
-        <NavLink to='/'>Premium</NavLink>
-        <NavLink to='/'>Help</NavLink>
-        <NavLink to='/'>Download</NavLink>
-      </div>
-      {sessionLinks()}
-    </header>
+    <nav className="nav-bar">
+      <section className="nav-bar-logo">
+        m a g n i f y
+      </section>
+      <section className="nav-bar-right">
+        <section className="nav-bar-links">
+          <NavLink to='/'>Premium</NavLink>
+          <NavLink to='/'>Help</NavLink>
+          <NavLink to='/'>Download</NavLink>
+        </section>
+         | {sessionLinks()}
+      </section>
+
+    </nav>
   )
 }
 

@@ -1,0 +1,38 @@
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid lightgray;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.nav-bar-logo {
+  width: 30%;
+  margin: auto;
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+.nav-bar-right {
+  display: flex;
+  width: 50%;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 700;
+  font-family: sans-serif;
+}
+
+.nav-bar-links {
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+}
+
+.nav-bar-session {
+  display: flex;
+  width: 30%;
+  justify-content: space-around;
+}
