@@ -6,7 +6,7 @@ const NavBar = ({currentUser, logout}) => {
   const sessionLinks = () => {
     if (currentUser) {
       return (
-        <div>
+        <div className="nav-bar-session">
           <NavLink to='/'>{currentUser ? currentUser.username : ""}</NavLink>
           <button onClick={logout}>Log Out</button>
         </div>

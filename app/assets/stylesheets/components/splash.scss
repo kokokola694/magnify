@@ -1,0 +1,43 @@
+.splash {
+  background-image: image_url('blue_background.jpeg');
+}
+
+.splash-main {
+  display: flex;
+  flex-direction: column;
+  margin-top: 200px;
+  height: 500px;
+  color: white;
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.splash-main h1 {
+  font-size: 80px;
+  font-weight: 900;
+}
+
+.splash-main h2 {
+  font-size: 18px;
+  font-weight: 400;
+  margin: 20px 0 20px 0;
+}
+
+.splash-main a {
+  display: inline-block;
+  margin-top: 16px;
+  background-color: #1db954;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  transition-duration: .25s;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+}
+
+.splash-main a:hover {
+  background-color: #1ed760;
+}
