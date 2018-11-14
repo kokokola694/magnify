@@ -11,7 +11,8 @@ const msp = state => {
 
 const mdp = dispatch => {
   return {
-    processForm: (user) => dispatch(login(user))
+    processForm: (user) => dispatch(login(user)),
+    demoLogin: (user) => dispatch(login(user))
   }
 }
 

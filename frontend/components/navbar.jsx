@@ -24,8 +24,8 @@ const NavBar = ({currentUser, logout}) => {
 
   return (
     <nav className="nav-bar">
-      <section className="nav-bar-logo">
-        m a g n i f y
+      <section className="logo nav-bar-logo">
+        magnify
       </section>
       <section className="nav-bar-right">
         <section className="nav-bar-links">

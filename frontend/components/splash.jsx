@@ -20,7 +20,7 @@ const Splash = () => {
       </section>
 
       <footer className="splash-footer">
-        <section className="nav-bar-logo">m a g n i f y</section>
+        <section className="nav-bar-logo">magnify</section>
         <section className="splash-footer-link">
           <div className="splash-footer-list">
             <section>
@@ -57,9 +57,6 @@ const Splash = () => {
           </ul>
         </section>
       </footer>
-
-      <AuthRoute path="/login" component={LoginFormContainer} />
-      <AuthRoute path="/signup" component={SignupFormContainer}/>
     </div>
   );
 }

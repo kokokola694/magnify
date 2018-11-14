@@ -1,0 +1,113 @@
+.session-content {
+  display: flex;
+  font-family: sans-serif;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.session-errors {
+  text-align: center;
+  color: #eb1e32;
+}
+
+.session-demo-divider {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  width: 45%;
+}
+
+.session-demo-line {
+  border-top: 1px solid #d9dadc;
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 35%;
+  box-sizing: border-box;
+}
+
+.session-demo-divider-text {
+  line-height: 1px;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 1px;
+  padding: 0 20px;
+  text-transform: uppercase;
+}
+
+.session-content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%;
+}
+
+.session-content input[type="text"], input[type="password"] {
+  border: 1px solid lightgray;
+  padding: 3px 10px;
+  height: 48px;
+  border-radius: 2px;
+  width: 100%;
+  margin: 10px;
+}
+
+
+.session-demo, .session-submit-button, .session-switch-link {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  transition-duration: .25s;
+  letter-spacing: 2px;
+  min-width: 160px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.session-demo {
+  background-color: #3b5998;
+  margin-top: 30px;
+  color: white;
+}
+
+.session-submit-button {
+  background-color: #1db954;
+  margin: 20px;
+  color: white;
+}
+
+.session-switch-link {
+  color: #616467;
+  border: 1px solid #616467;
+  margin-top: 20px;
+}
+
+.session-logo {
+  padding: 40px;
+  font-size: 40px;
+  width: 100%;
+  text-align: center;
+  border-bottom: 1px solid #dfe0e6;
+}
+
+.session-bot-line {
+  border-top: 1px solid #d9dadc;
+  display: block;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.session-switch p {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.session-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 35%;
+}
