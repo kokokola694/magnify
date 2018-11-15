@@ -1,0 +1,15 @@
+.index-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.index-item {
+  width: 15%;
+  min-width: 125px;
+  margin: 15px 7px;
+}
+
+.index-item section {
+  overflow: hidden;
+  white-space: nowrap;
+}

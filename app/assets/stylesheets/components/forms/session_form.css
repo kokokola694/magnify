@@ -3,6 +3,7 @@
   font-family: sans-serif;
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
 }
 
@@ -14,7 +15,7 @@
 .session-demo-divider {
   display: flex;
   justify-content: center;
-  margin: 20px 0;
+  margin: 30px 0;
   width: 45%;
 }
 
@@ -23,7 +24,7 @@
   display: block;
   position: relative;
   text-align: center;
-  width: 35%;
+  width: 30%;
   box-sizing: border-box;
 }
 
@@ -40,7 +41,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 30%;
 }
 
 .session-content input[type="text"], input[type="password"] {
@@ -52,6 +53,9 @@
   margin: 10px;
 }
 
+.session-content input[type="text"]:focus, input[type="password"]:focus {
+  border: 1px solid #919496;
+}
 
 .session-demo, .session-submit-button, .session-switch-link {
   display: inline-block;
@@ -69,8 +73,12 @@
 
 .session-demo {
   background-color: #3b5998;
-  margin-top: 30px;
+  margin-top: 40px;
   color: white;
+}
+
+.session-demo:hover {
+  background-color: #3a61b3;
 }
 
 .session-submit-button {
@@ -79,18 +87,29 @@
   color: white;
 }
 
+.session-submit-button:hover {
+  background-color: #1ed760;
+}
+
 .session-switch-link {
   color: #616467;
   border: 1px solid #616467;
   margin-top: 20px;
 }
 
+.session-switch-link:hover {
+  color: white;
+  background-color: #616467;
+}
+
 .session-logo {
   padding: 40px;
   font-size: 40px;
+  font-weight: 600;
   width: 100%;
   text-align: center;
   border-bottom: 1px solid #dfe0e6;
+  box-sizing: border-box;
 }
 
 .session-bot-line {
@@ -109,5 +128,5 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 35%;
+  width: 30%;
 }

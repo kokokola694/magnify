@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import Sidebar from './sidebar'
+import { logout } from '../../actions/session_actions';
+import {withRouter} from 'react-router-dom';
 
 const msp = state => {
   return {
@@ -13,4 +15,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(msp, mdp)(Sidebar);
+export default withRouter(connect(msp, mdp)(Sidebar));

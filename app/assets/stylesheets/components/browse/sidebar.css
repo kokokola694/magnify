@@ -1,0 +1,83 @@
+.side-bar {
+  height: 100%;
+  width: 230px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #010101;
+  overflow-x: hidden;
+  color: #b3b3b3;
+  padding: 22px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: sans-serif;
+  height: 100vh;
+}
+
+.side-bar-logo {
+  font-size: 35px;
+  text-align: center;
+}
+
+.side-bar-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30%;
+}
+
+.side-bar-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 70%;
+  font-weight: 700;
+
+}
+
+.side-bar-links section {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.side-bar-links div {
+  display: inline;
+  margin-left: 10px;
+  line-height: inherit;
+}
+
+.side-bar-links a:hover {
+  color: white;
+}
+
+.side-bar-links section > .active {
+  color: #1db954;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}

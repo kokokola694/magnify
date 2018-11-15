@@ -1,0 +1,36 @@
+.browse-navbar {
+  position: relative;
+  display: flex;
+  top: 0;
+  left: 230px;
+  width: 80%;
+  background-color: transparent;
+  justify-content: space-around;
+  font-family: sans-serif;
+  box-sizing: border-box;
+  padding: 40px 10%;
+}
+
+.browse-navbar a {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 1;
+  text-transform: uppercase;
+  color: #b2b6bc;
+  letter-spacing: .095em;
+  text-align: center;
+  width: 15%;
+}
+
+.browse-navbar > .active {
+  color: white;
+}
+
+.browse-navbar > .active:after {
+    content: "";
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    padding-top: 10px;
+    border-bottom: 2px solid #1db954;
+}

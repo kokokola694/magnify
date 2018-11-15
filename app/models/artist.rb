@@ -1,6 +1,6 @@
 class Artist < ApplicationRecord
   validates :name, presence: true, uniqueness: true
-  validates :image_url, presence: true
+  # validates :image_url, presence: true
 
   has_one_attached :photo
 
@@ -12,11 +12,11 @@ class Artist < ApplicationRecord
     foreign_key: :artist_id,
     class_name: :Album
 
-  after_initialize :ensure_photo
+  # after_initialize :ensure_photo
 
   private
-  def ensure_photo
-    self.image_url = 'default_artist'
-  end
+  # def ensure_photo
+  #   self.image_url = 'default_artist'
+  # end
 
 end

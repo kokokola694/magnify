@@ -1,0 +1,10 @@
+.homepage {
+  background-image: linear-gradient(#3b4655, black);
+  height: 1600px;
+}
+
+.homepage-main {
+  margin-left: 230px;
+  color: white;
+  padding: 0 20px;
+}
