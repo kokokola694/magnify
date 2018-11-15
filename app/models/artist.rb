@@ -11,4 +11,11 @@ class Artist < ApplicationRecord
     foreign_key: :artist_id,
     class_name: :Album
 
+  # after_initialize :ensure_photo
+  #
+  # def ensure_photo
+  #   file = EzDownload.open("https://s3.amazonaws.com/magnify-dev/avatar.svg")
+  #   self.photo.attach(io: file, filename: "avatar.svg")
+  # end
+
 end

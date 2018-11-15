@@ -60,12 +60,29 @@
 
 .side-bar-bottom {
   height: 10%;
-  margin-left: 20px;
   display: flex;
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 500;
   flex-direction: column;
   justify-content: space-around;
+  margin-left: 20px;
+}
+
+.side-bar-bottom img {
+  width: 30%;
+  margin-right: 20px;
+}
+
+.side-bar-current-user {
+  display: flex;
+  width: 60%;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.side-bar button {
+  margin-top: 18px;
 }
 
 .material-icons {

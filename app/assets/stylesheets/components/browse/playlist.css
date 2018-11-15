@@ -4,13 +4,23 @@
 }
 
 .index-item {
-  width: 12%;
+  box-sizing: border-box;
+  width: 15%;
   min-width: 125px;
   margin: 15px 11px;
   box-shadow: 5px;
+  text-align: center;
 }
 
 .index-item section {
   overflow: hidden;
   white-space: nowrap;
+  margin: 7px 0;
+  font-size: 12px;
+}
+
+.index-item-img {
+  border: 1px solid #b3b3b3;
+  box-sizing: border-box;
+  background-color: teal;
 }

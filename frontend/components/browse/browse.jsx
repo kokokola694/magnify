@@ -2,6 +2,8 @@ import React from 'react';
 import SideBarContainer from './sidebar_container';
 import { Route, Switch } from 'react-router-dom';
 import PlaylistIndexContainer from '../playlists/playlist_index_container';
+import AlbumIndexContainer from '../albums/album_index_container';
+import ArtistIndexContainer from '../artists/artist_index_container';
 import BrowseNavbarContainer from './browse_navbar_container';
 
 // import BrowseAlbumContainer from './browse_album_container';
@@ -21,6 +23,8 @@ const Browse = () => {
       <BrowseNavbarContainer />
       <main className="homepage-main">
         <Route path='/browse/playlists' component={PlaylistIndexContainer}/>
+        <Route path='/browse/albums' component={AlbumIndexContainer}/>
+        <Route path='/browse/artists' component={ArtistIndexContainer}/>
         <Route path='/collection/playlists' component={PlaylistIndexContainer}/>
       </main>
 

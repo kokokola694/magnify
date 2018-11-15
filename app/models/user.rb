@@ -53,4 +53,8 @@ class User < ApplicationRecord
     SecureRandom.urlsafe_base64(16)
   end
 
+  # def ensure_photo
+  #   file = EzDownload.open("https://s3.amazonaws.com/magnify-dev/avatar.svg")
+  #   self.photo.attach(io: file, filename: "avatar.svg")
+  # end
 end

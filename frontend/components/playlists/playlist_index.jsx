@@ -15,7 +15,6 @@ class PlaylistIndex extends React.Component {
     const pl = this.props.playlists.map(p => <PlaylistIndexItem key={p.id} playlist={p}/>)
     return (
       <section>
-        <h1>Playlists</h1>
         <ul className="index-list">
           {pl}
         </ul>

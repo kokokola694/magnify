@@ -53,7 +53,10 @@ class Sidebar extends React.Component {
         </section>
 
         <section className="side-bar-bottom">
-          <section>{this.props.currentUser.username}</section>
+          <section className="side-bar-current-user">
+            <img className="side-bar-pic" src={this.props.currentUser.photoUrl}/>
+            <section>{this.props.currentUser.username}</section>
+          </section>
           <button onClick={this.props.logout}>Log Out</button>
         </section>
       </div>
