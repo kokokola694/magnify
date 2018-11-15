@@ -3,8 +3,8 @@ import NavBarContainer from './navbar_container';
 import { Route, Link } from 'react-router-dom';
 import LoginFormContainer from './login_form_container';
 import SignupFormContainer from './signup_form_container';
-import AuthRoute from '../util/route_util';
-import Browse from './browse';
+import AuthRoute from '../../util/route_util';
+import Browse from '../browse/browse';
 
 const Splash = () => {
   return (

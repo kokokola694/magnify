@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'open-uri'
 
 User.destroy_all
 PlaylistSong.destroy_all
@@ -18,18 +17,13 @@ u1 = User.create(username: 'demo', password: 'password')
 u2 = User.create(username: 'miko', password: 'bethany')
 
 ar1 = Artist.new(name: "IU")
-# file1 = open("https://s3.amazonaws.com/magnify-dev/IU.jpg")
 # file1 = File.open("app/assets/images/IU.jpg")
-# ph1 = ar1.photo
-# ph1.attach(io: file1, filename: "IU.jpg")
+# file1 = EzDownload.open("https://s3.amazonaws.com/magnify-dev/IU.jpg")
+# ar1.photo.attach(io:file1, filename: "IU.jpg")
 ar1.save
 
 ar2 = Artist.new(name: "Maroon 5")
-# file1 = File.open("app/assets/images/IU.jpg")
-file2 = EzDownload.open("https://s3.amazonaws.com/magnify-dev/IU.jpg")
-options = {io: file2, filename: "IU.jpg"}
-debugger
-ar2.photo.attach(options)
+# file2 = EzDownload.open("https://s3.amazonaws.com/magnify-dev/IU.jpg")
 ar2.save
 
 ab1 = Album.new(title: "Modern Times", year: 2013)

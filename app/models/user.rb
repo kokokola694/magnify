@@ -10,14 +10,14 @@ class User < ApplicationRecord
     class_name: :Playlist
 
 # People that are following the user.
-  has_many :followers,
-    foreign_key: :followed_id,
-    class_name: :Follow
+  # has_many :followers,
+  #   foreign_key: :followed_id,
+  #   class_name: :Follow
 
 # People that the user is following.
-  has_many :follows,
-    foreign_key: :follower_id,
-    class_name: :Follow
+  # has_many :follows,
+  #   foreign_key: :follower_id,
+  #   class_name: :Follow
 
 
   attr_reader :password
