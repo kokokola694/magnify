@@ -21,6 +21,7 @@ const Browse = () => {
       <BrowseNavbarContainer />
       <main className="homepage-main">
         <Route path='/browse/playlists' component={PlaylistIndexContainer}/>
+        <Route path='/collection/playlists' component={PlaylistIndexContainer}/>
       </main>
 
     </section>

@@ -4,9 +4,10 @@
 }
 
 .index-item {
-  width: 15%;
+  width: 12%;
   min-width: 125px;
-  margin: 15px 7px;
+  margin: 15px 11px;
+  box-shadow: 5px;
 }
 
 .index-item section {

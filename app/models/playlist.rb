@@ -1,5 +1,5 @@
 class Playlist < ApplicationRecord
-  validates :title, :image_url, presence: true
+  validates :title, presence: true
 
   belongs_to :author,
     foreign_key: :author_id,
@@ -12,12 +12,5 @@ class Playlist < ApplicationRecord
   has_many :songs,
     through: :playlist_songs,
     source: :song
-
-  after_initialize :ensure_photo
-
-  private
-  def ensure_photo
-    self.image_url = 'default_playlist'
-  end
 
 end

@@ -6,14 +6,13 @@
   width: 80%;
   background-color: transparent;
   justify-content: space-around;
-  font-family: sans-serif;
   box-sizing: border-box;
   padding: 40px 10%;
 }
 
 .browse-navbar a {
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   opacity: 1;
   text-transform: uppercase;
   color: #b2b6bc;

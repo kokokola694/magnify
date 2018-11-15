@@ -1,7 +1,6 @@
 class User < ApplicationRecord
   validates :username, :password_digest, :session_token, presence: true, uniqueness: true
   validates :password, length: {minimum: 6}, allow_nil: true
-  validates :image_url, presence: true
 
   has_one_attached :photo
 
@@ -22,7 +21,7 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  after_initialize :ensure_session_token, :ensure_photo
+  after_initialize :ensure_session_token
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)
@@ -52,10 +51,6 @@ class User < ApplicationRecord
 
   def self.generate_session_token
     SecureRandom.urlsafe_base64(16)
-  end
-
-  def ensure_photo
-    self.image_url = 'default_user'
   end
 
 end

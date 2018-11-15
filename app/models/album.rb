@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-  validates :title, :image_url, presence: true
+  validates :title, presence: true
 
   has_one_attached :photo
 
@@ -10,12 +10,5 @@ class Album < ApplicationRecord
   belongs_to :artist,
     foreign_key: :artist_id,
     class_name: :Artist
-
-  after_initialize :ensure_photo
-
-  private
-  def ensure_photo
-    self.image_url = 'default_album'
-  end
 
 end

@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 const BrowseNavbar = (props) => {
   return (
     <nav className="browse-navbar">
-      <NavLink to='/browse/playlists'>Playlists</NavLink>
-      <NavLink to='/browse/artists'>Artists</NavLink>
-      <NavLink to='/browse/albums'>Albums</NavLink>
-      <NavLink to='/browse/songs'>Songs</NavLink>
+      <NavLink to={`${props.navType}/playlists`}>Playlists</NavLink>
+      <NavLink to={`${props.navType}/artists`}>Artists</NavLink>
+      <NavLink to={`${props.navType}/albums`}>Albums</NavLink>
+      <NavLink to={`${props.navType}/songs`}>Songs</NavLink>
     </nav>
   )
 }

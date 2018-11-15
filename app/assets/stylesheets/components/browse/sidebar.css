@@ -12,13 +12,13 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: sans-serif;
   height: 100vh;
 }
 
 .side-bar-logo {
   font-size: 35px;
   text-align: center;
+  font-weight: 700;
 }
 
 .side-bar-top {
@@ -33,8 +33,8 @@
   flex-direction: column;
   justify-content: space-around;
   height: 70%;
-  font-weight: 700;
-
+  font-weight: 600;
+  font-size: 15px;
 }
 
 .side-bar-links section {
@@ -45,8 +45,9 @@
 
 .side-bar-links div {
   display: inline;
-  margin-left: 10px;
-  line-height: inherit;
+  position: relative;
+  left: 12px;
+  bottom: 5px;
 }
 
 .side-bar-links a:hover {
@@ -55,6 +56,16 @@
 
 .side-bar-links section > .active {
   color: #1db954;
+}
+
+.side-bar-bottom {
+  height: 10%;
+  margin-left: 20px;
+  display: flex;
+  font-size: 15px;
+  font-weight: 700;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 .material-icons {

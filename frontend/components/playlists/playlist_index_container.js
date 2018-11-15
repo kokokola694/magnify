@@ -3,10 +3,12 @@ import { fetchPlaylists } from '../../actions/playlist_actions';
 import PlaylistIndex from './playlist_index';
 import { withRouter } from 'react-router'
 
-const msp = (state) => {
-  
+const msp = (state, ownProps) => {
+
   return {
-    playlists: Object.values(state.entities.playlists)
+    playlists: Object.values(state.entities.playlists),
+    currentUserId: state.session.id,
+    indexType: ownProps.match.params.url
   }
 }
 
