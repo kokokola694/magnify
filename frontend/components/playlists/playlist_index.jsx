@@ -11,15 +11,13 @@ class PlaylistIndex extends React.Component {
   }
 
   render() {
-    // debugger
     const pl = this.props.playlists.map(p => <PlaylistIndexItem key={p.id} playlist={p}/>)
     return (
-      <section>
+      <>
         <ul className="index-list">
           {pl}
         </ul>
-      </section>
-
+      </>
     )
   }
 }

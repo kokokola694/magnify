@@ -52,6 +52,7 @@
 
 .side-bar-links a:hover {
   color: white;
+  transition-duration: 0.25s;
 }
 
 .side-bar-links section > .active {

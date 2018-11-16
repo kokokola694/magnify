@@ -1,0 +1,39 @@
+.song-index-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+
+}
+
+.song-index-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 15px 0px;
+  box-sizing: border-box;
+  height: 38px;
+}
+
+.song-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.song-index-item > .song-index-item-img {
+}
+
+.song-index-item h1 {
+  color: white;
+  font-size: 15px;
+}
+
+.song-info-bottom {
+  color: #b3b3b3;
+  font-size: 13px;
+}
+
+.song-index-item audio {
+  width: 250px;
+  max-height: 100%;
+  padding:5px 0px 0px 20px;
+}

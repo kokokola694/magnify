@@ -1,7 +1,11 @@
 class Api::SongsController < ApplicationController
 
   def index
-    @songs = Song.all
+    if params[:ids]
+      @songs = Song.all.where(id: params[:ids])
+    else
+      @songs = Song.all
+    end
   end
 
   def show

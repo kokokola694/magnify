@@ -25,6 +25,11 @@
   color: white;
 }
 
+.browse-navbar a:hover {
+  transition-duration: 0.25s;
+  color: white;
+}
+
 .browse-navbar > .active:after {
     content: "";
     display: block;

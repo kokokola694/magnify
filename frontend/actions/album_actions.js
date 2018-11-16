@@ -9,7 +9,7 @@ export const fetchAlbums = () => dispatch => {
 
 export const fetchAlbum = (id) => dispatch => {
   return AlbumApi.fetchAlbum(id)
-  .then(artist => dispatch(receiveAlbum(album)))
+  .then(album => dispatch(receiveAlbum(album)))
 }
 
 

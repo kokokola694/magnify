@@ -20,13 +20,13 @@ class Sidebar extends React.Component {
                      71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286
                      21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254
                      21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286
-                     80.254 21.461z" fill="currentColor">
+                    80.254 21.461z" fill="currentColor">
                    </path></svg>
                 <div>Search</div>
               </NavLink>
             </section>
             <section>
-              <NavLink to="/browse/playlists">
+              <NavLink to="/browse">
                 <svg viewBox="0 0 512 512" width="24" height="24"
                   xmlns="http://www.w3.org/2000/svg"><path d="M 256.274 60.84 L
                   84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73

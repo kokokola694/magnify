@@ -21,6 +21,12 @@ def attach_photo(model, file)
   model.save!
 end
 
+def attach_audio(model, file)
+  audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/#{file}")
+  model.audio.attach(io: audio, filename: file)
+  model.save!
+end
+
 u1 = User.new(username: 'demo', password: 'password')
 attach_photo(u1, "default-user-300x300.png")
 
@@ -47,31 +53,34 @@ f = EzDownload.open("https://s3.amazonaws.com/magnify-dev/Maroon_5_-_Songs_About
 ab2.photo.attach(io: f, filename: "Maroon_5_-_Songs_About_Jane.png")
 ab2.save!
 
-s1 = Song.create!(title: "The Red Shoes", artist_id: ar1.id, album_id: ab1.id)
-s2 = Song.create!(title: "Everybody has Secrets", artist_id: ar1.id, album_id: ab1.id)
-s3 = Song.create!(title: "Sunday Morning", artist_id: ar2.id, album_id: ab2.id)
+s1 = Song.new(title: "Modern Times", artist_id: ar1.id, album_id: ab1.id)
+attach_audio(s1, "02+Everybody+Has+Secrets.mp3")
+s2 = Song.new(title: "Everybody has Secrets", artist_id: ar1.id, album_id: ab1.id)
+attach_audio(s2, "05+Modern+Times.mp3")
+s3 = Song.new(title: "Sunday Morning", artist_id: ar2.id, album_id: ab2.id)
+attach_audio(s3, "Sunday+Morning.mp3")
 
 pl1 = Playlist.new(title: "My Favorite Songs", author_id: u1.id)
 attach_photo(pl1, "default_music.png")
-pl2 = Playlist.create(title: "Cool", author_id: u1.id)
+pl2 = Playlist.new(title: "Cool", author_id: u1.id)
 attach_photo(pl2, "default_music.png")
-pl3 = Playlist.create(title: "Fun", author_id: u2.id)
+pl3 = Playlist.new(title: "Fun", author_id: u2.id)
 attach_photo(pl3, "default_music.png")
-pl4 = Playlist.create(title: "Lalala", author_id: u1.id)
+pl4 = Playlist.new(title: "Lalala", author_id: u1.id)
 attach_photo(pl4, "default_music.png")
-pl5 = Playlist.create(title: "Lofi Beats", author_id: u1.id)
+pl5 = Playlist.new(title: "Lofi Beats", author_id: u1.id)
 attach_photo(pl5, "default_music.png")
-pl6 = Playlist.create(title: "Piano Instrumentals", author_id: u1.id)
+pl6 = Playlist.new(title: "Piano Instrumentals", author_id: u1.id)
 attach_photo(pl6, "default_music.png")
-pl7 = Playlist.create(title: "Upbeat", author_id: u1.id)
+pl7 = Playlist.new(title: "Upbeat", author_id: u1.id)
 attach_photo(pl7, "default_music.png")
-pl8 = Playlist.create(title: "Another Playlist", author_id: u1.id)
+pl8 = Playlist.new(title: "Another Playlist", author_id: u1.id)
 attach_photo(pl8, "default_music.png")
-pl9 = Playlist.create(title: "FunFunFun", author_id: u1.id)
+pl9 = Playlist.new(title: "FunFunFun", author_id: u1.id)
 attach_photo(pl9, "default_music.png")
-pl10 = Playlist.create(title: "Coolbeans", author_id: u1.id)
+pl10 = Playlist.new(title: "Coolbeans", author_id: u1.id)
 attach_photo(pl10, "default_music.png")
 
-pls1 = PlaylistSong.create(song_id: s1.id, playlist_id: pl1.id)
-pls2 = PlaylistSong.create(song_id: s3.id, playlist_id: pl1.id)
-pls3 = PlaylistSong.create(song_id: s1.id, playlist_id: pl2.id)
+pls1 = PlaylistSong.create!(song_id: s1.id, playlist_id: pl1.id)
+pls2 = PlaylistSong.create!(song_id: s3.id, playlist_id: pl1.id)
+pls3 = PlaylistSong.create!(song_id: s1.id, playlist_id: pl2.id)
