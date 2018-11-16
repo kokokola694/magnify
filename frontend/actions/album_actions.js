@@ -2,8 +2,8 @@ export const RECEIVE_ALBUMS = "RECEIVE_ALBUMS";
 export const RECEIVE_ALBUM = "RECEIVE_ALBUM"
 import * as AlbumApi from '../util/album_api_util';
 
-export const fetchAlbums = () => dispatch => {
-  return AlbumApi.fetchAlbums()
+export const fetchAlbums = (ids) => dispatch => {
+  return AlbumApi.fetchAlbums(ids)
   .then(albums => dispatch(receiveAlbums(albums)))
 }
 

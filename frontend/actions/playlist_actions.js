@@ -5,8 +5,8 @@ export const RECEIVE_PLAYLIST_ERRORS = "RECEIVE_PLAYLIST_ERRORS";
 
 import * as PlaylistApi from '../util/playlist_api_util';
 
-export const fetchPlaylists = () => dispatch => {
-  return PlaylistApi.fetchPlaylists()
+export const fetchPlaylists = (ids) => dispatch => {
+  return PlaylistApi.fetchPlaylists(ids)
   .then(playlists => dispatch(receivePlaylists(playlists)))
 }
 
@@ -35,10 +35,11 @@ const receivePlaylists = (playlists) => {
   }
 }
 
-const receivePlaylist = (playlist) => {
+const receivePlaylist = (playlist, songs) => {
   return {
     type: RECEIVE_PLAYLIST,
-    playlist
+    playlist,
+    songs
   }
 }
 

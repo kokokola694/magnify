@@ -19,11 +19,20 @@ class ArtistShow extends React.Component {
 
   render () {
     return (
-      <section>
+      <section className="artist-show">
         <section className="artist-img-container">
+          <section className="artist-show-head">
+            <h1>{this.props.artist.name}</h1>
+            <section className="artist-show-buttons">
+              <button className="green-play">Play</button>
+              <button className="artist-save">Save to your Library</button>
+            </section>
+          </section>
           <img className="artist-show-img" src={this.props.artist.photoUrl}/>
-          <div className="gradient"></div>
+
         </section>
+
+
 
         <SongIndexContainer artist={this.props.artist} songIds={this.props.artist.song_ids}/>
         <AlbumIndexContainer artist={this.props.artist} albumIds={this.props.artist.album_ids}/>

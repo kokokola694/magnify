@@ -7,6 +7,7 @@ import ArtistIndexContainer from '../artists/artist_index_container';
 import SongIndexContainer from '../songs/song_index_container';
 import AlbumShowContainer from '../albums/album_show_container';
 import ArtistShowContainer from '../artists/artist_show_container';
+import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
 
 const Browse = () => {
@@ -18,6 +19,7 @@ const Browse = () => {
       <main className="homepage-main">
         <Switch>
 
+          <Route path='/browse/playlists/:playlistId' component={PlaylistShowContainer}/>
           <Route path='/browse/playlists' component={PlaylistIndexContainer}/>
           <Route path='/browse/albums/:albumId' component={AlbumShowContainer}/>
           <Route path='/browse/albums' component={AlbumIndexContainer}/>

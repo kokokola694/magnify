@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_15_190520) do
+ActiveRecord::Schema.define(version: 2018_11_16_221627) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 2018_11_15_190520) do
     t.bigint "savable_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "saver_id", null: false
     t.index ["savable_type", "savable_id"], name: "index_saves_on_savable_type_and_savable_id"
   end
 

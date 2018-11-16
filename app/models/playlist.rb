@@ -15,12 +15,6 @@ class Playlist < ApplicationRecord
     through: :playlist_songs,
     source: :song
 
-    # after_initialize :ensure_photo
-
-    # private
-    # def ensure_photo
-    #   file = EzDownload.open("https://s3.amazonaws.com/magnify-dev/baseline-music_note-24px.svg")
-    #   self.photo.attach(io: file, filename: "avatar.svg")
-    # end
+  has_many :saves, as: :savable
 
 end

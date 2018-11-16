@@ -5,13 +5,20 @@ import { withRouter } from 'react-router'
 import { fetchAlbum } from '../../actions/album_actions';
 
 const msp = (state, ownProps) => {
-  let songs
+  let songs;
   const albumId = ownProps.match.params.albumId;
-  const artistId = ownProps.match.params.artistId
+  const artistId = ownProps.match.params.artistId;
   if (albumId) {
     songs = Object.values(state.entities.songs).filter(song => song.album_id == albumId);
   } else if (artistId) {
     songs = Object.values(state.entities.songs).filter(song => song.artist_id == artistId);
+  } else if (!!ownProps.playlist) {
+      const songIds = ownProps.playlist.song_ids || { length: 0 }
+      if (songIds.length === 0) {
+        songs = [];
+      } else {
+        songs = Object.values(state.entities.songs).filter(song => songIds.includes(song.id))
+      }
   } else {
     songs = Object.values(state.entities.songs);
   }

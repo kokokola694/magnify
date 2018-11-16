@@ -16,13 +16,13 @@ Artist.destroy_all
 default_music_photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/default_music.png")
 
 def attach_photo(model, file)
-  photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/#{file}")
+  photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/#{file}")
   model.photo.attach(io: photo, filename: file)
   model.save!
 end
 
 def attach_audio(model, file)
-  audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/#{file}")
+  audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/music/#{file}")
   model.audio.attach(io: audio, filename: file)
   model.save!
 end
@@ -34,24 +34,16 @@ u2 = User.new(username: 'miko', password: 'bethany')
 attach_photo(u2, "default-user-300x300.png")
 
 ar1 = Artist.new(name: "IU")
-file1 = EzDownload.open("https://s3.amazonaws.com/magnify-dev/IU.jpg")
-ar1.photo.attach(io:file1, filename: "IU.jpg")
-ar1.save!
+attach_photo(ar1, "IU.jpg")
 
 ar2 = Artist.new(name: "Maroon 5")
-file2 = EzDownload.open("https://s3.amazonaws.com/magnify-dev/maroon5.jpg")
-ar2.photo.attach(io: file2, filename: "maroon5.jpg")
-ar2.save!
+attach_photo(ar2, "maroon5.jpg")
 
 ab1 = Album.new(title: "Modern Times", year: 2013, artist_id: ar1.id)
-f = EzDownload.open("https://s3.amazonaws.com/magnify-dev/IU-Modern_Times.jpg")
-ab1.photo.attach(io: f, filename: "IU-Modern_Times.jpg")
-ab1.save!
+attach_photo(ab1, "IU-Modern_Times.jpg")
 
 ab2 = Album.new(title: "Songs About Jane", year: 2002, artist_id: ar2.id)
-f = EzDownload.open("https://s3.amazonaws.com/magnify-dev/Maroon_5_-_Songs_About_Jane.png")
-ab2.photo.attach(io: f, filename: "Maroon_5_-_Songs_About_Jane.png")
-ab2.save!
+attach_photo(ab2, "Maroon_5_-_Songs_About_Jane.png")
 
 s1 = Song.new(title: "Modern Times", artist_id: ar1.id, album_id: ab1.id)
 attach_audio(s1, "02+Everybody+Has+Secrets.mp3")

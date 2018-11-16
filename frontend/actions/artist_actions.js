@@ -2,8 +2,8 @@ export const RECEIVE_ARTISTS = "RECEIVE_ARTISTS";
 export const RECEIVE_ARTIST = "RECEIVE_ARTIST"
 import * as ArtistApi from '../util/artist_api_util';
 
-export const fetchArtists = () => dispatch => {
-  return ArtistApi.fetchArtists()
+export const fetchArtists = (ids) => dispatch => {
+  return ArtistApi.fetchArtists(ids)
   .then(artists => dispatch(receiveArtists(artists)))
 }
 

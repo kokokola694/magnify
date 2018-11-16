@@ -1,6 +1,10 @@
 class Api::AlbumsController < ApplicationController
   def index
-    @albums = Album.all.includes(:artist, :songs)
+    if params[:ids]
+      @albums = Album.where(id: params[:ids]).includes(:artist, :songs)
+    else
+      @albums = Album.all.includes(:artist, :songs)
+    end
   end
 
   def show

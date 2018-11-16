@@ -1,7 +1,11 @@
 class Api::PlaylistsController < ApplicationController
 
   def index
-    @playlists = Playlist.all.includes(:author)
+    if params[:ids]
+      @playlists = Playlist.where(id: params[:ids]).includes(:author)
+    else
+      @playlists = Playlist.all.includes(:author)
+    end
   end
 
   def show

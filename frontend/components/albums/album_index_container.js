@@ -4,7 +4,15 @@ import AlbumIndex from './album_index';
 import { withRouter } from 'react-router'
 
 const msp = (state, ownProps) => {
-  const albums = Object.values(state.entities.albums);
+  let albums;
+  const artistId = ownProps.match.params.artistId;
+
+  if (artistId) {
+    albums = Object.values(state.entities.albums).filter(album => album.artist_id == artistId);
+  } else {
+    albums = Object.values(state.entities.albums);
+  }
+
   const updatedAlbums = albums.map(album => {
     const artistName = state.entities.artists[album.artist_id].name
     return Object.assign({}, album, {artistName});
@@ -18,7 +26,7 @@ const msp = (state, ownProps) => {
 
 const mdp = dispatch => {
   return {
-    fetchAlbums: () => dispatch(fetchAlbums())
+    fetchAlbums: (ids) => dispatch(fetchAlbums(ids))
   }
 }
 

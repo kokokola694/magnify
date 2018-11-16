@@ -1,0 +1,64 @@
+
+
+.artist-show {
+}
+
+.artist-img-container {
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+
+  /* -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0)); */
+}
+
+.artist-show-head {
+  text-align: center;
+  position: absolute;
+  z-index: 2;
+  top: 30%;
+  left: 35%;
+}
+
+.artist-show-head h1 {
+  color: white;
+  font-size: 70px;
+  font-weight: 700;
+}
+
+.artist-show-img {
+   position:relative;
+   bottom:200px;
+   width:100%;
+   opacity: 0.7;
+ }
+
+.artist-show-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.green-play, .artist-save {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1;
+  border-radius: 500px;
+  padding: 16px 48px 18px;
+  transition-duration: .25s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 5px;
+  color: white;
+}
+
+.green-play {
+  background-color: #1db954;
+}
+
+.artist-save {
+  background-color: rgba(24,24,24,.7);
+  border: 2px solid white;
+}
