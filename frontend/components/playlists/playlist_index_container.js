@@ -5,10 +5,17 @@ import { withRouter } from 'react-router'
 
 const msp = (state, ownProps) => {
 
+  let playlists;
+  const currentUser = state.entities.users[state.session.id];
+  if (ownProps.match.path.slice(0,11) === "/collection") {
+    const allSavedPlaylists = currentUser.saved_playlist_ids.concat(currentUser.playlist_ids);
+    playlists = Object.values(state.entities.playlists).filter(playlist => allSavedPlaylists.includes(playlist.id));
+  } else if (ownProps.match.path.slice(0,7) === "/browse") {
+    playlists = Object.values(state.entities.playlists)
+  }
   return {
-    playlists: Object.values(state.entities.playlists),
-    currentUserId: state.session.id,
-    indexType: ownProps.match.params.url
+    playlists,
+    currentUser,
   }
 }
 

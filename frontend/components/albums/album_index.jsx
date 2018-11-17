@@ -7,8 +7,13 @@ class AlbumIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAlbums();
+    if (this.props.match.path.slice(0,11) === "/collection") {
+      this.props.fetchAlbums(this.props.currentUser.saved_album_ids);
+    } else {
+      this.props.fetchAlbums();
+    }
   }
+
 
   render() {
     const al = this.props.albums.map(a => <AlbumIndexItem key={a.id} album={a}/>)

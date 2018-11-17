@@ -7,7 +7,11 @@ class ArtistIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchArtists();
+    if (this.props.match.path.slice(0,11) === "/collection") {
+      this.props.fetchArtists(this.props.currentUser.saved_artist_ids);
+    } else {
+      this.props.fetchArtists();
+    }
   }
 
   render() {

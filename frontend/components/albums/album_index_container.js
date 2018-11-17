@@ -4,13 +4,17 @@ import AlbumIndex from './album_index';
 import { withRouter } from 'react-router'
 
 const msp = (state, ownProps) => {
-  let albums;
+  let albums = [];
   const artistId = ownProps.match.params.artistId;
-
-  if (artistId) {
-    albums = Object.values(state.entities.albums).filter(album => album.artist_id == artistId);
-  } else {
-    albums = Object.values(state.entities.albums);
+  const currentUser = state.entities.users[state.session.id];
+  if (ownProps.match.path.slice(0,11) === "/collection") {
+    albums = Object.values(state.entities.albums).filter(album => currentUser.saved_album_ids.includes(album.id));
+  } else if (ownProps.match.path.slice(0,7) === "/browse") {
+    if (artistId) {
+      albums = Object.values(state.entities.albums).filter(album => album.artist_id == artistId);
+    } else {
+      albums = Object.values(state.entities.albums);
+    }
   }
 
   const updatedAlbums = albums.map(album => {
@@ -19,8 +23,7 @@ const msp = (state, ownProps) => {
   })
   return {
     albums: updatedAlbums,
-    currentUserId: state.session.id,
-    indexType: ownProps.match.params.url
+    currentUser,
   }
 }
 

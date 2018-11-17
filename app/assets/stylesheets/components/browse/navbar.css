@@ -1,11 +1,11 @@
-.browse-navbar {
+.collection-navbar {
   position: relative;
   display: flex;
   top: 0;
   left: 230px;
   width: 80%;
   background-color: transparent;
-  justify-content: space-around;
+  justify-content: flex-end;
   box-sizing: border-box;
   padding: 40px 10%;
 }
@@ -37,4 +37,10 @@
     width: 30px;
     padding-top: 10px;
     border-bottom: 2px solid #1db954;
+}
+
+.browse-navbar {
+  display: flex;
+  justify-content: space-around;
+  width: 80%;
 }

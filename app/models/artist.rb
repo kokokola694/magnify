@@ -11,6 +11,10 @@ class Artist < ApplicationRecord
     foreign_key: :artist_id,
     class_name: :Album
 
-  has_many :saves, as: :savable
+  has_many :saves, as: :savable, class_name: :Save
+
+  has_many :savers,
+    through: :saves,
+    source: :saver
 
 end

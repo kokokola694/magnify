@@ -4,10 +4,16 @@ import ArtistIndex from './artist_index';
 import { withRouter } from 'react-router'
 
 const msp = (state, ownProps) => {
+  let artists;
+  const currentUser = state.entities.users[state.session.id];
+  if (ownProps.match.path.slice(0,11) === "/collection") {
+    artists = Object.values(state.entities.artists).filter(artist => currentUser.saved_artist_ids.includes(artist.id));
+  } else if (ownProps.match.path.slice(0,7) === "/browse") {
+    artists = Object.values(state.entities.artists)
+  }
   return {
-    artists: Object.values(state.entities.artists),
-    currentUserId: state.session.id,
-    indexType: ownProps.match.params.url
+    artists,
+    currentUser,
   }
 }
 

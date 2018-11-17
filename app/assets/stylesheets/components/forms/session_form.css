@@ -56,50 +56,6 @@
   border: 1px solid #919496;
 }
 
-.session-demo, .session-submit-button, .session-switch-link {
-  display: inline-block;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  border-radius: 500px;
-  padding: 16px 48px 18px;
-  transition-duration: .25s;
-  letter-spacing: 2px;
-  min-width: 160px;
-  text-transform: uppercase;
-  text-align: center;
-}
-
-.session-demo {
-  background-color: #3b5998;
-  margin-top: 40px;
-  color: white;
-}
-
-.session-demo:hover {
-  background-color: #3a61b3;
-}
-
-.session-submit-button {
-  background-color: #1db954;
-  margin: 20px;
-  color: white;
-}
-
-.session-submit-button:hover {
-  background-color: #1ed760;
-}
-
-.session-switch-link {
-  color: #616467;
-  border: 1px solid #616467;
-  margin-top: 20px;
-}
-
-.session-switch-link:hover {
-  color: white;
-  background-color: #616467;
-}
 
 .session-logo {
   padding: 40px;

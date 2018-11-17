@@ -7,7 +7,12 @@ class PlaylistIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPlaylists();
+    if (this.props.match.path.slice(0,11) === "/collection") {
+      this.props.fetchPlaylists(this.props.currentUser.saved_playlist_ids);
+      this.props.fetchPlaylists(this.props.currentUser.playlist_ids);
+    } else {
+      this.props.fetchPlaylists();
+    }
   }
 
   render() {

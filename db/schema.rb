@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_221627) do
+ActiveRecord::Schema.define(version: 2018_11_17_022110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 2018_11_16_221627) do
   end
 
   create_table "saves", force: :cascade do |t|
-    t.string "savable_type"
-    t.bigint "savable_id"
+    t.string "savable_type", null: false
+    t.integer "savable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "saver_id", null: false

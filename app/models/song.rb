@@ -17,7 +17,11 @@ class Song < ApplicationRecord
     through: :playlist_songs,
     source: :playlist
 
-  has_many :saves, as: :savable
+  has_many :saves, as: :savable, class_name: :Save
+
+  has_many :savers,
+    through: :saves,
+    source: :saver
 
   has_one_attached :audio
 

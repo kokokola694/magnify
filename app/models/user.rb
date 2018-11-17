@@ -8,6 +8,30 @@ class User < ApplicationRecord
     foreign_key: :author_id,
     class_name: :Playlist
 
+  has_many :saves,
+    foreign_key: :saver_id,
+    class_name: :Save
+
+  has_many :saved_playlists,
+    through: :saves,
+    source: :savable,
+    source_type: :Playlist
+
+  has_many :saved_albums,
+    through: :saves,
+    source: :savable,
+    source_type: :Album
+
+  has_many :saved_songs,
+    through: :saves,
+    source: :savable,
+    source_type: :Song
+
+  has_many :saved_artists,
+    through: :saves,
+    source: :savable,
+    source_type: :Artist
+
 # People that are following the user.
   # has_many :followers,
   #   foreign_key: :followed_id,
