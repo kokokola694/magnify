@@ -1,13 +1,13 @@
-.collection-navbar {
-  position: relative;
+.browse-navbar {
   display: flex;
-  top: 0;
-  left: 230px;
-  width: 80%;
+  margin-left: 230px;
   background-color: transparent;
-  justify-content: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 40px 10%;
+  padding: 40px 200px;
+  max-width: 80%;
+  align-items: baseline;
 }
 
 .browse-navbar a {
@@ -18,7 +18,7 @@
   color: #b2b6bc;
   letter-spacing: .095em;
   text-align: center;
-  width: 15%;
+  max-width: 20%;
 }
 
 .browse-navbar > .active {
@@ -30,17 +30,18 @@
   color: white;
 }
 
+.browse-navbar a:after {
+  padding-top: 10px;
+  content: "";
+  border-bottom: 2px solid transparent;
+  display: block;
+}
+
 .browse-navbar > .active:after {
     content: "";
     display: block;
     margin: 0 auto;
-    width: 30px;
+    max-width: 30px;
     padding-top: 10px;
     border-bottom: 2px solid #1db954;
-}
-
-.browse-navbar {
-  display: flex;
-  justify-content: space-around;
-  width: 80%;
 }

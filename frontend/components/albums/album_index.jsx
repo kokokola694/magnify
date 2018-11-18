@@ -18,11 +18,11 @@ class AlbumIndex extends React.Component {
   render() {
     const al = this.props.albums.map(a => <AlbumIndexItem key={a.id} album={a}/>)
     return (
-      <section>
+      <>
         <ul className="index-list">
           {al}
         </ul>
-      </section>
+      </>
 
     )
   }

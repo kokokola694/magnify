@@ -18,6 +18,7 @@ class PlaylistShow extends React.Component {
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
+    const emptyDesc = songIds.length === 0 ? "It's a bit empty here..." : ""
     return (
       <section className="playlist-show show">
         <header>
@@ -27,8 +28,9 @@ class PlaylistShow extends React.Component {
             <h2>By {this.props.playlist.author}</h2>
             <h3>{songIds.length} Songs</h3>
             <button className="green-play">Play</button>
-            <button></button>
+            {this.props.openModal}
           </section>
+          <h1>{emptyDesc}</h1>
         </header>
         <SongIndexContainer playlist={this.props.playlist} songIds={this.props.playlist.song_ids}/>
       </section>

@@ -1,4 +1,4 @@
-.green-play, .artist-save, .new-playlist,
+.green-play, .artist-save, .playlist-create-btn,
 .session-demo, .session-submit-button, .session-switch-link {
   display: inline-block;
   font-size: 11px;
@@ -17,7 +17,7 @@
   font-weight: 700;
   padding: 16px 48px 18px;
   letter-spacing: 2px;
-  min-width: 160px;
+  max-width: 160px;
 }
 
 .session-demo {
@@ -36,7 +36,7 @@
   color: white;
 }
 
-.session-submit-button:hover, .new-playlist:hover, .green-play:hover {
+.session-submit-button:hover, .playlist-create-btn:hover, .green-play:hover {
   background-color: #1ed760;
 }
 
@@ -63,12 +63,11 @@
   padding: 16px 48px 18px;
 }
 
-.new-playlist {
-  float: right;
-  padding: 11px 30px;
+.playlist-create-btn {
+  padding: 10px 30px;
 }
 
-.green-play, .new-playlist {
+.green-play, .playlist-create-btn {
   background-color: #1db954;
 }
 

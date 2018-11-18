@@ -1,5 +1,7 @@
 import React from 'react';
 import SongIndexItem from './song_index_item';
+import { openModal, closeModal } from '../../actions/modal_actions';
+
 
 class SongIndex extends React.Component {
   constructor(props) {
@@ -19,10 +21,10 @@ class SongIndex extends React.Component {
   }
 
   render() {
-    const songlist = this.props.songs.map(s => <SongIndexItem key={s.id} song={s}/>)
+    const songlist = this.props.songs.map(s => <SongIndexItem key={s.id} song={s} openModal={openModal}/>)
     return (
       <section>
-        <ul className="song-index-list">
+        <ul className="playlist-index-list">
           {songlist}
         </ul>
       </section>

@@ -1,14 +1,17 @@
+
+
 .index-list {
   display: flex;
   flex-wrap: wrap;
   padding: 0 20px;
+  width: 100%;
 }
 
 .index-item {
   box-sizing: border-box;
-  width: 15%;
-  min-width: 125px;
-  margin: 15px 11px;
+  max-width: 185px;
+  max-height: 185px;
+  margin: 35px 11px;
   box-shadow: 5px;
   text-align: center;
 }
@@ -23,5 +26,13 @@
 .index-item-img {
   border: 1px solid #b3b3b3;
   box-sizing: border-box;
-  background-color: teal;
+  background-color: green;
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+.avatar {
+  border-radius: 50%;
+  background-color: transparent;
 }

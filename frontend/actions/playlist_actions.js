@@ -2,6 +2,8 @@ export const RECEIVE_PLAYLISTS = "RECEIVE_PLAYLISTS";
 export const RECEIVE_PLAYLIST = "RECEIVE_PLAYLIST";
 export const REMOVE_PLAYLIST = "REMOVE_PLAYLIST";
 export const RECEIVE_PLAYLIST_ERRORS = "RECEIVE_PLAYLIST_ERRORS";
+export const RECEIVE_PLAYLIST_SONG = "RECEIVE_PLAYLIST_SONG";
+export const REMOVE_PLAYLIST_SONG = "REMOVE_PLAYLIST_SONG";
 
 import * as PlaylistApi from '../util/playlist_api_util';
 
@@ -25,6 +27,16 @@ export const createPlaylist = (playlist) => dispatch => {
 export const deletePlaylist = (id) => dispatch => {
   return PlaylistApi.deletePlaylist(id)
   .then(playlist => dispatch(removePlaylist(playlist)))
+}
+
+export const addPlaylistSong = (playlistSong) => dispatch => {
+  return PlaylistApi.addPlaylistSong(playlistSong)
+  .then( (playlistSong) => dispatch(receivePlaylist(playlistSong)))
+}
+
+export const deletePlaylistSong = (playlistId, songId) => dispatch => {
+  return PlaylistApi.deletePlaylistSong(playlistId, songId)
+  .then( (playlistSong) => dispatch(receivePlaylist(playlistSong)))
 }
 
 
@@ -54,5 +66,21 @@ export const receiveErrors = (errors) => {
   return {
     type: RECEIVE_PLAYLIST_ERRORS,
     errors
+  }
+}
+
+export const receivePlaylistSong = ({song_id, playlist_id}) => {
+  return {
+    type: RECEIVE_PLAYLIST_SONG,
+    playlistId: playlist_id,
+    songId: song_id
+  }
+}
+
+export const removePlaylistSong = ({song_id, playlist_id}) => {
+  return {
+    type: REMOVE_PLAYLIST_SONG,
+    playlistId: playlist_id,
+    songId: song_id
   }
 }

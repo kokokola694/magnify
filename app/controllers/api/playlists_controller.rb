@@ -15,6 +15,8 @@ class Api::PlaylistsController < ApplicationController
   def create
     @playlist = Playlist.new(playlist_params)
     @playlist.author_id = current_user.id
+    photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/default_music.png")
+    @playlist.photo.attach(io: photo, filename: "default_music.png")
     if @playlist.save
       render :show
     else

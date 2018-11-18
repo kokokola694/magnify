@@ -6,10 +6,12 @@ import SignupFormContainer from './splash/signup_form_container';
 import Browse from './browse/browse';
 import Collection from './collection/collection';
 import { Switch, Route } from 'react-router-dom';
+import Modal from './playlists/modal';
 
 const App = () => {
   return (
     <>
+      <Route path="/" component={Modal}/>
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer}/>

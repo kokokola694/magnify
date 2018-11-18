@@ -5,7 +5,7 @@ const ArtistIndexItem = ({artist}) => {
   return (
     <li className="index-item">
       <Link to={`/browse/artists/${artist.id}`}>
-        <img className="index-item-img" src={artist.photoUrl}/>
+        <img className="index-item-img avatar" src={artist.photoUrl}/>
         <section>{artist.name}</section>
       </Link>
     </li>

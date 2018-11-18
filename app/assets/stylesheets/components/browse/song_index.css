@@ -33,7 +33,7 @@
 }
 
 .song-index-item audio {
-  width: 250px;
+  max-width: 250px;
   max-height: 100%;
   padding:5px 0px 0px 20px;
 }
