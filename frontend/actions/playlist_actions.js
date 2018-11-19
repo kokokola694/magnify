@@ -34,9 +34,9 @@ export const addPlaylistSong = (playlistSong) => dispatch => {
   .then( (playlistSong) => dispatch(receivePlaylistSong(playlistSong)))
 }
 
-export const deletePlaylistSong = (playlistId, songId) => dispatch => {
-  return PlaylistApi.deletePlaylistSong(playlistId, songId)
-  .then( (playlistSong) => dispatch(receivePlaylist(playlistSong)))
+export const deletePlaylistSong = (playlistSong) => dispatch => {
+  return PlaylistApi.deletePlaylistSong(playlistSong)
+  .then( (playlistSong) => dispatch(removePlaylistSong(playlistSong)))
 }
 
 

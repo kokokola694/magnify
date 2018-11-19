@@ -19,6 +19,23 @@ class AlbumShow extends React.Component {
 
   render () {
     const artist = this.props.album.artist || {name: ""};
+    const saveButton = this.props.savedIndicator ? (
+      <button onClick={() => this.props.deleteSave({
+          savable_id: this.props.album.id,
+          savable_type: "Album",
+          saver_id: this.props.currentUser.id
+        })}>
+        Remove From Your Library</button>
+    ) : (
+      <button onClick={() => this.props.createSave({
+          savable_id: this.props.album.id,
+          savable_type: "Album",
+          saver_id: this.props.currentUser.id
+        })}>
+        Save To Your Library</button>
+    );
+
+
     return (
       <section>
         <img className="show-img" src={this.props.album.photoUrl}/>
@@ -28,6 +45,10 @@ class AlbumShow extends React.Component {
             {artist.name}
           </Link>
         </h2>
+        <section>
+          <button>Play</button>
+          {saveButton}
+        </section>
         <SongIndexContainer album={this.props.album} songIds={this.props.album.song_ids}/>
       </section>
     )

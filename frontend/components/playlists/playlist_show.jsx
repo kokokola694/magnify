@@ -19,10 +19,9 @@ class PlaylistShow extends React.Component {
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
     const emptyDesc = songIds.length === 0 ? "It's a bit empty here..." : "";
-    // debugger
     const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUserId;
     const openModal = belongsToCurrentUser ? this.props.openModal : null;
-    // debugger
+  
     return (
       <section className="playlist-show show">
         <header>
