@@ -17,7 +17,7 @@
   font-weight: 700;
   padding: 16px 48px 18px;
   letter-spacing: 2px;
-  max-width: 160px;
+  min-width: 160px;
 }
 
 .session-demo {

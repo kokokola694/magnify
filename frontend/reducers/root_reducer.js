@@ -9,4 +9,4 @@ export default combineReducers({
   session: sessionReducer,
   errors: errorsReducer,
   ui: uiReducer
-})
+});

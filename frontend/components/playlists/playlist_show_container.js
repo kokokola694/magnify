@@ -9,7 +9,8 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 const msp = (state, ownProps) => {
   const playlistId = ownProps.match.params.playlistId;
   const playlist = state.entities.playlists[playlistId] || {};
-  return { playlist }
+  const currentUserId = state.session.id;
+  return { playlist, currentUserId }
 }
 
 const mdp = dispatch => {

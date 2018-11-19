@@ -18,7 +18,11 @@ class PlaylistShow extends React.Component {
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
-    const emptyDesc = songIds.length === 0 ? "It's a bit empty here..." : ""
+    const emptyDesc = songIds.length === 0 ? "It's a bit empty here..." : "";
+    // debugger
+    const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUserId;
+    const openModal = belongsToCurrentUser ? this.props.openModal : null;
+    // debugger
     return (
       <section className="playlist-show show">
         <header>
@@ -28,7 +32,7 @@ class PlaylistShow extends React.Component {
             <h2>By {this.props.playlist.author}</h2>
             <h3>{songIds.length} Songs</h3>
             <button className="green-play">Play</button>
-            {this.props.openModal}
+            {openModal}
           </section>
           <h1>{emptyDesc}</h1>
         </header>

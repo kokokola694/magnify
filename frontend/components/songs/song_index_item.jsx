@@ -1,8 +1,7 @@
 import React from 'react';
-// import { connect } from 'react-redux';
+import DropMenu from '../playlists/drop_menu';
 
-
-const SongIndexItem = ({song, openModal}) => {
+const SongIndexItem = ({song}) => {
   return (
     <li className="song-index-item">
 
@@ -16,11 +15,7 @@ const SongIndexItem = ({song, openModal}) => {
       <audio src={song.audioUrl} controls="controls">
           Your browser does not support the audio element.
       </audio>
-      <div className="playlist-addto">
-        <button className="playlist-addto-btn" onClick={() => dispatch(openModal("addToPlaylist"))}>
-          Add To Playlist
-        </button>
-      </div>
+      <DropMenu song={song}/>
 
     </li>
 

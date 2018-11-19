@@ -17,8 +17,11 @@ const msp = (state, ownProps) => {
       if (songIds.length === 0) {
         songs = [];
       } else {
-        songs = Object.values(state.entities.songs).filter(song => songIds.includes(song.id))
+        songs = Object.values(state.entities.songs).filter(song => songIds.includes(song.id));
       }
+  } else if (ownProps.match.path.slice(0,11) === "/collection") {
+    const currentUser = state.entities.users[state.session.id];
+    songs = Object.values(state.entities.songs).filter(song => currentUser.saved_song_ids.includes(song.id));
   } else {
     songs = Object.values(state.entities.songs);
   }

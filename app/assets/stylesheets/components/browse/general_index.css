@@ -9,8 +9,9 @@
 
 .index-item {
   box-sizing: border-box;
-  max-width: 185px;
-  max-height: 185px;
+  min-width: 150px;
+  max-width: 175px;
+  max-height: 175px;
   margin: 35px 11px;
   box-shadow: 5px;
   text-align: center;
@@ -28,7 +29,7 @@
   box-sizing: border-box;
   background-color: green;
   height: 100%;
-  width: 100%;
+  max-width: 100%;
   object-fit: contain;
 }
 
