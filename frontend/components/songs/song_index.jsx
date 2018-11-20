@@ -21,10 +21,11 @@ class SongIndex extends React.Component {
   }
 
   render() {
-    const songlist = this.props.songs.map(s => <SongIndexItem key={s.id} song={s} openModal={openModal}/>)
+    const songlist =
+      this.props.songs.map(s => <SongIndexItem key={s.id} song={s} playlist={this.props.playlist} openModal={openModal}/>)
     return (
       <section>
-        <ul className="playlist-index-list">
+        <ul className="song-index-list">
           {songlist}
         </ul>
       </section>

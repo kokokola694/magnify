@@ -9,12 +9,15 @@ import AlbumShowContainer from '../albums/album_show_container';
 import ArtistShowContainer from '../artists/artist_show_container';
 import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
+import Player from '../player/player';
+
 
 const Browse = () => {
   return (
     <section className="homepage">
       <Route path='/' component={SideBarContainer} />
       <Route path='/browse/:page' component={BrowseNavbarContainer}/>
+      <Route path="/" component={Player}/>
       <main className="homepage-main">
         <Switch>
           <Route path='/browse/playlists/:playlistId' component={PlaylistShowContainer}/>

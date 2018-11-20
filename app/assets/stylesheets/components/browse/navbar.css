@@ -1,13 +1,21 @@
+.complete-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 40px 50px 40px 280px;
+}
+
 .browse-navbar {
   display: flex;
-  margin-left: 230px;
   background-color: transparent;
   justify-content: space-between;
   flex-wrap: wrap;
   box-sizing: border-box;
-  padding: 40px 200px;
-  max-width: 80%;
-  align-items: baseline;
+  width: 50%;
+  min-height: 35px;
+  align-items: center;
 }
 
 .browse-navbar a {

@@ -4,8 +4,16 @@ import { withRouter } from 'react-router-dom';
 import React from 'react';
 
 const msp = (state, ownProps) => {
+  const path = ownProps.location.pathname;
+  const noNavBar = path.split('/').length === 4;
   return {
-    navType: "browse"
+    navType: "browse",
+    noNavBar,
+    openModal: (
+      <div className="playlist-create">
+
+      </div>
+    )
   }
 }
 

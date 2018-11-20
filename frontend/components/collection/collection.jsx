@@ -9,12 +9,14 @@ import AlbumShowContainer from '../albums/album_show_container';
 import ArtistShowContainer from '../artists/artist_show_container';
 import PlaylistShowContainer from '../playlists/playlist_show_container';
 import CollectionNavbarContainer from './collection_navbar_container';
+import Player from '../player/player';
 
 const Collection = () => {
   return (
     <section className="homepage">
       <Route path='/' component={SideBarContainer} />
       <Route path='/collection/:page' component={CollectionNavbarContainer}/>
+      <Route path="/" component={Player}/>
       <main className="homepage-main">
         <Switch>
           <Route path='/collection/playlists/:playlistId' component={PlaylistShowContainer}/>

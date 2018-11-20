@@ -24,12 +24,13 @@ class AddToPlaylist extends React.Component {
         addToPlaylist={this.props.addToPlaylist} closeModal={this.props.closeModal}/>));
     return (
 
-      <>
-        <h1 onClick={() => this.props.closeModal()}> X </h1>
+      <section className="create-playlist">
+        <button id="exit-modal" onClick={() => this.props.closeModal()}> X </button>
+        <h1>Add to playlist</h1>
         <ul className="index-list">
           {playlists}
         </ul>
-      </>
+      </section>
     )
   }
 }

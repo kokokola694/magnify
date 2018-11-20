@@ -4,12 +4,16 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router';
 import { deletePlaylistSong } from '../../actions/playlist_actions';
 import { fetchSelectedSong } from '../../actions/song_actions';
+import { createSave, deleteSave } from '../../actions/save_actions';
+
 
 class DropMenu extends React.Component {
   constructor (props) {
     super(props);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleSaveSong = this.handleSaveSong.bind(this);
+    this.handleDisp = this.handleDisp.bind(this);
   }
 
   handleAdd () {
@@ -23,19 +27,76 @@ class DropMenu extends React.Component {
       {song_id: this.props.selectedSong.id, playlist_id: this.props.match.params.playlistId}));
   }
 
+  handleSaveSong (saveInfo) {
+    this.props.createSave(saveInfo);
+  }
+
+  handleUnsaveSong (saveInfo) {
+    this.props.deleteSave(saveInfo);
+  }
+
+  handleDisp () {
+    const dropmenu = document.getElementById(`dropmenu-${this.props.song.id}`);
+    if (dropmenu.style.display === "none") {
+      dropmenu.style.display = "block";
+    } else {
+      dropmenu.style.display = "none";
+    }
+  }
+
   render () {
-    return (
-      <div className="dropmenu">
-        <div className="playlist-addto">
-          <button className="playlist-addto-btn" onClick={() => this.handleAdd()}>
-            Add To Playlist
-          </button>
-        </div>
+    let removeButton;
+    if (this.props.playlist && this.props.playlist.author_id === this.props.currentUser.id) {
+      removeButton = (
         <div className="playlist-remfrom">
           <button className="playlist-remfrom-btn" onClick={() => this.handleRemove()}>
             Remove From Playlist
           </button>
         </div>
+      )
+    } else {
+        removeButton = null;
+    }
+
+    let saveButton;
+    if (!this.props.currentUser.saved_song_ids.includes(this.props.song.id)) {
+      saveButton = (
+        <li onClick={() => this.handleSaveSong({
+          savable_id: this.props.song.id,
+          savable_type: "Song",
+          saver_id: this.props.currentUser.id
+        })}>
+          <button className="save-library-button">
+            Save to Your Library
+          </button>
+        </li>
+      )
+    } else {
+      saveButton = (
+        <li onClick={() => this.handleUnsaveSong({
+          savable_id: this.props.song.id,
+          savable_type: "Song",
+          saver_id: this.props.currentUser.id
+        })}>
+          <button className="save-library-button">
+            Remove From Your Library
+          </button>
+        </li>
+      )
+    }
+
+    return (
+      <div className="drop" onClick={() => this.handleDisp()}>
+        <i  className="fa fa-bars"></i>
+        <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`} style={{display: "none"}}>
+          <li className="playlist-addto" onClick={() => this.handleAdd()}>
+            <button className="playlist-addto-btn" >
+              Add To Playlist
+            </button>
+          </li>
+          { removeButton }
+          { saveButton }
+        </ul>
       </div>
     )
   }
@@ -45,7 +106,8 @@ class DropMenu extends React.Component {
 const msp = (state, ownProps) => {
 
   return {
-    selectedSong: state.ui.selectedSong
+    selectedSong: state.ui.selectedSong,
+    currentUser: state.entities.users[state.session.id]
   }
 }
 
@@ -54,7 +116,9 @@ const mdp = dispatch => {
     closeModal: () => closeModal(),
     openModal: (modal) => openModal(modal),
     deletePlaylistSong: (playlistSong) => dispatch(deletePlaylistSong(playlistSong)),
-    fetchSelectedSong: (id) => dispatch(fetchSelectedSong(id))
+    fetchSelectedSong: (id) => dispatch(fetchSelectedSong(id)),
+    createSave: (saveInfo) => dispatch(createSave(saveInfo)),
+    deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo))
   }
 }
 

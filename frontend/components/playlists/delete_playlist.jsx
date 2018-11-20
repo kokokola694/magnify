@@ -23,12 +23,14 @@ class DeletePlaylist extends React.Component {
     }
     return (
 
-      <>
-        <button onClick={() => this.props.closeModal()} className="exit-modal">X</button>
-        <h1>Do you really want to delete this playlist?t</h1>
-        <button onClick={() => this.props.closeModal()}>Cancel</button>
-        <button onClick={this.handleSubmit} >Delete</button>
-      </>
+      <section className="create-playlist">
+        <button onClick={() => this.props.closeModal()} id="exit-modal">X</button>
+        <h1>Do you really want to delete this playlist?</h1>
+        <section className="modal-buttons">
+          <button className="artist-save" onClick={() => this.props.closeModal()}>Cancel</button>
+          <button className="playlist-create-btn" onClick={this.handleSubmit} >Delete</button>
+        </section>
+      </section>
     )
   }
 }
@@ -36,7 +38,7 @@ class DeletePlaylist extends React.Component {
 const msp = (state, ownProps) => {
   const pathArray = ownProps.location.pathname.split("/");
   const playlistId = pathArray[pathArray.length - 1];
-  
+
   return {
     modal: state.ui.modal,
     playlistId

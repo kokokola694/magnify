@@ -1,11 +1,12 @@
 .artist-show {
-
+  width: 100%;
 }
 
 .artist-img-container {
   position: relative;
   height: 40vh;
   overflow: hidden;
+  width: 100%;
 
 
   /* -webkit-mask-image:-webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
@@ -13,11 +14,13 @@
 }
 
 .artist-show-head {
-  text-align: center;
+  display: inline-flex;
+  width: 100%;
   position: absolute;
   z-index: 2;
   top: 30%;
-  left: 35%;
+  flex-direction: column;
+  align-items: center;
 }
 
 .artist-show-head h1 {
@@ -32,3 +35,19 @@
    width:100%;
    opacity: 0.7;
  }
+
+.artist-show main {
+  padding-top: 30px;
+}
+
+.artist-show-sections {
+  padding: 30px 0px 20px 50px;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.album-year-songs {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

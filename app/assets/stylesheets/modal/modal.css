@@ -8,11 +8,55 @@
   z-index: 10;
   color: white;
   overflow: scroll;
+  width: 200vh;
 }
 
 .modal-child {
+  width: 100%;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+
+}
+
+.create-playlist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+#exit-modal {
+  font-size: 45px;
+  margin: 0 0 40px 0;
+  height: 50px;
+}
+
+#exit-modal:hover {
+  font-size: 50px;
+
+}
+
+.create-playlist h1 {
+  font-size: 45px;
+  font-weight: 700;
+  margin: 30px 0 30px 0;
+}
+
+.modal-label {
+  width: 100%;
+  background: #282828;
+}
+
+.create-playlist h2 {
+  font-size: 13px;
+  font-weight: 600;
+  padding: 25px 40px 0px 40px;
+}
+
+.modal-title {
+  font-size: 60px;
+  font-weight: 600;
+  padding: 5px 40px 25px 40px;
 }

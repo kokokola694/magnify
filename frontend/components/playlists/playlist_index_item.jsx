@@ -5,7 +5,7 @@ const PlaylistIndexItem = ({playlist}) => {
   return (
     <li className="index-item">
       <Link to={`/browse/playlists/${playlist.id}`}>
-        <img className="index-item-img" src={playlist.photoUrl}/>
+        <img className="index-item-img temp" src={playlist.photoUrl}/>
         <section>{playlist.title}</section>
         <section>{playlist.author}</section>
       </Link>

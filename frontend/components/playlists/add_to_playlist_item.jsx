@@ -17,7 +17,7 @@ class PlaylistIndexItem extends React.Component {
     return (
       <li className="index-item">
         <button onClick={() => this.handleClick()}>
-          <img className="index-item-img" src={this.props.playlist.photoUrl}/>
+          <img className="index-item-img temp" src={this.props.playlist.photoUrl}/>
           <section>{this.props.playlist.title}</section>
           <section>{this.props.playlist.author}</section>
         </button>

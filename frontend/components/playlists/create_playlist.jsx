@@ -29,14 +29,18 @@ class CreatePlaylist extends React.Component {
     }
     return (
 
-      <>
-        <button onClick={() => this.props.closeModal()} className="exit-modal">X</button>
+      <section className="create-playlist">
+        <button id="exit-modal" onClick={() => this.props.closeModal()} className="exit-modal">X</button>
         <h1>Create new playlist</h1>
-        <div className="modal-label">Playlist Name</div>
-        <input className="modal-title" onChange={this.updateTitle} type="text" placeholder="Start typing..." value={this.state.title} />
-        <button onClick={() => this.props.closeModal()}>Cancel</button>
-        <button onClick={this.handleSubmit} >Create</button>
-      </>
+        <label className="modal-label">
+          <h2>Playlist Name</h2>
+          <input className="modal-title" onChange={this.updateTitle} type="text" placeholder="Start typing..." value={this.state.title} />
+        </label>
+        <section className="modal-buttons">
+          <button className="artist-save" onClick={() => this.props.closeModal()}>Cancel</button>
+          <button className="playlist-create-btn" onClick={this.handleSubmit} >Create</button>
+        </section>
+      </section>
     )
   }
 }

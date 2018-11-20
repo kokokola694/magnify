@@ -1,13 +1,13 @@
 .homepage {
   background-image: linear-gradient(#1d409e, black);
-  min-height: 2000px;
+  min-height: 1200px;
   box-sizing: border-box;
 }
 
 .homepage-main {
   position: absolute;
-  left: 230px;
+  padding-left: 230px;
   box-sizing: border-box;
   color: white;
-  padding: 0 0px;
+  width: 100%;
 }

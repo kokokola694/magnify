@@ -5,6 +5,7 @@
   flex-wrap: wrap;
   padding: 0 20px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .index-item {
@@ -27,13 +28,20 @@
 .index-item-img {
   border: 1px solid #b3b3b3;
   box-sizing: border-box;
-  background-color: green;
   height: 100%;
   max-width: 100%;
   object-fit: contain;
 }
 
+.index-item-img:hover {
+  opacity: 0.8;
+  transition-duration: 0.25s;
+}
+
+.temp {
+  background-image: linear-gradient(teal, white);
+}
+
 .avatar {
   border-radius: 50%;
-  background-color: transparent;
 }

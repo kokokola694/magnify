@@ -8,11 +8,12 @@ const msp = (state, ownProps) => {
   let songs;
   const albumId = ownProps.match.params.albumId;
   const artistId = ownProps.match.params.artistId;
+  const playlist = ownProps.playlist;
   if (albumId) {
     songs = Object.values(state.entities.songs).filter(song => song.album_id == albumId);
   } else if (artistId) {
     songs = Object.values(state.entities.songs).filter(song => song.artist_id == artistId);
-  } else if (!!ownProps.playlist) {
+  } else if (!!playlist) {
       const songIds = ownProps.playlist.song_ids || { length: 0 }
       if (songIds.length === 0) {
         songs = [];
@@ -35,6 +36,7 @@ const msp = (state, ownProps) => {
     songs: updatedSongs,
     currentUserId: state.session.id,
     indexType: ownProps.match.params.url,
+    playlist
   }
 }
 

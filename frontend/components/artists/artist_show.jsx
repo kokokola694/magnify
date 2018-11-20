@@ -18,6 +18,22 @@ class ArtistShow extends React.Component {
   }
 
   render () {
+    const saveButton = this.props.savedIndicator ? (
+      <button className="artist-save" onClick={() => this.props.deleteSave({
+          savable_id: this.props.artist.id,
+          savable_type: "Artist",
+          saver_id: this.props.currentUser.id
+        })}>
+        Remove From Your Library</button>
+    ) : (
+      <button className="artist-save" onClick={() => this.props.createSave({
+          savable_id: this.props.artist.id,
+          savable_type: "Artist",
+          saver_id: this.props.currentUser.id
+        })}>
+        Save To Your Library</button>
+    );
+
     return (
       <section className="artist-show">
         <section className="artist-img-container">
@@ -25,7 +41,7 @@ class ArtistShow extends React.Component {
             <h1>{this.props.artist.name}</h1>
             <section className="artist-show-buttons">
               <button className="green-play">Play</button>
-              <button className="artist-save">Save to your Library</button>
+              { saveButton }
             </section>
           </section>
           <img className="artist-show-img" src={this.props.artist.photoUrl}/>
@@ -33,9 +49,16 @@ class ArtistShow extends React.Component {
         </section>
 
 
-
-        <SongIndexContainer artist={this.props.artist} songIds={this.props.artist.song_ids}/>
-        <AlbumIndexContainer artist={this.props.artist} albumIds={this.props.artist.album_ids}/>
+        <main>
+          <div>
+            <h2 className="artist-show-sections">Popular</h2>
+            <SongIndexContainer artist={this.props.artist} songIds={this.props.artist.song_ids}/>
+          </div>
+          <div>
+            <h2 className="artist-show-sections">Albums</h2>
+            <AlbumIndexContainer artist={this.props.artist} albumIds={this.props.artist.album_ids}/>
+          </div>
+        </main>
       </section>
     )
   }

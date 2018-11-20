@@ -5,8 +5,11 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 import React from 'react';
 
 const msp = (state, ownProps) => {
+  const path = ownProps.location.pathname;
+  const noNavBar = path.split('/').length === 4;
   return {
-    navType: "collection"
+    navType: "collection",
+    noNavBar
   }
 }
 

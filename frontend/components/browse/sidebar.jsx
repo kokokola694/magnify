@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
             <section>
-              <NavLink to="/browse/playlists">
+              <NavLink to="/browse/playlists" isActive={this.props.atBrowse}>
                 <svg viewBox="0 0 512 512" width="24" height="24"
                   xmlns="http://www.w3.org/2000/svg"><path d="M 256.274 60.84 L
                   84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73
@@ -39,7 +39,7 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
             <section>
-              <NavLink to="/collection/playlists">
+              <NavLink to="/collection/playlists" isActive={this.props.atCollection}>
                 <svg viewBox="0 0 512 512" width="24" height="24"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M311.873 77.46l166.349 373.587-39.111
@@ -53,6 +53,7 @@ class Sidebar extends React.Component {
         </section>
 
         <section className="side-bar-bottom">
+          <section className="side-bar-line"></section>
           <section className="side-bar-current-user">
             <img className="side-bar-pic" src={this.props.currentUser.photoUrl}/>
             <section>{this.props.currentUser.username}</section>
