@@ -49,7 +49,7 @@ ar2 = Artist.new(name: "Maroon 5")
 attach_photo(ar2, "maroon5.jpg")
 #
 # ar3 = Artist.new(name: "GD & TOP")
-# attach_photo(ar3,"gdtop.jpeg")
+# attach_photo(ar3,"gd_top.png")
 #
 # ar4 = Artist.new(name: "Sovereign Grace Music")
 # attach_photo(ar4,"sovgracemusic_logo.png")

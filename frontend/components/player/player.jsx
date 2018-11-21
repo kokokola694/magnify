@@ -1,12 +1,33 @@
 import React from 'react';
-// import Background from '../../../app/assets/images/playerss.png';
+import { connect } from 'react-redux';
 
-const Player = () => {
-  return (
-    <section id="player">
+class Player extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = ({
+      currentSong: window.iuSong
+    })
+  }
 
-    </section>
-  )
+  render() {
+    return (
+      <section id="player">
+        <audio controls src={this.state.currentSong} preload="auto" ref="player"></audio>
+      </section>
+    )
+  }
 }
 
-export default Player;
+const msp = (state, ownProps) => {
+  return {
+
+  }
+}
+
+const mdp = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(msp, mdp)(Player);
