@@ -3,6 +3,8 @@ class Api::PlaylistsController < ApplicationController
   def index
     if params[:ids]
       @playlists = Playlist.where(id: params[:ids]).includes(:author)
+    elsif params[:input]
+      @playlists = Playlist.where('lower(title) LIKE ?', "%#{params[:input]}").includes(:author)
     else
       @playlists = Playlist.all.includes(:author)
     end

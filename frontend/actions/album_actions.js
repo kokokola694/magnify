@@ -12,6 +12,11 @@ export const fetchAlbum = (id) => dispatch => {
   .then(album => dispatch(receiveAlbum(album)))
 }
 
+export const searchAlbums = (input) => dispatch => {
+  return AlbumApi.searchAlbums(input)
+  .then(albums => dispatch(receiveAlbums(albums)))
+}
+
 
 const receiveAlbums = ({albums, artists}) => {
   return {

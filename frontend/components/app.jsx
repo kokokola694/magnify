@@ -5,6 +5,7 @@ import LoginFormContainer from './splash/login_form_container';
 import SignupFormContainer from './splash/signup_form_container';
 import Browse from './browse/browse';
 import Collection from './collection/collection';
+import Search from './search/search_container';
 import { Switch, Route } from 'react-router-dom';
 import Modal from './playlists/modal';
 import Player from './player/player';
@@ -19,7 +20,7 @@ const App = () => {
         <AuthRoute exact path="/signup" component={SignupFormContainer}/>
         <ProtectedRoute path="/browse/" component={Browse}/>
         <ProtectedRoute path="/collection/" component={Collection}/>
-        <ProtectedRoute path="/search/" component={Browse}/>
+        <ProtectedRoute path="/search/" component={Search}/>
         <AuthRoute exact path="/" component={Splash} />
       </Switch>
     </>

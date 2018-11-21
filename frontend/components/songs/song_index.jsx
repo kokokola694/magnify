@@ -11,6 +11,8 @@ class SongIndex extends React.Component {
   componentDidMount() {
     if (this.props.songIds) {
       this.props.fetchSongs(this.props.songIds);
+    // } else if (this.props.match.path.slice(0,7) === "/search") {
+    //   this.props.searchSongs(this.props.input);
     } else {
       this.props.fetchSongs();
     }

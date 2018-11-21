@@ -19,8 +19,27 @@ class PlaylistShow extends React.Component {
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
-    const emptyDesc = songIds.length === 0 ? <p>It's a bit empty here...</p> : "";
     const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUserId;
+    const extraInfo = belongsToCurrentUser ? (
+      <>
+        <h2 className="find-more">Find more of the music you love</h2>
+        <Link to='/browse/playlists'>Browse</Link>
+      </>
+  ) : null;
+    const emptyDesc = songIds.length === 0 ? (
+      <h1 className="empty-desc">
+        <svg width="50" height="49" viewBox="0 0 80 79"
+          xmlns="http://www.w3.org/2000/svg"><title>Album</title>
+          <path d="M76.8 3.138v72.126H3.2V3.138h73.6zM80 0H0v78.398h80V0zM40
+             20.8c-9.72 0-17.6 7.88-17.6 17.6C22.4 48.12 30.28 56 40 56c9.72
+             0 17.6-7.88 17.6-17.6 0-9.72-7.88-17.6-17.6-17.6zm0 3.2c7.94
+             0 14.4 6.46 14.4 14.4S47.94 52.8 40 52.8s-14.4-6.46-14.4-14.4S32.06
+             24 40 24z" fill="currentColor" fill-rule="evenodd"></path></svg>
+        <p>It's a bit empty here...</p>
+        {extraInfo}
+      </h1>
+    ) : null;
+
 
     const saveButton = this.props.savedIndicator ? (
       <button className="show-save" onClick={() => this.props.deleteSave({
@@ -63,18 +82,7 @@ class PlaylistShow extends React.Component {
           </section>
         </header>
         <main>
-          <h1 className="empty-desc">
-            <svg width="50" height="49" viewBox="0 0 80 79"
-              xmlns="http://www.w3.org/2000/svg"><title>Album</title>
-              <path d="M76.8 3.138v72.126H3.2V3.138h73.6zM80 0H0v78.398h80V0zM40
-                 20.8c-9.72 0-17.6 7.88-17.6 17.6C22.4 48.12 30.28 56 40 56c9.72
-                 0 17.6-7.88 17.6-17.6 0-9.72-7.88-17.6-17.6-17.6zm0 3.2c7.94
-                 0 14.4 6.46 14.4 14.4S47.94 52.8 40 52.8s-14.4-6.46-14.4-14.4S32.06
-                 24 40 24z" fill="currentColor" fill-rule="evenodd"></path></svg>
-            {emptyDesc}
-            <h2 className="find-more">Find more of the music you love</h2>
-            <Link to='/browse/playlists'>Browse</Link>
-          </h1>
+          {emptyDesc}
           <SongIndexContainer className="show-songs" playlist={this.props.playlist} songIds={this.props.playlist.song_ids}/>
         </main>
       </section>

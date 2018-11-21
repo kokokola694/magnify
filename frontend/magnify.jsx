@@ -4,6 +4,8 @@ import Root from './components/root';
 import configureStore from './store/store';
 import * as ArtistActions from './actions/artist_actions';
 import * as PlaylistActions from './actions/playlist_actions';
+import * as SongActions from './actions/song_actions';
+import { receiveInput } from './actions/input_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
 
@@ -25,6 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
   window.fetchPlaylists = PlaylistActions.fetchPlaylists;
   window.fetchArtists = ArtistActions.fetchArtists;
   window.fetchArtist = ArtistActions.fetchArtist;
+  window.searchSongs = SongActions.searchSongs;
+  window.receiveInput = receiveInput;
 
 
   const root = document.getElementById("root");

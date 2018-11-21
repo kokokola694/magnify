@@ -2,6 +2,8 @@ class Api::ArtistsController < ApplicationController
   def index
     if params[:ids]
       @artists = Artist.where(id: params[:ids]).includes(:albums, :songs)
+    elsif params[:input]
+      @artists = Artist.where('lower(name) LIKE ?', "%#{params[:input]}").includes(:albums, :songs)
     else
       @artists = Artist.all.includes(:albums, :songs)
     end

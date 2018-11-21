@@ -14,6 +14,11 @@ export const fetchSong = (id) => dispatch => {
   .then(song => dispatch(receiveSong(song)))
 }
 
+export const searchSongs = (input) => dispatch => {
+  return SongApi.searchSongs(input)
+  .then(songs => dispatch(receiveSongs(songs)))
+}
+
 export const fetchSelectedSong = (id) => dispatch => {
   return SongApi.fetchSong(id)
   .then(song => dispatch(receiveSelectedSong(song)))

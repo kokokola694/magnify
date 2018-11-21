@@ -6,6 +6,14 @@ export const fetchAlbums = (ids) => {
   })
 }
 
+export const searchAlbums = (input) => {
+  return $.ajax({
+    method: "GET",
+    url: "api/albums",
+    data: {input}
+  })
+}
+
 export const fetchAlbum = (id) => {
   return $.ajax({
     method: "GET",

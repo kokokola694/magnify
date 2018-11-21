@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
-import { fetchAlbums } from '../../actions/album_actions';
+import { fetchAlbums, searchAlbums } from '../../actions/album_actions';
 import AlbumIndex from './album_index';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
+
 
 const msp = (state, ownProps) => {
   let albums = [];
   const artistId = ownProps.match.params.artistId;
   const currentUser = state.entities.users[state.session.id];
+  let input;
   if (ownProps.match.path.slice(0,11) === "/collection") {
     albums = Object.values(state.entities.albums).filter(album => currentUser.saved_album_ids.includes(album.id));
   } else if (ownProps.match.path.slice(0,7) === "/browse") {
@@ -15,6 +17,9 @@ const msp = (state, ownProps) => {
     } else {
       albums = Object.values(state.entities.albums);
     }
+  } else if (ownProps.match.path.slice(0,7) === "/search") {
+    input = ownProps.location.pathname.split('/')[3];
+    albums = Object.values(state.entities.albums).filter(album => album.title.toLowerCase().includes(input.toLowerCase()));
   }
 
   const updatedAlbums = albums.map(album => {
@@ -24,12 +29,14 @@ const msp = (state, ownProps) => {
   return {
     albums: updatedAlbums,
     currentUser,
+    input
   }
 }
 
 const mdp = dispatch => {
   return {
-    fetchAlbums: (ids) => dispatch(fetchAlbums(ids))
+    fetchAlbums: (ids) => dispatch(fetchAlbums(ids)),
+    searchAlbums: input => dispatch(searchAlbums(input))
   }
 }
 

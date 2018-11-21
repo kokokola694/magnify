@@ -9,7 +9,9 @@ class AlbumIndex extends React.Component {
   componentDidMount() {
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchAlbums(this.props.currentUser.saved_album_ids);
-    } else {
+    // } else if (this.props.match.path.slice(0,7) === "/search") {
+    //   this.props.searchAlbums(this.props.input);
+  } else if (this.props.match.path.slice(0,7) === "/browse") {
       this.props.fetchAlbums();
     }
   }
@@ -17,8 +19,13 @@ class AlbumIndex extends React.Component {
 
   render() {
     const al = this.props.albums.map(a => <AlbumIndexItem key={a.id} album={a}/>)
+    const alCount = al.length;
+    const searchHead = this.props.match.path.slice(0,15) === "/search/results" && alCount > 0 ? (
+      <h1 className="search-headings">Albums</h1>
+    ) : null;
     return (
       <>
+        {searchHead}
         <ul className="index-list">
           {al}
         </ul>

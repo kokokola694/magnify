@@ -1,12 +1,20 @@
 .homepage {
-  background-image: linear-gradient(#1d409e, black);
-  min-height: 1200px;
+
+  min-height: 100vh;
   box-sizing: border-box;
+
+}
+
+html {
+  background-image: linear-gradient(#1d409e, black);
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .homepage-main {
   position: absolute;
   padding-left: 230px;
+  padding-bottom: 190px;
   box-sizing: border-box;
   color: white;
   width: 100%;

@@ -10,7 +10,7 @@ class Sidebar extends React.Component {
           <section className="side-bar-logo logo">magnify</section>
           <section className="side-bar-links">
             <section>
-              <NavLink to="/search">
+              <NavLink to="/search/recent" isActive={this.props.atSearch}>
                 <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
                   <path d="M349.714 347.937l93.714 109.969-16.254
                      13.969-93.969-109.969q-48.508 36.825-109.207
@@ -58,7 +58,7 @@ class Sidebar extends React.Component {
             <img className="side-bar-pic" src={this.props.currentUser.photoUrl}/>
             <section>{this.props.currentUser.username}</section>
           </section>
-          <button onClick={this.props.logout}>Log Out</button>
+          <button className="logout" onClick={this.props.logout}>Log Out</button>
         </section>
       </div>
     )

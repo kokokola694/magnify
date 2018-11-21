@@ -10,15 +10,22 @@ class PlaylistIndex extends React.Component {
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchPlaylists(this.props.currentUser.saved_playlist_ids);
       this.props.fetchPlaylists(this.props.currentUser.playlist_ids);
-    } else {
+    // } else if (this.props.match.path.slice(0,7) === "/search") {
+    //   this.props.searchPlaylists(this.props.input);
+  } else if (this.props.match.path.slice(0,7) === "/browse") {
       this.props.fetchPlaylists();
     }
   }
 
   render() {
     const pl = this.props.playlists.map(p => <PlaylistIndexItem key={p.id} playlist={p}/>)
+    const plCount = pl.length;
+    const searchHead = this.props.match.path.slice(0,15) === "/search/results" && plCount > 0 ? (
+      <h1 className="search-headings">Playlists</h1>
+    ) : null;
     return (
       <>
+      {searchHead}
         <ul className="index-list">
           {pl}
         </ul>

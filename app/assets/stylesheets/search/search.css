@@ -1,0 +1,32 @@
+.search-bar {
+  box-sizing: border-box;
+  height: 80px;
+  position: fixed;
+  background-color: #282828;
+  font-weight: 700;
+  font-size: 35px;
+  padding: 0 45px 0 45px;
+  width: 100%;
+  text-decoration: none;
+  z-index: 5;
+}
+
+.search-main {
+  position: relative;
+  top: 80px;
+  width: 100%;
+}
+
+.search-navbar {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 40px 50px;
+}
+
+.search-headings {
+  font-size: 34px;
+  font-weight: 600;
+  text-align: center;
+  padding: 60px 0 10px 0;
+}
