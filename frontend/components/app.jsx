@@ -9,19 +9,17 @@ import Search from './search/search_container';
 import { Switch, Route } from 'react-router-dom';
 import Modal from './playlists/modal';
 import Player from './player/player';
+import Home from './home/home';
 
 const App = () => {
   return (
     <>
       <Route path="/" component={Modal}/>
-
       <Switch>
         <AuthRoute exact path="/login" component={LoginFormContainer} />
         <AuthRoute exact path="/signup" component={SignupFormContainer}/>
-        <ProtectedRoute path="/browse/" component={Browse}/>
-        <ProtectedRoute path="/collection/" component={Collection}/>
-        <ProtectedRoute path="/search/" component={Search}/>
         <AuthRoute exact path="/" component={Splash} />
+        <ProtectedRoute path="/" component={Home}/>
       </Switch>
     </>
   )

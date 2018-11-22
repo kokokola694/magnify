@@ -17,7 +17,7 @@ const Browse = () => {
     <section className="homepage">
       <Route path='/' component={SideBarContainer} />
       <Route path='/browse/:page' component={BrowseNavbarContainer}/>
-      <Route path="/" component={Player}/>
+
       <main className="homepage-main">
         <Switch>
           <Route path='/browse/playlists/:playlistId' component={PlaylistShowContainer}/>

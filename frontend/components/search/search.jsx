@@ -40,7 +40,7 @@ class Search extends React.Component {
     return (
       <section className="homepage">
         <Route path='/' component={SideBarContainer} />
-        <Route path="/" component={Player}/>
+
         <main className="homepage-main">
           <input className="search-bar" spellCheck="false" onChange={(e) => this.handleInput(e)} type="text" placeholder="Start typing..." value={this.state.input}/>
           <section className="search-main">

@@ -8,6 +8,8 @@
 
 #song-item-left {
   display: flex;
+  width: 50%;
+  overflow: hidden;
 }
 
 #song-item-right {
@@ -53,7 +55,17 @@
   margin-left: 20px;
 }
 
-.song-index-item > .song-index-item-img {
+.song-index-item-img {
+  width: 10%;
+  // height: 50%;
+  background-image: image-url("music.png");
+  background-repeat: no-repeat;
+  transition-duration: 0.2s;
+}
+
+.song-index-item:hover .song-index-item-img {
+  background-image: image-url('play.png');
+  transition-duration: 0.2s;
 }
 
 .song-index-item h1 {

@@ -16,7 +16,7 @@ const Collection = () => {
     <section className="homepage">
       <Route path='/' component={SideBarContainer} />
       <Route path='/collection/:page' component={CollectionNavbarContainer}/>
-      <Route path="/" component={Player}/>
+
       <main className="homepage-main">
         <Switch>
           <Route path='/collection/playlists/:playlistId' component={PlaylistShowContainer}/>

@@ -6,6 +6,7 @@ import { openModal, closeModal } from '../../actions/modal_actions';
 class SongIndex extends React.Component {
   constructor(props) {
     super(props);
+    this.addQueue = this.addQueue.bind(this);
   }
 
   componentDidMount() {
@@ -18,13 +19,21 @@ class SongIndex extends React.Component {
     }
   }
 
-  componentDidUpdate() {
-
+  addQueue (song) {
+    const songForQueue = [{
+      title: song.title,
+      audio: song.audioUrl,
+      image: this.props.albums[song.album_id].photoUrl,
+      artist: this.props.artists[song.artist_id].name
+    }];
+    this.props.receiveQueue(songForQueue);
   }
 
   render() {
     const songlist =
-      this.props.songs.map(s => <SongIndexItem key={s.id} song={s} playlist={this.props.playlist} openModal={openModal}/>)
+      this.props.songs.map(s => <SongIndexItem key={s.id}
+        song={s} playlist={this.props.playlist}
+        openModal={openModal} addQueue={this.addQueue} />)
     return (
       <section>
         <ul className="song-index-list">

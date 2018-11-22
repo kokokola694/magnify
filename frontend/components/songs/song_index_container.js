@@ -3,6 +3,7 @@ import { fetchSongs, searchSongs } from '../../actions/song_actions';
 import SongIndex from './song_index';
 import { withRouter } from 'react-router'
 import { fetchAlbum } from '../../actions/album_actions';
+import { receiveQueue } from '../../actions/queue_actions';
 
 const msp = (state, ownProps) => {
   let songs;
@@ -41,7 +42,10 @@ const msp = (state, ownProps) => {
     currentUserId: state.session.id,
     indexType: ownProps.match.params.url,
     playlist,
-    input
+    input,
+    albums: state.entities.albums,
+    artists: state.entities.artists,
+    queue: state.ui.queue
   }
 }
 
@@ -49,7 +53,8 @@ const mdp = dispatch => {
   return {
     fetchSongs: (ids) => dispatch(fetchSongs(ids)),
     searchSongs: (input) => dispatch(searchSongs(input)),
-    fetchAlbum: (id) => dispatch(fetchAlbum(id))
+    fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    receiveQueue: (queue) => dispatch(receiveQueue(queue))
   }
 }
 
