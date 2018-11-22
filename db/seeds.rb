@@ -33,26 +33,32 @@ attach_photo(u1, "default-user-300x300.png")
 
 u2 = User.new(username: 'miko', password: 'bethany')
 attach_photo(u2, "default-user-300x300.png")
-#
-# u3 = User.new(username: 'aminmicky', password: 'bethany')
-# attach_photo(u3, "default-user-300x300.png")
-#
-# u4 = User.new(username: 'pakman', password: 'bethany')
-# attach_photo(u4, "default-user-300x300.png")
+
+u3 = User.new(username: 'aminmicky', password: 'bethany')
+attach_photo(u3, "default-user-300x300.png")
+
+u4 = User.new(username: 'pakman', password: 'bethany')
+attach_photo(u4, "default-user-300x300.png")
 
 
+ar4 = Artist.new(name: "Sovereign Grace Music")
+attach_photo(ar4,"sovgracemusic_logo.png")
+
+ar5 = Artist.new(name: "Elyon Beats")
+attach_photo(ar5, "elyon.jpg")
+
+ar6 = Artist.new(name: "Gowe")
+attach_photo(ar6, "gowe.jpg")
 
 ar1 = Artist.new(name: "IU")
 attach_photo(ar1, "IU.jpg")
 
 ar2 = Artist.new(name: "Maroon 5")
 attach_photo(ar2, "maroon5.jpg")
-#
-# ar3 = Artist.new(name: "GD & TOP")
-# attach_photo(ar3,"gd_top.png")
-#
-# ar4 = Artist.new(name: "Sovereign Grace Music")
-# attach_photo(ar4,"sovgracemusic_logo.png")
+
+ar3 = Artist.new(name: "GD & TOP")
+attach_photo(ar3,"gd_top.png")
+
 
 
 
@@ -62,15 +68,20 @@ attach_photo(ab1, "IU-Modern_Times.jpg")
 ab2 = Album.new(title: "Songs About Jane", year: 2002, artist_id: ar2.id)
 attach_photo(ab2, "Maroon_5_-_Songs_About_Jane.png")
 
-# ab3 = Album.new(title: "GD & TOP", year: 2010, artist_id: ar3.id)
-# attach_photo(ab3, "highhigh_cover.jpg")
+ab3 = Album.new(title: "GD & TOP", year: 2010, artist_id: ar3.id)
+attach_photo(ab3, "highhigh_cover.jpg")
 
 ab4 = Album.new(title: "Through the Night", year: 2017, artist_id: ar1.id)
 attach_photo(ab4, "IU_Through_the_Night_cover_art.png")
 
-# ab5 = Album.new(title: "Prayers of the Saints", year: 2017, artist_id: ar4.id)
-# attach_photo(ab5, "sgm_prayers.jpg")
+ab5 = Album.new(title: "Prayers of the Saints", year: 2017, artist_id: ar4.id)
+attach_photo(ab5, "sgm_prayers.jpg")
 
+ab6 = Album.new(title: "Nocturnal Creature", year: 2012, artist_id: ar5.id)
+attach_photo(ab6, "elyon_nocturnal.jpg")
+
+ab7 = Album.new(title: "We Are Hypergiants", year: 2012, artist_id: ar6.id)
+attach_photo(ab7, "hypergiants.jpg")
 
 
 
@@ -110,8 +121,15 @@ attach_photo(ab4, "IU_Through_the_Night_cover_art.png")
 # attach_audio(s23, "12+%EA%B8%B0%EB%8B%A4%EB%A0%A4.mp3")
 # s24 = Song.new(title: "Voice Mail", artist_id: ar1.id, album_id: ab1.id)
 # attach_audio(s24, "13+(Bonus+Track)+Voice+Mail+(Korean+Ver.).mp3")
-s1 = Song.new(title: "Everybody Has Secrets", artist_id: ar1.id, album_id: ab1.id)
-attach_audio(s1, "02+Everybody+Has+Secrets.mp3")
+# s1 = Song.new(title: "Everybody Has Secrets", artist_id: ar1.id, album_id: ab1.id)
+# attach_audio(s1, "02+Everybody+Has+Secrets.mp3")
+
+s1 = Song.new(title: "Roses", artist_id: ar5.id, album_id: ab6.id)
+attach_audio(s1, "roses.mp3")
+
+s11 = Song.new(title: "Wait For You", artist_id: ar6.id, album_id: ab7.id)
+attach_audio(s11, "wait.mp3")
+
 s2 = Song.new(title: "The Red Shoes", artist_id: ar1.id, album_id: ab1.id)
 attach_audio(s2, "04+%EB%B6%84%ED%99%8D%EC%8B%A0+(Red+Shoes).mp3")
 s3 = Song.new(title: "Modern Times", artist_id: ar1.id, album_id: ab1.id)
@@ -123,16 +141,16 @@ attach_audio(s4, "IU+-+%EB%B0%A4%ED%8E%B8%EC%A7%80+(Through+the+Night).mp3")
 s5 = Song.new(title: "Sunday Morning", artist_id: ar2.id, album_id: ab2.id)
 attach_audio(s5, "Sunday+Morning.mp3")
 
-# s6 = Song.new(title: "High High", artist_id: ar3.id, album_id: ab3.id)
-# attach_audio(s6, "GD_TOP-02-High+High.mp3")
+s6 = Song.new(title: "High High", artist_id: ar3.id, album_id: ab3.id)
+attach_audio(s6, "GD_TOP-02-High+High.mp3")
 # s7 = Song.new(title: "Oh Yeah", artist_id: ar3.id, album_id: ab3.id)
 # attach_audio(s7, "GD_TOP-03-Oh+Yeah.mp3")
 # s8 = Song.new(title: "Don't Go Home", artist_id: ar3.id, album_id: ab3.id)
 # attach_audio(s8, "GD_TOP-04-Don't+Go+Home.mp3")
 # s9 = Song.new(title: "Turn It Up (TOP Solo)", artist_id: ar3.id, album_id: ab3.id)
 # attach_audio(s9, "GD_TOP-11-Turn+It+Up+(TOP+Solo).mp3")
-# s10 = Song.new(title: "When We See Your Face", artist_id: ar4.id, album_id: ab5.id)
-# attach_audio(s10, "When+We+See+Your+Face.mp3")
+s10 = Song.new(title: "When We See Your Face", artist_id: ar4.id, album_id: ab5.id)
+attach_audio(s10, "When+We+See+Your+Face.mp3")
 
 
 
@@ -148,12 +166,12 @@ pl5 = Playlist.new(title: "Lofi Beats", author_id: u1.id)
 attach_photo(pl5, "default_music.png")
 # pl6 = Playlist.new(title: "I like really really long names for my playlists", author_id: u1.id)
 # attach_photo(pl6, "default_music.png")
-# pl7 = Playlist.new(title: "Mood Booster", author_id: u3.id)
-# attach_photo(pl7, "default_music.png")
+pl7 = Playlist.new(title: "Mood Booster", author_id: u3.id)
+attach_photo(pl7, "default_music.png")
 # pl8 = Playlist.new(title: "Another Playlist", author_id: u1.id)
 # attach_photo(pl8, "default_music.png")
-# pl9 = Playlist.new(title: "FunFunFun", author_id: u4.id)
-# attach_photo(pl9, "default_music.png")
+pl9 = Playlist.new(title: "FunFunFun", author_id: u4.id)
+attach_photo(pl9, "default_music.png")
 # pl10 = Playlist.new(title: "Coolbeans", author_id: u2.id)
 # attach_photo(pl10, "default_music.png")
 
@@ -196,4 +214,4 @@ pls4 = PlaylistSong.create!(song_id: s5.id, playlist_id: pl4.id)
 # pls7 = PlaylistSong.create!(song_id: s9.id, playlist_id: pl4.id)
 # pls8 = PlaylistSong.create!(song_id: s7.id, playlist_id: pl5.id)
 # pls9 = PlaylistSong.create!(song_id: s4.id, playlist_id: pl6.id)
-# pls9 = PlaylistSong.create!(song_id: s10.id, playlist_id: pl7.id)
+pls9 = PlaylistSong.create!(song_id: s10.id, playlist_id: pl7.id)
