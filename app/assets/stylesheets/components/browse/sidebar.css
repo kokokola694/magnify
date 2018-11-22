@@ -73,6 +73,7 @@
 .side-bar-bottom img {
   width: 30%;
   margin-right: 20px;
+  opacity: 0.9;
 }
 
 .side-bar-current-user {
@@ -86,6 +87,14 @@
 
 .side-bar button {
   margin-top: 30px;
+}
+
+.side-bar-current-user:hover section {
+  color: white;
+}
+
+.side-bar-current-user:hover img {
+  opacity: 1;
 }
 
 .side-bar-line {

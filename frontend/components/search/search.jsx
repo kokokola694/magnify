@@ -42,7 +42,9 @@ class Search extends React.Component {
         <Route path='/' component={SideBarContainer} />
 
         <main className="homepage-main">
-          <input className="search-bar" spellCheck="false" onChange={(e) => this.handleInput(e)} type="text" placeholder="Start typing..." value={this.state.input}/>
+          <input className="search-bar" spellCheck="false"
+            onChange={(e) => this.handleInput(e)} type="text"
+            placeholder="Start typing..." value={this.state.input}/>
           <section className="search-main">
             {searchNav}
             <Switch>

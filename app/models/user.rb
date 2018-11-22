@@ -33,14 +33,22 @@ class User < ApplicationRecord
     source_type: :Artist
 
 # People that are following the user.
-  # has_many :followers,
-  #   foreign_key: :followed_id,
-  #   class_name: :Follow
+  has_many :followers,
+    foreign_key: :followed_id,
+    class_name: :Follow
+
+  has_many :followers_users,
+    through: :followers,
+    source: :follower
 
 # People that the user is following.
-  # has_many :follows,
-  #   foreign_key: :follower_id,
-  #   class_name: :Follow
+  has_many :follows,
+    foreign_key: :follower_id,
+    class_name: :Follow
+
+  has_many :follows_users,
+    through: :follows,
+    source: :followed
 
 
   attr_reader :password

@@ -1,8 +1,9 @@
 import { connect } from 'react-redux';
 import { fetchSongs, searchSongs } from '../../actions/song_actions';
 import SongIndex from './song_index';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
+import { fetchPlaylist } from '../../actions/playlist_actions';
 import { receiveQueue } from '../../actions/queue_actions';
 
 const msp = (state, ownProps) => {
@@ -54,6 +55,7 @@ const mdp = dispatch => {
     fetchSongs: (ids) => dispatch(fetchSongs(ids)),
     searchSongs: (input) => dispatch(searchSongs(input)),
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),
     receiveQueue: (queue) => dispatch(receiveQueue(queue))
   }
 }

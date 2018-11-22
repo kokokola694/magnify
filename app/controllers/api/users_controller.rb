@@ -1,5 +1,9 @@
 class Api::UsersController < ApplicationController
 
+  def show
+    @user = User.find(params[:id])
+  end
+
   def create
     @user = User.new(user_params)
     photo = File.open("app/assets/images/default-user-300x300.png")

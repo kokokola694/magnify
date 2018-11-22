@@ -9,6 +9,7 @@ import AlbumShowContainer from '../albums/album_show_container';
 import ArtistShowContainer from '../artists/artist_show_container';
 import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
+import UserShowContainer from '../users/user_show_container';
 import Player from '../player/player';
 
 
@@ -27,6 +28,7 @@ const Browse = () => {
           <Route path='/browse/artists/:artistId' component={ArtistShowContainer}/>
           <Route path='/browse/artists' component={ArtistIndexContainer}/>
           <Route path='/browse/songs' component={SongIndexContainer}/>
+          <Route path='/browse/users/:userId' component={UserShowContainer}/>
         </Switch>
 
       </main>

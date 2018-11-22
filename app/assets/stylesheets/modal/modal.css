@@ -7,8 +7,8 @@
   background: rgba(0, 0, 0, 0.7);
   z-index: 10;
   color: white;
-  overflow: scroll;
-  width: 200vh;
+  /* overflow: scroll; */
+  /* width: 200vh; */
 }
 
 .modal-child {

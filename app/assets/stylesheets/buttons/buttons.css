@@ -1,5 +1,6 @@
 .green-play, .artist-save, .playlist-create-btn,
-.session-demo, .session-submit-button, .session-switch-link, .logout {
+.session-demo, .session-submit-button, .session-switch-link, .logout,
+.follow-user-btn, .unfollow-user-btn {
   display: inline-block;
   font-size: 11px;
   font-weight: 400;
@@ -36,7 +37,8 @@
   color: white;
 }
 
-.session-submit-button:hover, .playlist-create-btn:hover, .green-play:hover {
+.session-submit-button:hover, .playlist-create-btn:hover, .green-play:hover,
+.follow-user-btn:hover {
   background-color: #1ed760;
 }
 
@@ -63,11 +65,11 @@
   padding: 16px 48px 18px;
 }
 
-.playlist-create-btn {
+.playlist-create-btn, .follow-user-btn, .unfollow-user-btn {
   padding: 10px 48px 12px;
 }
 
-.green-play, .playlist-create-btn {
+.green-play, .playlist-create-btn, .follow-user-btn {
   background-color: #1db954;
 }
 
@@ -121,4 +123,17 @@
 
 .logout:hover {
   background: #101010;
+}
+
+.follow-user-btn {
+  border: 1px solid transparent;
+}
+
+.unfollow-user-btn {
+  background-color: rgba(24,24,24,.7);
+  border: 1px solid white;
+}
+
+.unfollow-user-btn:hover, .artist-save:hover {
+  background-color: black;
 }

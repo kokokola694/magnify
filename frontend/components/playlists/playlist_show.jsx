@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class PlaylistShow extends React.Component {
   constructor(props) {
     super(props);
+    // this.addQueue = this.addQueue.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +17,17 @@ class PlaylistShow extends React.Component {
       this.props.fetchPlaylist(this.props.match.params.playlistId);
     }
   }
+
+  // addQueue (song) {
+  //   this.props.fetchAlbums().then(() => this.props.fetchArtists())
+  //   .then(() => this.props.fetchSongs(this.props.playlist.song_ids))
+  //   .then((songs) => this.props.receiveQueue(Object.values(songs).map(song => ({
+  //         title: song.title,
+  //         audio: song.audioUrl,
+  //         image: "",
+  //         artist: ""
+  //       }))))
+  //     }
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
@@ -34,7 +46,7 @@ class PlaylistShow extends React.Component {
              20.8c-9.72 0-17.6 7.88-17.6 17.6C22.4 48.12 30.28 56 40 56c9.72
              0 17.6-7.88 17.6-17.6 0-9.72-7.88-17.6-17.6-17.6zm0 3.2c7.94
              0 14.4 6.46 14.4 14.4S47.94 52.8 40 52.8s-14.4-6.46-14.4-14.4S32.06
-             24 40 24z" fill="currentColor" fill-rule="evenodd"></path></svg>
+             24 40 24z" fill="currentColor" fillRule="evenodd"></path></svg>
         <p>It's a bit empty here...</p>
         {extraInfo}
       </h1>
@@ -63,6 +75,7 @@ class PlaylistShow extends React.Component {
     const openModal = belongsToCurrentUser ? this.props.openModal : saveButton;
 
 
+    // <button onClick={() => this.addQueue()} className="green-play">Play</button>
     return (
       <section className="playlist-show show">
         <header>
@@ -73,7 +86,6 @@ class PlaylistShow extends React.Component {
               <h2>{this.props.playlist.author}</h2>
             </div>
             <div className="show-play-length">
-              <button className="green-play">Play</button>
               <h3>{songIds.length} Songs</h3>
             </div>
             <div id="delete-dropdown">

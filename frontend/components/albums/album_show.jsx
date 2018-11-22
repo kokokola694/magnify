@@ -38,6 +38,7 @@ class AlbumShow extends React.Component {
     const albumSongs = this.props.album.song_ids || {length: ""};
     const plural = albumSongs.length === 1 ? "Song" : "Songs";
 
+    // <button className="green-play">Play</button>
     return (
       <section className="show">
         <header>
@@ -52,7 +53,6 @@ class AlbumShow extends React.Component {
               </h2>
             </div>
             <section className="show-play-length">
-              <button className="green-play">Play</button>
               <div className="album-year-songs">
                 <h3>{this.props.album.year}</h3>
                 <h3 className="middot">&middot;</h3>

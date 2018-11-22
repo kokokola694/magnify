@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
 
@@ -54,10 +54,10 @@ class Sidebar extends React.Component {
 
         <section className="side-bar-bottom">
           <section className="side-bar-line"></section>
-          <section className="side-bar-current-user">
+          <Link to={`/browse/users/${this.props.currentUser.id}`} className="side-bar-current-user">
             <img className="side-bar-pic" src={this.props.currentUser.photoUrl}/>
             <section>{this.props.currentUser.username}</section>
-          </section>
+          </Link>
           <button className="logout" onClick={this.props.logout}>Log Out</button>
         </section>
       </div>

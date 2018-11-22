@@ -45,3 +45,14 @@
 .avatar {
   border-radius: 50%;
 }
+
+#user-show-link {
+  color: #b2b6bc;
+  border-bottom: 1px solid transparent;
+  font-size: 12px;
+}
+
+#user-show-link:hover {
+  border-bottom: 1px solid white;
+  color: white;
+}

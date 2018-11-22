@@ -48,11 +48,11 @@ class DropMenu extends React.Component {
     let removeButton;
     if (this.props.playlist && this.props.playlist.author_id === this.props.currentUser.id) {
       removeButton = (
-        <div className="playlist-remfrom">
-          <button className="playlist-remfrom-btn" onClick={() => this.handleRemove()}>
+        <li className="playlist-remfrom" onClick={() => this.handleRemove()}>
+          <button className="playlist-remfrom-btn" >
             Remove From Playlist
           </button>
-        </div>
+        </li>
       )
     } else {
         removeButton = null;

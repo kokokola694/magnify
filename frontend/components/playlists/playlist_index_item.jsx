@@ -7,8 +7,8 @@ const PlaylistIndexItem = ({playlist}) => {
       <Link to={`/browse/playlists/${playlist.id}`}>
         <img className="index-item-img temp" src={playlist.photoUrl}/>
         <section>{playlist.title}</section>
-        <section>{playlist.author}</section>
       </Link>
+      <Link id="user-show-link" to={`/browse/users/${playlist.author_id}`}>{playlist.author}</Link>
 
     </li>
 
