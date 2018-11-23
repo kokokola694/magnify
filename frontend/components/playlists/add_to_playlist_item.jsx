@@ -1,6 +1,6 @@
 import React from 'react';
 import { addPlaylistSong } from '../../actions/playlist_actions';
-// import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class PlaylistIndexItem extends React.Component {
   constructor(props) {
@@ -9,7 +9,9 @@ class PlaylistIndexItem extends React.Component {
   }
 
   handleClick() {
+    
     this.props.addToPlaylist({playlist_id: this.props.playlist.id, song_id: this.props.selectedSong.id})
+    .then((playlistSong) => this.props.history.push(`/browse/playlists/${playlistSong.playlistId}`))
     .then(() => this.props.closeModal())
   }
 
@@ -27,5 +29,4 @@ class PlaylistIndexItem extends React.Component {
 }
 
 
-
-export default PlaylistIndexItem;
+export default withRouter(PlaylistIndexItem);

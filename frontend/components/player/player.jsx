@@ -21,7 +21,7 @@ class Player extends React.Component {
     });
     this.updateProgress = this.updateProgress.bind(this);
     this.play = this.play.bind(this);
-    this.changeButtonState = this.changeButtonState.bind(this);
+    this.changeButton = this.changeButton.bind(this);
     this.toProgress = this.toProgress.bind(this);
     this.slideVolume = this.slideVolume.bind(this);
     this.onLoaded = this.onLoaded.bind(this);
@@ -91,20 +91,20 @@ class Player extends React.Component {
     let player = this.refs.player;
     if (player.paused || player.ended) {
       player.play();
-      this.changeButtonState('play');
+      this.changeButton('play');
   	} else {
       player.pause();
-      this.changeButtonState('pause');
+      this.changeButton('pause');
     }
   }
 
   mute () {
     let player = this.refs.player;
     player.muted = !player.muted;
-    this.changeButtonState('mute');
+    this.changeButton('mute');
   }
 
-  changeButtonState (type) {
+  changeButton (type) {
     if (type == 'play') {
       this.setState({playing: true});
       document.getElementById("playpause").setAttribute('data-state', 'pause');

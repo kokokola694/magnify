@@ -27,6 +27,11 @@
   width: 100%;
 }
 
+#addto-playlist {
+  display: flex;
+  justify-content: center;
+}
+
 #exit-modal {
   font-size: 45px;
   margin: 0 0 40px 0;

@@ -4,6 +4,7 @@
 
 ![album-show](app/assets/images/album_show_ss.png)
 
+
 ## Technology
 * Ruby on Rails backend, with data stored using PostgreSQL
 * React and Redux frontend, for a single-page app
@@ -11,13 +12,39 @@
 
 ## Key Features
 
+### Creating and Updating Playlists
+Imitating Spotify, the user interacts with intuitive drop-down menus and modal windows to create and add songs to their playlists.
+
+![addplaylistsong](app/assets/images/addplaylist.gif)
+
 ### Continuous Playback
-Magnify continuously plays songs without interruption as the user navigates the site.
+The music player appears as long as the user is logged in, and it continuously plays songs without interruption as the user navigates the site.
 
+![player](app/assets/images/player_ss.png)
 
+This functionality was achieved by having the music player component interact with its corresponding Redux slice of state containing the songs to play. Upon clicking on any song, the state is updated with the song's information and is sent to the audio player.
+
+Music player related events, such as pausing the song and updating the progress bar, were controlled using a reference to the audio HTML element and calling the relevant methods (ex. play, pause, duration).
+
+```javascript
+play () {
+  let player = this.refs.player;
+  if (player.paused || player.ended) {
+    player.play();
+    this.changeButton('play');
+  } else {
+    player.pause();
+    this.changeButton('pause');
+  }
+}
+```
 
 ### Responsive Search
 Users are able to search for their favorite artists, albums, songs, and playlists. Search results are updated as each letter is typed.
+
+![search](app/assets/images/search.gif)
+
+The results are divided into indices for artists, albums, playlists, and songs. As the user types into the search bar, the search component updates the url path with the user input. The media index components (when rendered on the search route) are set up to then fetch and filter the relevant data.
 
 ## Future Plans
 * Allowing the user to go to previous and next songs
