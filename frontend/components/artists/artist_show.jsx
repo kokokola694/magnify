@@ -5,6 +5,7 @@ import AlbumIndexContainer from '../albums/album_index_container';
 class ArtistShow extends React.Component {
   constructor(props) {
     super(props);
+    this.play = this.play.bind(this);
   }
 
   componentDidMount() {
@@ -15,6 +16,13 @@ class ArtistShow extends React.Component {
     if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
       this.props.fetchArtist(this.props.match.params.artistId);
     }
+  }
+
+  play() {
+    const songIds = this.props.artist.song_ids;
+    this.props.fetchSongs(songIds)
+    .then(songs => this.props.addQueue(Object.values(songs.songs)))
+    .then(() => this.props.fetchPlaySong(songIds[0]))
   }
 
   render () {
@@ -40,7 +48,7 @@ class ArtistShow extends React.Component {
           <section className="artist-show-head">
             <h1>{this.props.artist.name}</h1>
             <section className="artist-show-buttons">
-              <button className="green-play">Play</button>
+              <button className="green-play" onClick={this.play}>Play</button>
               { saveButton }
             </section>
           </section>

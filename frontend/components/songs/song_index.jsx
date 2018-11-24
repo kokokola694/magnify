@@ -37,7 +37,8 @@ class SongIndex extends React.Component {
     const songlist =
       this.props.songs.map(s => <SongIndexItem key={s.id}
         song={s} playlist={this.props.playlist}
-        openModal={openModal} addQueue={this.addQueue} />)
+        openModal={openModal} queue={this.props.songs} addQueue={this.props.addQueue}
+        fetchPlaySong={this.props.fetchPlaySong} />)
     return (
       <section>
         <ul className="song-index-list">

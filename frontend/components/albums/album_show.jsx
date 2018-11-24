@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 class AlbumShow extends React.Component {
   constructor(props) {
     super(props);
+    this.play = this.play.bind(this);
   }
 
   componentDidMount() {
@@ -15,6 +16,13 @@ class AlbumShow extends React.Component {
     if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
       this.props.fetchAlbum(this.props.match.params.albumId);
     }
+  }
+
+  play() {
+    const songIds = this.props.album.song_ids;
+    this.props.fetchSongs(songIds)
+    .then(songs => this.props.addQueue(Object.values(songs.songs)))
+    .then(() => this.props.fetchPlaySong(songIds[0]))
   }
 
   render () {
@@ -38,7 +46,6 @@ class AlbumShow extends React.Component {
     const albumSongs = this.props.album.song_ids || {length: ""};
     const plural = albumSongs.length === 1 ? "Song" : "Songs";
 
-    // <button className="green-play">Play</button>
     return (
       <section className="show">
         <header>
@@ -53,6 +60,7 @@ class AlbumShow extends React.Component {
               </h2>
             </div>
             <section className="show-play-length">
+              <button onClick={this.play} className="green-play">Play</button>
               <div className="album-year-songs">
                 <h3>{this.props.album.year}</h3>
                 <h3 className="middot">&middot;</h3>

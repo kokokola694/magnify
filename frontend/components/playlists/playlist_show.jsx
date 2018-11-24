@@ -95,7 +95,8 @@ class PlaylistShow extends React.Component {
         </header>
         <main>
           {emptyDesc}
-          <SongIndexContainer className="show-songs" playlist={this.props.playlist} songIds={this.props.playlist.song_ids}/>
+          <SongIndexContainer className="show-songs" playlist={this.props.playlist}
+            songIds={this.props.playlist.song_ids}/>
         </main>
       </section>
     )

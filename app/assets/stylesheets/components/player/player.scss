@@ -17,7 +17,7 @@
   display: inline;
   color: #b3b3b3;
   font-size: 10px;
-  margin: 8px 5px 0 5px;
+  margin: 10px 5px 10px 5px;
   width: 30px;
 }
 
@@ -109,6 +109,11 @@
    background-image: image-url('gray_volume.png');
 }
 
+#playpause:hover {
+  width: 53px;
+  height: 53px;
+}
+
  #previous, #next {
   width: 15px;
   height: 15px;
@@ -160,6 +165,7 @@
 
 #player-pic {
   width: 60px;
+  border: none;
 }
 
 #player-info {
@@ -194,7 +200,7 @@
 
 progress[value] {
   /* Reset the default appearance */
-  margin: 10px 5px 0 5px;
+  margin: 10px 5px 10px 5px;
   -webkit-appearance: none;
    appearance: none;
    width: 470px;
@@ -214,7 +220,7 @@ progress[value]::-webkit-progress-value {
     border-radius: 12px;
 }
 
-progress[value]:hover::-webkit-progress-value {
+.progress:hover progress[value]::-webkit-progress-value {
     background: #1db954;
 }
 

@@ -4,7 +4,7 @@ import SongIndex from './song_index';
 import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
-import { receiveQueue } from '../../actions/queue_actions';
+import { addQueue, fetchPlaySong } from '../../actions/player_actions';
 
 const msp = (state, ownProps) => {
   let songs;
@@ -56,7 +56,8 @@ const mdp = dispatch => {
     searchSongs: (input) => dispatch(searchSongs(input)),
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),
-    receiveQueue: (queue) => dispatch(receiveQueue(queue))
+    addQueue: (queue) => dispatch(addQueue(queue)),
+    fetchPlaySong: (id) => dispatch(fetchPlaySong(id))
   }
 }
 

@@ -1,8 +1,10 @@
 import { connect } from 'react-redux';
 import ArtistShow from './artist_show';
 import { withRouter } from 'react-router';
+import { fetchSongs } from '../../actions/song_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { createSave, deleteSave } from '../../actions/save_actions';
+import { fetchPlaySong, addQueue } from '../../actions/player_actions';
 
 
 const msp = (state, ownProps) => {
@@ -21,7 +23,10 @@ const mdp = dispatch => {
   return {
     fetchArtist: (id) => dispatch(fetchArtist(id)),
     createSave: (saveInfo) => dispatch(createSave(saveInfo)),
-    deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo))
+    deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo)),
+    fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
+    addQueue: (queue) => dispatch(addQueue(queue)),
+    fetchSongs: (ids) => dispatch(fetchSongs(ids))
   }
 }
 
