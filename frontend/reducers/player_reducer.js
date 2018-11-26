@@ -12,7 +12,6 @@ export default (state = defaultState, action) => {
       newState.queue = action.queue;
       return newState;
     case PLAY_SONG:
-      // Future plan: If song is already in queue, change idx to where song's queue index.
       newState = merge({}, state);
       newState.playSong = action.song;
       return newState;

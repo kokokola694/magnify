@@ -18,7 +18,9 @@ class Player extends React.Component {
       playing: false,
       muted: false,
       volume: "100",
-      index: 0
+      index: 0,
+
+      repeat: "none"
     });
 
     this.player = React.createRef();
@@ -34,6 +36,7 @@ class Player extends React.Component {
     this.onLoaded = this.onLoaded.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.prevSong = this.prevSong.bind(this);
+    // this.toggleShuffle = this.toggleShuffle.bind(this);
   }
 
   componentDidMount () {
@@ -45,9 +48,9 @@ class Player extends React.Component {
   componentDidUpdate (oldProps) {
     let player = this.player.current;
     if (this.props.playSong && oldProps.playSong !== this.props.playSong) {
-      const queueIdArray = this.props.queue.map(song => song.id);
-      const index = queueIdArray.indexOf(this.props.playSong.song.id);
-      this.setPlayerInfo(index);
+        const queueIdArray = this.props.queue.map(song => song.id);
+        const index = queueIdArray.indexOf(this.props.playSong.song.id);
+        this.setPlayerInfo(index);
     }
   }
 
@@ -136,6 +139,14 @@ class Player extends React.Component {
     this.setState({volume: e.currentTarget.value})
   }
 
+  // toggleShuffle () {
+  //   this.setState({shuffle: !this.state.shuffle})
+  // }
+
+  // toggleRepeat () {
+  //
+  // }
+
   // Helper methods
   convertToMS (seconds) {
     let min = "0" + Math.floor(seconds / 60);
@@ -153,7 +164,13 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
-    if (index >= 0 && index < this.props.queue.length) {
+    if (index === -1) {
+      this.setState({
+        currentSong: null, currentTitle: null, currentArtist: null,
+        currentPic: null, index: 0, playing: false, duration: "--:--",
+        progress: "",
+      })
+    } else {
       this.setState({
         currentSong: this.props.playSong.song.audioUrl,
         currentTitle: this.props.playSong.song.title,
@@ -161,14 +178,26 @@ class Player extends React.Component {
         currentPic: this.props.playSong.album.photoUrl,
         index
       });
-    } else {
-      this.setState({
-        currentSong: null, currentTitle: null, currentArtist: null,
-        currentPic: null, index: 0, playing: false, duration: "--:--",
-        progress: "",
-      })
     }
   }
+
+  // shuffle (array) {
+  // 	let currentIndex = array.length;
+  // 	let temporaryValue, randomIndex;
+  //
+  // 	// While there remain elements to shuffle...
+  // 	while (0 !== currentIndex) {
+  // 		// Pick a remaining element...
+  // 		randomIndex = Math.floor(Math.random() * currentIndex);
+  // 		currentIndex -= 1;
+  //
+  // 		// And swap it with the current element.
+  // 		temporaryValue = array[currentIndex];
+  // 		array[currentIndex] = array[randomIndex];
+  // 		array[randomIndex] = temporaryValue;
+  // 	}
+  // 	return array;
+  // };
 
   render() {
     const playPauseButton = this.state.playing ? (
@@ -186,6 +215,12 @@ class Player extends React.Component {
       <button id="mute" onClick={() => this.mute()} type="button"
         data-state="mute"></button>
     )
+
+    // const shuffleButton = this.state.shuffle ? (
+    //   <button id="shuffle"  type="button" data-state="unshuffle"></button>
+    // ) : (
+    //   <button id="shuffle"  type="button" data-state="shuffle"></button>
+    // )
 
     return (
       <section id="audioContainer">

@@ -29,14 +29,14 @@ class SessionForm extends React.Component {
       this.setState(
         { username: this.state.username + user.shift() }, () => {
           window.setTimeout( () =>
-            this.demoHelper(user, password), 65);
+            this.demoHelper(user, password), 45);
         }
       );
     } else if (password.length > 0) {
       this.setState(
         { password: this.state.password + password.shift() }, () => {
           window.setTimeout( () =>
-            this.demoHelper(user, password), 65);
+            this.demoHelper(user, password), 45);
         }
       );
     } else {
