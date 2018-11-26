@@ -17,8 +17,31 @@ class SessionForm extends React.Component {
 
   handleDemo (e) {
     e.preventDefault();
-    const demoUser = {username: 'demo', password: 'password'};
-    this.props.demoLogin(demoUser);
+    const user = 'demo'.split('');
+    const password = 'password'.split('');
+    this.setState( {username: '', password: ''}, () =>
+      this.demoHelper(user, password)
+    );
+  }
+
+  demoHelper (user, password) {
+    if (user.length > 0) {
+      this.setState(
+        { username: this.state.username + user.shift() }, () => {
+          window.setTimeout( () =>
+            this.demoHelper(user, password), 65);
+        }
+      );
+    } else if (password.length > 0) {
+      this.setState(
+        { password: this.state.password + password.shift() }, () => {
+          window.setTimeout( () =>
+            this.demoHelper(user, password), 65);
+        }
+      );
+    } else {
+      this.props.demoLogin(this.state);
+    }
   }
 
   update(field) {
@@ -56,7 +79,7 @@ class SessionForm extends React.Component {
             value={this.state.username} placeholder="Username"/>
           <input type="password" onChange={this.update("password")}
             value={this.state.password} placeholder="Password"/>
-          <input className="session-submit-button" type="submit" value={submitButton}></input>
+          <input className="session-submit-button" id="session-submit" type="submit" value={submitButton}></input>
         </form>
         <section className="session-switch">
           <section className="session-bot-line"></section>
