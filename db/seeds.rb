@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.destroy_all
 PlaylistSong.destroy_all
 Song.destroy_all
@@ -15,15 +7,15 @@ Artist.destroy_all
 Save.destroy_all
 
 def attach_photo(model, file)
-  # photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/#{file}")
-  photo = File.open("app/assets/images/#{file}")
+  photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/#{file}")
+  # photo = File.open("app/assets/images/#{file}")
   model.photo.attach(io: photo, filename: file)
   model.save!
 end
 
 def attach_audio(model, file)
-  # audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/music/#{file}")
-  audio = File.open("app/assets/audio/#{file}")
+  audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/music/#{file}")
+  # audio = File.open("app/assets/audio/#{file}")
   model.audio.attach(io: audio, filename: file)
   model.save!
 end
@@ -122,7 +114,7 @@ attach_audio(s5, "Sunday+Morning.mp3")
 s6 = Song.new(title: "High High", artist_id: ar3.id, album_id: ab3.id)
 attach_audio(s6, "GD_TOP-02-High+High.mp3")
 s10 = Song.new(title: "When We See Your Face", artist_id: ar4.id, album_id: ab5.id)
-attach_audio(s10, "When+We+See+Your+Face.mp3")
+attach_audio(s10, "When%2BWe%2BSee%2BYour%2BFace.mp3")
 
 
 

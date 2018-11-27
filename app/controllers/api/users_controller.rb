@@ -6,7 +6,8 @@ class Api::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    photo = File.open("app/assets/images/default-user-300x300.png")
+    photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/default-user-300x300.png")
+    # photo = File.open("app/assets/images/default-user-300x300.png")
     @user.photo.attach(io: photo, filename: "default-user-300x300.png")
     if @user.save
       login(@user)
