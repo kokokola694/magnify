@@ -29,11 +29,11 @@ const NavBar = ({currentUser, logout}) => {
       </section>
       <section className="nav-bar-right">
         <section className="nav-bar-links">
-          <NavLink to='/'>Premium</NavLink>
-          <NavLink to='/'>Help</NavLink>
-          <NavLink to='/'>Download</NavLink>
+          <a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>LinkedIn</a>
+          <a href='https://github.com/kokokola694'>Github</a>
         </section>
-         | {sessionLinks()}
+         <div>|</div>
+         {sessionLinks()}
       </section>
 
     </nav>

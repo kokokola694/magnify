@@ -86,7 +86,7 @@ class DropMenu extends React.Component {
     }
 
     return (
-      <div className="drop" onClick={() => this.handleDisp()}>
+      <div className="drop" onClick={() => this.handleDisp()} tabIndex="1" onBlur={() => this.handleDisp()}>
         <i  className="fa fa-bars"></i>
         <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`} style={{display: "none"}}>
           <li className="playlist-addto" onClick={() => this.handleAdd()}>

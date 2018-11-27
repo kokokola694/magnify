@@ -61,7 +61,7 @@ class SessionForm extends React.Component {
 
     return (
       <section className="session-content">
-        <section className="logo session-logo">magnify</section>
+        <header className="logo session-logo"><Link to='/'>magnify</Link></header>
 
         <button className="session-demo" onClick={this.handleDemo}>Demo Log In</button>
         <section className="session-demo-divider">
@@ -84,7 +84,7 @@ class SessionForm extends React.Component {
         <section className="session-switch">
           <section className="session-bot-line"></section>
           <p>{otherLinkPretext}</p>
-          <Link className="session-switch-link" to={otherLinkPath}>{otherLinkVal}</Link>
+          <Link onClick={this.props.clearErrors} className="session-switch-link" to={otherLinkPath}>{otherLinkVal}</Link>
         </section>
       </section>
     )

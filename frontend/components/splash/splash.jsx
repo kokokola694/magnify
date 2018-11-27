@@ -20,33 +20,21 @@ const Splash = () => {
       </section>
 
       <footer className="splash-footer">
-        <section className="nav-bar-logo">magnify</section>
+        <section className="nav-bar-logo"><Link to='/'>magnify</Link></section>
         <section className="splash-footer-link">
           <div className="splash-footer-list">
             <section>
-              <h3>Company</h3>
+              <h3>About</h3>
               <ul >
-                <li><a href="#">About</a></li>
-                <li><a href="#">Jobs</a></li>
-                <li><a href="#">For the Record</a></li>
-              </ul>
-            </section>
-            <section>
-              <h3>Communities</h3>
-              <ul >
-                <li><a href="#">For Artists</a></li>
-                <li><a href="#">Developers</a></li>
-                <li><a href="#">Brands</a></li>
-                <li><a href="#">Investors</a></li>
-                <li><a href="#">Vendors</a></li>
+                <li><a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>LinkedIn</a></li>
+                <li><a href='https://github.com/kokokola694'>Github</a></li>
               </ul>
             </section>
             <section>
               <h3>Useful Links</h3>
               <ul >
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Gift</a></li>
-                <li><a href="#">Web Player</a></li>
+                <li><Link to='/signup'>Sign Up</Link></li>
+                <li><Link to='/login'>Log In</Link></li>
               </ul>
             </section>
           </div>

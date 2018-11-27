@@ -23,7 +23,6 @@ const receiveSave = (save) => {
 }
 
 const removeSave = (save) => {
-  // debugger
   return {
     type: REMOVE_SAVE,
     savableId: save.savable_id,
