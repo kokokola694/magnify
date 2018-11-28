@@ -12,7 +12,7 @@ import { createSave, deleteSave } from '../../actions/save_actions';
 
 const msp = (state, ownProps) => {
   const playlistId = ownProps.match.params.playlistId;
-  const playlist = state.entities.playlists[playlistId] || {};
+  const playlist = state.entities.playlists[playlistId] || {song_ids: []};
   const currentUserId = state.session.id;
   const currentUser = state.entities.users[currentUserId]
   const savedIndicator = currentUser.saved_playlist_ids.includes(parseInt(playlistId));

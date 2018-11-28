@@ -39,7 +39,7 @@ class PlaylistShow extends React.Component {
       </>
   ) : null;
     const emptyDesc = songIds.length === 0 ? (
-      <h1 className="empty-desc">
+      <section className="empty-desc">
         <svg width="50" height="49" viewBox="0 0 80 79"
           xmlns="http://www.w3.org/2000/svg"><title>Album</title>
           <path d="M76.8 3.138v72.126H3.2V3.138h73.6zM80 0H0v78.398h80V0zM40
@@ -49,7 +49,7 @@ class PlaylistShow extends React.Component {
              24 40 24z" fill="currentColor" fillRule="evenodd"></path></svg>
         <p>It's a bit empty here...</p>
         {extraInfo}
-      </h1>
+      </section>
     ) : null;
 
 
