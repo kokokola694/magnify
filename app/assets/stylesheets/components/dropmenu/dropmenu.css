@@ -6,6 +6,7 @@
 }
 
 .dropmenu {
+  display: none;
   font-size: 10px;
   position: absolute;
   top: 10px;
@@ -16,6 +17,10 @@
   padding: 10px 10px;
   color: #b2b6bc;
   z-index: 5;
+}
+
+.disp {
+  display: block;
 }
 
 .dropmenu li {

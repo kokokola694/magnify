@@ -17,14 +17,13 @@ class DropMenu extends React.Component {
   }
 
   handleAdd () {
-    this.props.fetchSelectedSong(this.props.song.id)
-    .then(() => dispatch(this.props.openModal("addToPlaylist")));
+    dispatch(this.props.openModal("addToPlaylist"));
   }
 
   handleRemove () {
-    this.props.fetchSelectedSong(this.props.song.id)
-    .then((song) => this.props.deletePlaylistSong(
-      {song_id: this.props.selectedSong.id, playlist_id: this.props.match.params.playlistId}));
+    this.props.deletePlaylistSong(
+      {song_id: this.props.selectedSong.id, playlist_id: this.props.match.params.playlistId}
+    );
   }
 
   handleSaveSong (saveInfo) {
@@ -36,11 +35,14 @@ class DropMenu extends React.Component {
   }
 
   handleDisp () {
+    this.props.fetchSelectedSong(this.props.song.id);
     const dropmenu = document.getElementById(`dropmenu-${this.props.song.id}`);
-    if (dropmenu.style.display === "none") {
-      dropmenu.style.display = "block";
-    } else {
-      dropmenu.style.display = "none";
+    dropmenu.classList.toggle("disp");
+    const dropmenus = document.getElementsByClassName("dropmenu");
+    for (let i = 0; i < dropmenus.length; i++) {
+      if (dropmenus[i].classList.contains('disp') && dropmenus[i].id !== `dropmenu-${this.props.song.id}`) {
+        dropmenus[i].classList.remove('disp');
+      }
     }
   }
 
@@ -61,11 +63,14 @@ class DropMenu extends React.Component {
     let saveButton;
     if (!this.props.currentUser.saved_song_ids.includes(this.props.song.id)) {
       saveButton = (
-        <li onClick={() => this.handleSaveSong({
-          savable_id: this.props.song.id,
-          savable_type: "Song",
-          saver_id: this.props.currentUser.id
-        })}>
+        <li onClick={() => {
+            this.handleSaveSong({
+              savable_id: this.props.song.id,
+              savable_type: "Song",
+              saver_id: this.props.currentUser.id
+            });
+          }
+        }>
           <button className="save-library-button">
             Save to Your Library
           </button>
@@ -85,10 +90,21 @@ class DropMenu extends React.Component {
       )
     }
 
+    window.onclick = (e) => {
+      if (!e.target.matches('.drop-btn')) {
+        const dropmenus = document.getElementsByClassName("dropmenu");
+        for (let i = 0; i < dropmenus.length; i++) {
+          if (dropmenus[i].classList.contains('disp')) {
+            dropmenus[i].classList.remove('disp');
+          }
+        }
+      }
+    }
+
     return (
-      <div className="drop" onClick={() => this.handleDisp()} tabIndex="1" onBlur={() => this.handleDisp()}>
-        <i  className="fa fa-bars"></i>
-        <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`} style={{display: "none"}}>
+      <div className="drop">
+        <button onClick={this.handleDisp} className="drop-btn">•••</button>
+        <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`}>
           <li className="playlist-addto" onClick={() => this.handleAdd()}>
             <button className="playlist-addto-btn" >
               Add To Playlist
