@@ -39,7 +39,7 @@ play () {
 }
 ```
 
-### Responsive Search
+### Search
 Users are able to search for their favorite artists, albums, songs, and playlists. Search results are updated as each letter is typed.
 
 ![search](app/assets/images/search.gif)

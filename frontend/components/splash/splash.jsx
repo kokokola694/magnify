@@ -13,7 +13,7 @@ const Splash = () => {
 
       <section className="splash-main">
         <h1>Music for everyone.</h1>
-        <h2>"Millions" of songs. No credit card needed.</h2>
+        <h2>"Millions" of songs for free.</h2>
         <div>
           <Link to='/signup'>Get Magnify Free</Link>
         </div>
