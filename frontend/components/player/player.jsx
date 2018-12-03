@@ -216,6 +216,12 @@ class Player extends React.Component {
         data-state="mute"></button>
     )
 
+    const prevButton = this.state.index === 0 ? (
+      <button id="previous-null" type="button" data-state="previous"></button>
+    ) : (
+      <button id="previous" onClick={this.prevSong} type="button" data-state="previous"></button>
+    );
+
     // const shuffleButton = this.state.shuffle ? (
     //   <button id="shuffle"  type="button" data-state="unshuffle"></button>
     // ) : (
@@ -238,7 +244,7 @@ class Player extends React.Component {
             <section id="audio-controls-center">
               <section id="audio-controls-center-top">
                 <button id="shuffle" type="button" data-state="shuffle"></button>
-                <button id="previous" onClick={this.prevSong} type="button" data-state="previous"></button>
+                {prevButton}
                 {playPauseButton}
                 <button id="next" onClick={this.nextSong} type="button" data-state="next"></button>
                 <button id="repeat" type="button" data-state="repeat"></button>

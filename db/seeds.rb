@@ -26,7 +26,7 @@ attach_photo(u1, "default-user-300x300.png")
 u2 = User.new(username: 'miko', password: 'bethany')
 attach_photo(u2, "default-user-300x300.png")
 
-u3 = User.new(username: 'aminmicky', password: 'bethany')
+u3 = User.new(username: 'kokokola', password: 'bethany')
 attach_photo(u3, "default-user-300x300.png")
 
 u4 = User.new(username: 'pakman', password: 'bethany')
@@ -94,26 +94,26 @@ attach_photo(ab7, "hypergiants.jpg")
 # s1 = Song.new(title: "Everybody Has Secrets", artist_id: ar1.id, album_id: ab1.id)
 # attach_audio(s1, "02+Everybody+Has+Secrets.mp3")
 
-s1 = Song.new(title: "Roses", artist_id: ar5.id, album_id: ab6.id)
+s1 = Song.new(title: "Roses", artist_id: ar5.id, album_id: ab6.id, duration: "4:35")
 attach_audio(s1, "roses.mp3")
 
-s11 = Song.new(title: "Wait For You", artist_id: ar6.id, album_id: ab7.id)
+s11 = Song.new(title: "Wait For You", artist_id: ar6.id, album_id: ab7.id, duration: "3:56")
 attach_audio(s11, "wait.mp3")
 
-s2 = Song.new(title: "The Red Shoes", artist_id: ar1.id, album_id: ab1.id)
+s2 = Song.new(title: "The Red Shoes", artist_id: ar1.id, album_id: ab1.id, duration: "4:14")
 attach_audio(s2, "04+%EB%B6%84%ED%99%8D%EC%8B%A0+(Red+Shoes).mp3")
-s3 = Song.new(title: "Modern Times", artist_id: ar1.id, album_id: ab1.id)
+s3 = Song.new(title: "Modern Times", artist_id: ar1.id, album_id: ab1.id, duration: "3:25")
 attach_audio(s3, "05+Modern+Times.mp3")
 
-s4 = Song.new(title: "Through the Night", artist_id: ar1.id, album_id: ab4.id)
+s4 = Song.new(title: "Through the Night", artist_id: ar1.id, album_id: ab4.id, duration: "4:13")
 attach_audio(s4, "IU+-+%EB%B0%A4%ED%8E%B8%EC%A7%80+(Through+the+Night).mp3")
 
-s5 = Song.new(title: "Sunday Morning", artist_id: ar2.id, album_id: ab2.id)
+s5 = Song.new(title: "Sunday Morning", artist_id: ar2.id, album_id: ab2.id, duration: "3:57")
 attach_audio(s5, "Sunday+Morning.mp3")
 
-s6 = Song.new(title: "High High", artist_id: ar3.id, album_id: ab3.id)
+s6 = Song.new(title: "High High", artist_id: ar3.id, album_id: ab3.id, duration: "3:07")
 attach_audio(s6, "GD_TOP-02-High+High.mp3")
-s10 = Song.new(title: "When We See Your Face", artist_id: ar4.id, album_id: ab5.id)
+s10 = Song.new(title: "When We See Your Face", artist_id: ar4.id, album_id: ab5.id, duration: "4:19")
 attach_audio(s10, "When%2BWe%2BSee%2BYour%2BFace.mp3")
 
 
@@ -130,7 +130,7 @@ pl5 = Playlist.new(title: "Lofi Beats", author_id: u1.id)
 attach_photo(pl5, "default_music.png")
 # pl6 = Playlist.new(title: "I like really really long names for my playlists", author_id: u1.id)
 # attach_photo(pl6, "default_music.png")
-pl7 = Playlist.new(title: "Mood Booster", author_id: u3.id)
+pl7 = Playlist.new(title: "KPOP ALL THE WAY", author_id: u3.id)
 attach_photo(pl7, "default_music.png")
 # pl8 = Playlist.new(title: "Another Playlist", author_id: u1.id)
 # attach_photo(pl8, "default_music.png")

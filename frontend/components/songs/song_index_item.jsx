@@ -14,9 +14,6 @@ class SongIndexItem extends React.Component {
   }
 
   render() {
-    const randTime = ["1:04", "3:29", "2:21", "2:47", "3:08"];
-    const randIdx = Math.floor(Math.random() * 5);
-    const time = randTime[randIdx];
     const artistName = (
       <Link to={`/browse/artists/${this.props.song.artist_id}`}>{this.props.song.artistName}</Link>
     )
@@ -40,7 +37,7 @@ class SongIndexItem extends React.Component {
         </div>
         <div id="song-item-right">
           <DropMenu song={this.props.song} playlist={this.props.playlist}/>
-          <h2>{time}</h2>
+          <h2>{this.props.song.duration}</h2>
         </div>
       </li>
     )

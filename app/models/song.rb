@@ -1,5 +1,5 @@
 class Song < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :duration, presence: true
 
   belongs_to :artist,
     foreign_key: :artist_id,
