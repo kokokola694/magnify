@@ -4,7 +4,7 @@ import SongIndex from './song_index';
 import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
-import { addQueue, fetchPlaySong } from '../../actions/player_actions';
+import { addQueue, fetchPlaySong, pauseSong, resumeSong } from '../../actions/player_actions';
 
 const msp = (state, ownProps) => {
   let songs;
@@ -37,7 +37,8 @@ const msp = (state, ownProps) => {
     const albumName = state.entities.albums[song.album_id].title;
     return Object.assign({}, song, {artistName}, {albumName});
   })
-
+  const playSong = state.ui.player.playSong || {song: ""};
+  // debugger
   return {
     songs: updatedSongs,
     currentUserId: state.session.id,
@@ -46,7 +47,9 @@ const msp = (state, ownProps) => {
     input,
     albums: state.entities.albums,
     artists: state.entities.artists,
-    queue: state.ui.queue
+    // queue: state.ui.queue,
+    playSongId: playSong.song.id,
+    playing: state.ui.player.playing
   }
 }
 
@@ -57,7 +60,9 @@ const mdp = dispatch => {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),
     addQueue: (queue) => dispatch(addQueue(queue)),
-    fetchPlaySong: (id) => dispatch(fetchPlaySong(id))
+    fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
+    pauseSong: () => dispatch(pauseSong()),
+    resumeSong: () => dispatch(resumeSong()),
   }
 }
 

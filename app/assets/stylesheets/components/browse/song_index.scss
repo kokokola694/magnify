@@ -47,7 +47,11 @@
   transition-duration: 0.3s;
 }
 
-
+.playing-song {
+  background-color: rgba(0,0,0,0.4);
+  transition-duration: 0.3s;
+  color: green;
+}
 
 .song-info {
   display: flex;
@@ -56,15 +60,16 @@
 }
 
 .song-index-item-img {
-  width: 10%;
-  // height: 50%;
-  background-image: image-url("music.png");
+  width: 12px;
+  height: 100%;
+  padding: 1%;
+  // background-image: image-url("music.png");
   background-repeat: no-repeat;
   transition-duration: 0.2s;
 }
 
-.song-index-item:hover .song-index-item-img {
-  background-image: image-url('play.png');
+.song-index-item:hover {
+  // background-image: image-url('play.png');
   transition-duration: 0.2s;
 }
 
@@ -89,6 +94,10 @@
   color: white;
   transition-duration: 0.3s;
   border-bottom: 1px solid white;
+}
+
+.song-info > .green-text, .green-text {
+  color: #1db954
 }
 
 /* .song-index-item audio {

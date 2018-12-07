@@ -33,11 +33,14 @@ class SongIndex extends React.Component {
   }
 
   render() {
+    // debugger
     const songlist =
       this.props.songs.map(s => <SongIndexItem key={s.id}
         song={s} playlist={this.props.playlist}
         openModal={openModal} queue={this.props.songs} addQueue={this.props.addQueue}
-        fetchPlaySong={this.props.fetchPlaySong} />)
+        fetchPlaySong={this.props.fetchPlaySong} playing={this.props.playing}
+        playSongId={this.props.playSongId} pauseSong={this.props.pauseSong}
+        resumeSong={this.props.resumeSong} />)
     return (
       <section>
         <ul className="song-index-list">

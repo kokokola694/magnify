@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchPlaySong } from '../../actions/player_actions';
+import { fetchPlaySong, pauseSong, resumeSong, clearQueue } from '../../actions/player_actions';
 
 class Player extends React.Component {
   constructor(props) {
@@ -15,7 +15,6 @@ class Player extends React.Component {
       currentTime: "00:00",
       duration: "--:--",
       progress: "",
-      playing: false,
       muted: false,
       volume: "100",
       index: 0,
@@ -101,9 +100,9 @@ class Player extends React.Component {
 
   changeButton (type) {
     if (type == 'play') {
-      this.setState({playing: true});
+      this.props.resumeSong();
     } else if (type == 'pause') {
-      this.setState({playing: false});
+      this.props.pauseSong();
     } else if (type == 'mute') {
       this.setState({ muted: !this.state.muted });
      }
@@ -111,10 +110,12 @@ class Player extends React.Component {
 
   nextSong () {
     const index = this.state.index + 1;
+    // debugger
     if (index >= 0 && index < this.props.queue.length) {
       this.props.fetchPlaySong(this.props.queue[index].id)
       .then( () => this.setPlayerInfo(index))
     } else {
+      // debugger
       this.setPlayerInfo(index);
       this.player.current.pause();
       this.player.current.currentTime = 0;
@@ -129,6 +130,7 @@ class Player extends React.Component {
     } else {
       this.setPlayerInfo(index);
       this.player.current.pause();
+      this.changeButton('pause');
       this.player.current.currentTime = 0;
     }
   }
@@ -164,10 +166,11 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
-    if (index === -1) {
+    if (index < 0 || index >= this.props.queue.length) {
+      this.props.clearQueue();
       this.setState({
         currentSong: null, currentTitle: null, currentArtist: null,
-        currentPic: null, index: 0, playing: false, duration: "--:--",
+        currentPic: null, index: 0, duration: "--:--",
         progress: "",
       })
     } else {
@@ -200,7 +203,7 @@ class Player extends React.Component {
   // };
 
   render() {
-    const playPauseButton = this.state.playing ? (
+    const playPauseButton = this.props.playing ? (
       <button onClick={() => this.play()} id="playpause"
         type="button" data-state="pause"></button>
     ) : (
@@ -272,13 +275,16 @@ const msp = (state, ownProps) => {
   return {
     playSong: state.ui.player.playSong,
     queue: state.ui.player.queue,
-
+    playing: state.ui.player.playing
   }
 }
 
 const mdp = dispatch => {
   return {
-    fetchPlaySong: (id) => dispatch(fetchPlaySong(id))
+    fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
+    resumeSong: () => dispatch(resumeSong()),
+    pauseSong: () => dispatch(pauseSong()),
+    clearQueue: () => dispatch(clearQueue())
   }
 }
 
