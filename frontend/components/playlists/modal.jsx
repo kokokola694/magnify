@@ -13,13 +13,16 @@ function Modal({modal, closeModal}) {
   let component;
   switch (modal) {
     case 'createPlaylist':
-      component = <CreatePlaylist />;
+      component = <CreatePlaylist nested="false"/>;
       break;
     case 'deletePlaylist':
       component = <DeletePlaylist />;
       break;
     case 'addToPlaylist':
       component = <AddToPlaylist />;
+      break;
+    case 'addThenCreate':
+      component = <CreatePlaylist nested="true" />;
       break;
     default:
       return null;
