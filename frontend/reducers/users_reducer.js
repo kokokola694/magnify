@@ -30,7 +30,7 @@ export default (state = {}, action) => {
       const idx1 = newState3[action.followedId].followers_user_ids.indexOf(action.followerId);
       newState3[action.followedId].followers_user_ids.splice(idx1, 1);
       const idx2 = newState3[action.followerId].follows_user_ids.indexOf(action.followedId);
-      newState3[action.followerId].follows_user_ids.splice(idx1, 1);
+      newState3[action.followerId].follows_user_ids.splice(idx2, 1);
       return newState3;
     default:
       return state;
