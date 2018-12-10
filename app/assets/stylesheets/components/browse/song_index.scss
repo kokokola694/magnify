@@ -62,10 +62,19 @@
 .song-index-item-img {
   width: 12px;
   height: 100%;
-  padding: 1%;
+  padding: 7px;
   // background-image: image-url("music.png");
   background-repeat: no-repeat;
   transition-duration: 0.2s;
+}
+
+.icon-pause {
+  width: 10px;
+  padding: 8px;
+}
+
+.song-index-item-img:hover {
+  cursor: pointer;
 }
 
 .song-index-item:hover {

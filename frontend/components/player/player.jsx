@@ -19,7 +19,7 @@ class Player extends React.Component {
       volume: "100",
       index: 0,
 
-      repeat: "none"
+      repeat: "none" // ["none", "one"] for now.
     });
 
     this.player = React.createRef();
@@ -35,6 +35,7 @@ class Player extends React.Component {
     this.onLoaded = this.onLoaded.bind(this);
     this.nextSong = this.nextSong.bind(this);
     this.prevSong = this.prevSong.bind(this);
+    this.toggleRepeat = this.toggleRepeat.bind(this);
     // this.toggleShuffle = this.toggleShuffle.bind(this);
   }
 
@@ -109,17 +110,23 @@ class Player extends React.Component {
   }
 
   nextSong () {
-    const index = this.state.index + 1;
-    // debugger
-    if (index >= 0 && index < this.props.queue.length) {
-      this.props.fetchPlaySong(this.props.queue[index].id)
-      .then( () => this.setPlayerInfo(index))
-    } else {
-      // debugger
-      this.setPlayerInfo(index);
-      this.player.current.pause();
+    if (this.state.repeat === "one") {
       this.player.current.currentTime = 0;
+      if (this.player.current.paused) this.player.current.play();
+    } else {
+      const index = this.state.index + 1;
+      // debugger
+      if (index >= 0 && index < this.props.queue.length) {
+        this.props.fetchPlaySong(this.props.queue[index].id)
+        .then( () => this.setPlayerInfo(index))
+      } else {
+        // debugger
+        this.setPlayerInfo(index);
+        this.player.current.pause();
+        this.player.current.currentTime = 0;
+      }
     }
+
   }
 
   prevSong () {
@@ -145,9 +152,10 @@ class Player extends React.Component {
   //   this.setState({shuffle: !this.state.shuffle})
   // }
 
-  // toggleRepeat () {
-  //
-  // }
+  toggleRepeat () {
+    const nextState = this.state.repeat === "none" ? "one" : "none";
+    this.setState({repeat: nextState});
+  }
 
   // Helper methods
   convertToMS (seconds) {
@@ -231,6 +239,12 @@ class Player extends React.Component {
     //   <button id="shuffle"  type="button" data-state="shuffle"></button>
     // )
 
+    const repeatButton = this.state.repeat === "none" ? (
+      <button id="repeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+    ) : (
+      <button id="unrepeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+    )
+
     return (
       <section id="audioContainer">
         <audio id="audio" controls src={this.state.currentSong}
@@ -250,8 +264,9 @@ class Player extends React.Component {
                 {prevButton}
                 {playPauseButton}
                 <button id="next" onClick={this.nextSong} type="button" data-state="next"></button>
-                <button id="repeat" type="button" data-state="repeat"></button>
-              </section>
+                {repeatButton}
+            </section>
+
                <div className="progress" onClick={(e) => this.toProgress(e)}>
                  <h2>{this.state.currentTime}</h2>
                   <progress id="progress" ref={this.progress}  value="0" min="0">

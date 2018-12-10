@@ -138,7 +138,7 @@
   height: 30px;
 }
 
-#repeat {
+#repeat, #unrepeat {
   width: 25px;
   height: 25px;
 }
@@ -205,6 +205,10 @@
 
 #repeat {
   background-image: image-url('repeat.png');
+}
+
+#unrepeat {
+  background-image: image-url('repeatgreen.png');
 }
 
 progress[value] {
