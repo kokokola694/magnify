@@ -12,19 +12,49 @@ class SongIndex extends React.Component {
   componentDidMount() {
     const pathArr = this.props.match.path.split('/');
     if (pathArr[pathArr.length - 1] === "songs") {
-      document.body.style.backgroundImage = "linear-gradient(#c1219f, black)";
+      document.body.style.backgroundImage = "linear-gradient(#3c4758, black)";
+      if (this.props.match.path.slice(0,11) === "/collection") {
+        this.props.fetchSongs(this.props.currentUser.saved_song_ids);
+      } else if (this.props.match.path.slice(0,7) === "/search") {
+        this.props.searchSongs(this.props.input);
+      } else {
+        this.props.fetchSongs();
+      }
+    } else if (this.props.match.params.albumId) {
+      this.props.fetchAlbum(this.props.match.params.albumId)
+      .then((action) => {
+        this.props.fetchSongs(action.album.song_ids)
+      });
+    } else if (this.props.match.params.artistId) {
+      this.props.fetchArtist(this.props.match.params.artistId)
+      .then((action) => {
+        this.props.fetchSongs(action.artist.song_ids)
+      });
+    } else if (this.props.match.params.playlistId) {
+      this.props.fetchPlaylist(this.props.match.params.playlistId)
+      .then((action) => {
+        this.props.fetchSongs(action.playlist.song_ids)
+      });
     };
-    if (this.props.match.path.slice(0,11) === "/collection") {
-      this.props.fetchSongs(this.props.currentUser.saved_song_ids);
+
+
     // if (this.props.songIds) {
     //   this.props.fetchSongs(this.props.songIds);
     // } else if (this.props.match.params.playlistId) {
     //   this.props.fetchPlaylist(this.props.match.params.playlistId)
     //   .then(playlist => this.props.fetchSongs(playlist.song_ids))
-    // } else if (this.props.match.path.slice(0,7) === "/search") {
-    //   this.props.searchSongs(this.props.input);
-    } else {
-      this.props.fetchSongs();
+  }
+
+  componentDidUpdate (oldProps) {
+    if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
+      this.props.fetchPlaylist(this.props.match.params.playlistId)
+      .then((action) => this.props.fetchSongs(action.playlist.song_ids));
+    } else if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
+      this.props.fetchAlbum(this.props.match.params.albumId)
+      .then((action) => this.props.fetchSongs(action.album.song_ids));
+    } else if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
+      this.props.fetchArtist(this.props.match.params.artistId)
+      .then((action) => this.props.fetchSongs(action.artist.song_ids));
     }
   }
 

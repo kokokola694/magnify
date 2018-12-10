@@ -3,6 +3,7 @@ import { fetchSongs, searchSongs } from '../../actions/song_actions';
 import SongIndex from './song_index';
 import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
+import { fetchArtist } from '../../actions/artist_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
 import { addQueue, fetchPlaySong, pauseSong, resumeSong } from '../../actions/player_actions';
 
@@ -58,6 +59,7 @@ const mdp = dispatch => {
     fetchSongs: (ids) => dispatch(fetchSongs(ids)),
     searchSongs: (input) => dispatch(searchSongs(input)),
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
+    fetchArtist: (id) => dispatch(fetchArtist(id)),
     fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),
     addQueue: (queue) => dispatch(addQueue(queue)),
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),

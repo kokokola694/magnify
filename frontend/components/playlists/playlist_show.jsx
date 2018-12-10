@@ -9,13 +9,13 @@ class PlaylistShow extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchPlaylist(this.props.match.params.playlistId);
+    // this.props.fetchPlaylist(this.props.match.params.playlistId);
   }
 
   componentDidUpdate(oldProps) {
-    if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
-      this.props.fetchPlaylist(this.props.match.params.playlistId);
-    }
+    // if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
+    //   this.props.fetchPlaylist(this.props.match.params.playlistId);
+    // }
   }
 
   // addQueue (song) {

@@ -10,13 +10,13 @@ class ArtistShow extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(teal, black)";
-    this.props.fetchArtist(this.props.match.params.artistId);
+    // this.props.fetchArtist(this.props.match.params.artistId);
   }
 
   componentDidUpdate(oldProps) {
-    if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
-      this.props.fetchArtist(this.props.match.params.artistId);
-    }
+    // if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
+    //   this.props.fetchArtist(this.props.match.params.artistId);
+    // }
   }
 
   play() {

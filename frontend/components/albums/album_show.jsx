@@ -9,14 +9,14 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundImage = "linear-gradient(#c37718, black)";
-    this.props.fetchAlbum(this.props.match.params.albumId);
+    document.body.style.backgroundImage = "linear-gradient(rgb(68, 52, 84), black)";
+    // this.props.fetchAlbum(this.props.match.params.albumId);
   }
 
   componentDidUpdate(oldProps) {
-    if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
-      this.props.fetchAlbum(this.props.match.params.albumId);
-    }
+    // if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
+    //   this.props.fetchAlbum(this.props.match.params.albumId);
+    // }
   }
 
   play() {
@@ -47,6 +47,7 @@ class AlbumShow extends React.Component {
     const albumSongs = this.props.album.song_ids || {length: ""};
     const plural = albumSongs.length === 1 ? "Song" : "Songs";
 
+
     return (
       <section className="show">
         <header>
@@ -73,7 +74,7 @@ class AlbumShow extends React.Component {
           </section>
         </header>
         <main>
-          <SongIndexContainer album={this.props.album} songIds={this.props.album.song_ids}/>
+          <SongIndexContainer album={this.props.album} albumSongIds={this.props.album.song_ids}/>
         </main>
       </section>
     )
