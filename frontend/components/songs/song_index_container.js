@@ -38,16 +38,16 @@ const msp = (state, ownProps) => {
     return Object.assign({}, song, {artistName}, {albumName});
   })
   const playSong = state.ui.player.playSong || {song: ""};
-  // debugger
+
   return {
     songs: updatedSongs,
     currentUserId: state.session.id,
+    currentUser: state.entities.users[state.session.id],
     indexType: ownProps.match.params.url,
     playlist,
     input,
     albums: state.entities.albums,
     artists: state.entities.artists,
-    // queue: state.ui.queue,
     playSongId: playSong.song.id,
     playing: state.ui.player.playing
   }

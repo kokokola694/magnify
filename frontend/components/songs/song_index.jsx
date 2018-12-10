@@ -10,8 +10,14 @@ class SongIndex extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.songIds) {
-      this.props.fetchSongs(this.props.songIds);
+    const pathArr = this.props.match.path.split('/');
+    if (pathArr[pathArr.length - 1] === "songs") {
+      document.body.style.backgroundImage = "linear-gradient(#c1219f, black)";
+    };
+    if (this.props.match.path.slice(0,11) === "/collection") {
+      this.props.fetchSongs(this.props.currentUser.saved_song_ids);
+    // if (this.props.songIds) {
+    //   this.props.fetchSongs(this.props.songIds);
     // } else if (this.props.match.params.playlistId) {
     //   this.props.fetchPlaylist(this.props.match.params.playlistId)
     //   .then(playlist => this.props.fetchSongs(playlist.song_ids))

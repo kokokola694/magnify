@@ -7,6 +7,7 @@ class AlbumIndex extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundImage = "linear-gradient(#c37718, black)";
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchAlbums(this.props.currentUser.saved_album_ids);
     // } else if (this.props.match.path.slice(0,7) === "/search") {

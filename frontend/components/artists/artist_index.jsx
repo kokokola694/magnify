@@ -7,6 +7,7 @@ class ArtistIndex extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundImage = "linear-gradient(teal, black)";
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchArtists(this.props.currentUser.saved_artist_ids);
     } else if (this.props.match.path.slice(0,7) === "/search") {

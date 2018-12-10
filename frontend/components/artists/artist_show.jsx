@@ -9,6 +9,7 @@ class ArtistShow extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundImage = "linear-gradient(teal, black)";
     this.props.fetchArtist(this.props.match.params.artistId);
   }
 

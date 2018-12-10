@@ -9,6 +9,7 @@ class AlbumShow extends React.Component {
   }
 
   componentDidMount() {
+    document.body.style.backgroundImage = "linear-gradient(#c37718, black)";
     this.props.fetchAlbum(this.props.match.params.albumId);
   }
 
