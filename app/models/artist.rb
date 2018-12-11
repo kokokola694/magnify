@@ -1,6 +1,7 @@
 class Artist < ApplicationRecord
   validates :name, presence: true, uniqueness: true
 
+  has_one_attached :show_photo
   has_one_attached :photo
 
   has_many :songs,

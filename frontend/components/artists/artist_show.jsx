@@ -64,7 +64,7 @@ class ArtistShow extends React.Component {
               { saveButton }
             </section>
           </section>
-          <img className="artist-show-img" src={this.props.artist.photoUrl}/>
+          <img className="artist-show-img" src={this.props.artist.showPhotoUrl}/>
 
         </section>
 

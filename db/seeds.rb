@@ -13,6 +13,13 @@ def attach_photo(model, file)
   model.save!
 end
 
+def attach_show_photo(model, file)
+  show_photo = EzDownload.open("https://s3.amazonaws.com/magnify-dev/photo/#{file}")
+  # photo = File.open("app/assets/images/#{file}")
+  model.show_photo.attach(io: show_photo, filename: file)
+  model.save!
+end
+
 def attach_audio(model, file)
   audio = EzDownload.open("https://s3.amazonaws.com/magnify-dev/music/#{file}")
   # audio = File.open("app/assets/audio/#{file}")
@@ -35,39 +42,51 @@ attach_photo(u4, "default-user-300x300.png")
 
 ar4 = Artist.new(name: "Sovereign Grace Music")
 attach_photo(ar4,"sovgracemusic_logo.png")
+attach_show_photo(ar4,"sgm_show.jpg")
 
 ar5 = Artist.new(name: "Elyon Beats")
 attach_photo(ar5, "elyon.jpg")
+attach_show_photo(ar5,"elyon_show.jpg")
 
 ar6 = Artist.new(name: "Gowe")
 attach_photo(ar6, "gowe.jpg")
+attach_show_photo(ar6,"gowe_show.jpg")
 
 ar1 = Artist.new(name: "IU")
 attach_photo(ar1, "IU.jpg")
+attach_show_photo(ar1,"iu_show.jpg")
 
 ar2 = Artist.new(name: "Maroon 5")
 attach_photo(ar2, "maroon5.jpg")
+attach_show_photo(ar2,"maroon5_show.jpg")
 
 ar3 = Artist.new(name: "GD & TOP")
 attach_photo(ar3,"gd_top.png")
+attach_show_photo(ar3,"gdtop_show.jpg")
 
 ar7 = Artist.new(name: "Ariana Grande")
 attach_photo(ar7, "ariana_grande.jpg")
+attach_show_photo(ar7,"ariana_show.jpg")
 
 ar8 = Artist.new(name: "Shane and Shane")
 attach_photo(ar8, "shane.jpg")
+attach_show_photo(ar8,"shane_show.jpg")
 
 ar9 = Artist.new(name: "Younha")
 attach_photo(ar9, "younha.png")
+attach_show_photo(ar9,"younha_show.jpg")
 
 ar10 = Artist.new(name: "Coldplay")
 attach_photo(ar10, "coldplay.jpg")
+attach_show_photo(ar10,"coldplay_show.jpg")
 
 ar11 = Artist.new(name: "Yoshiki")
 attach_photo(ar11, "yoshiki.jpg")
+attach_show_photo(ar11,"yoshiki_show.jpg")
 
 ar12 = Artist.new(name: "Yui")
 attach_photo(ar12, "yui.jpg")
+attach_show_photo(ar12,"yui_show.jpg")
 
 
 
