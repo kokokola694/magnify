@@ -9,18 +9,22 @@ import Browse from '../browse/browse';
 const Splash = () => {
   return (
     <div className="splash">
-      <NavBarContainer />
+      <div id="splash-top">
+        <NavBarContainer />
+        <section className="splash-main">
+          <h1>Music for everyone.</h1>
+          <h2>"Millions" of songs for free.</h2>
+          <div>
+            <Link to='/signup'>Get Magnify Free</Link>
+          </div>
+        </section>
+      </div>
 
-      <section className="splash-main">
-        <h1>Music for everyone.</h1>
-        <h2>"Millions" of songs for free.</h2>
-        <div>
-          <Link to='/signup'>Get Magnify Free</Link>
-        </div>
-      </section>
+
+
 
       <footer className="splash-footer">
-        <section className="nav-bar-logo"><Link to='/'>magnify</Link></section>
+        <section className="splash-logo"><Link to='/'>Magnify</Link></section>
         <section className="splash-footer-link">
           <div className="splash-footer-list">
             <section>

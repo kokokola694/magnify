@@ -3,11 +3,12 @@ import { NavLink, Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
 
+
   render() {
     return (
       <div className="side-bar">
         <section className="side-bar-top">
-          <section className="side-bar-logo logo">magnify</section>
+          <section className="side-bar-logo logo">Magnify</section>
           <section className="side-bar-links">
             <section>
               <NavLink to="/search/recent" isActive={this.props.atSearch}>
