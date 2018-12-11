@@ -4,7 +4,7 @@ import { withRouter } from 'react-router';
 import { fetchSongs } from '../../actions/song_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { createSave, deleteSave } from '../../actions/save_actions';
-import { fetchPlaySong, addQueue } from '../../actions/player_actions';
+import { fetchPlaySong, addQueue, clearQueue } from '../../actions/player_actions';
 
 
 const msp = (state, ownProps) => {
@@ -12,10 +12,12 @@ const msp = (state, ownProps) => {
   const artist = state.entities.artists[artistId] || {};
   const currentUser = state.entities.users[state.session.id];
   const savedIndicator = currentUser.saved_artist_ids.includes(parseInt(artistId));
+  const songs = Object.values(state.entities.songs).filter(song => artist.song_ids.includes(song.id));
   return {
     artist,
     currentUser,
-    savedIndicator
+    savedIndicator,
+    songs
   };
 }
 
@@ -26,7 +28,8 @@ const mdp = dispatch => {
     deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo)),
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
     addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
-    fetchSongs: (ids) => dispatch(fetchSongs(ids))
+    fetchSongs: (ids) => dispatch(fetchSongs(ids)),
+    clearQueue: () => dispatch(clearQueue())
   }
 }
 

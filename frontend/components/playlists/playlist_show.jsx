@@ -8,32 +8,23 @@ class PlaylistShow extends React.Component {
     this.play = this.play.bind(this);
   }
 
-  componentDidMount() {
-    // this.props.fetchPlaylist(this.props.match.params.playlistId);
-  }
-
-  componentDidUpdate(oldProps) {
-    // if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
-    //   this.props.fetchPlaylist(this.props.match.params.playlistId);
-    // }
-  }
-
   play() {
-    const songIds = this.props.playlist.song_ids;
-    this.props.fetchSongs(songIds)
-    .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
-    .then(() => this.props.fetchPlaySong(songIds[0]))
+    this.props.clearQueue();
+    this.props.addQueue(this.props.songs, this.shuffle(this.props.songs))
+    this.props.fetchPlaySong(this.props.songs[0].id);
   }
 
   shuffle (songs) {
-    let currentIdx = songs.length - 1;
+    const shuffledSongs = songs.slice(1);
+    let currentIdx = shuffledSongs.length - 1;
     let randIdx;
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
-      [songs[currentIdx], songs[randIdx]] = [songs[randIdx], songs[currentIdx]];
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
-    return songs;
+    shuffledSongs.unshift(songs[0]);
+    return shuffledSongs;
   };
 
   render () {

@@ -8,7 +8,7 @@ import { fetchAlbums } from '../../actions/album_actions';
 import React from 'react';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { createSave, deleteSave } from '../../actions/save_actions';
-import { addQueue, fetchPlaySong } from '../../actions/player_actions';
+import { addQueue, fetchPlaySong, clearQueue } from '../../actions/player_actions';
 
 
 const msp = (state, ownProps) => {
@@ -41,6 +41,7 @@ const mdp = dispatch => {
     fetchArtists: (ids) => dispatch(fetchArtists(ids)),
     fetchSongs: (ids) => dispatch(fetchSongs(ids)),
     addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
+    clearQueue: () => dispatch(clearQueue()),
     fetchPlaySong: (song) => dispatch(fetchPlaySong(song))
   }
 }

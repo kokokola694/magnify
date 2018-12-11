@@ -10,31 +10,29 @@ class ArtistShow extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(#80495e, black)";
-    // this.props.fetchArtist(this.props.match.params.artistId);
-  }
-
-  componentDidUpdate(oldProps) {
-    // if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
-    //   this.props.fetchArtist(this.props.match.params.artistId);
-    // }
   }
 
   play() {
-    const songIds = this.props.artist.song_ids;
-    this.props.fetchSongs(songIds)
-    .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
-    .then(() => this.props.fetchPlaySong(songIds[0]))
+    // const songIds = this.props.artist.song_ids.sort();
+    // this.props.fetchSongs(songIds)
+    // .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
+    // .then(() => this.props.fetchPlaySong(songIds[0]))
+    this.props.clearQueue();
+    this.props.addQueue(this.props.songs, this.shuffle(this.props.songs));
+    this.props.fetchPlaySong(this.props.songs[0].id);
   }
 
   shuffle (songs) {
-    let currentIdx = songs.length - 1;
+    const shuffledSongs = songs.slice(1);
+    let currentIdx = shuffledSongs.length - 1;
     let randIdx;
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
-      [songs[currentIdx], songs[randIdx]] = [songs[randIdx], songs[currentIdx]];
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
-    return songs;
+    shuffledSongs.unshift(songs[0]);
+    return shuffledSongs;
   };
 
   render () {

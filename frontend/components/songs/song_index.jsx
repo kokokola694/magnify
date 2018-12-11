@@ -76,7 +76,7 @@ class SongIndex extends React.Component {
         openModal={openModal} queue={this.props.songs} addQueue={this.props.addQueue}
         fetchPlaySong={this.props.fetchPlaySong} playing={this.props.playing}
         playSongId={this.props.playSongId} pauseSong={this.props.pauseSong}
-        resumeSong={this.props.resumeSong} />)
+        resumeSong={this.props.resumeSong} clearQueue={this.props.clearQueue} />)
     return (
       <section>
         <ul className="song-index-list">

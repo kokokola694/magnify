@@ -13,8 +13,6 @@ class Player extends React.Component {
       muted: false,
       volume: "100",
       index: 0,
-
-      shuffledIdx: [],
       repeat: "none" // ["none", "one"] for now.
     });
 
@@ -46,6 +44,7 @@ class Player extends React.Component {
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (this.props.playSong && oldProps.playSong !== this.props.playSong) {
         const queueIdArray = queue.map(song => song.id);
+        // debugger
         const index = queueIdArray.indexOf(this.props.playSong.song.id);
         this.setPlayerInfo(index);
     }

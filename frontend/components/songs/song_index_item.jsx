@@ -11,6 +11,7 @@ class SongIndexItem extends React.Component {
   }
 
   play () {
+    this.props.clearQueue();
     this.props.addQueue(this.props.queue, this.shuffle(this.props.queue));
     this.props.fetchPlaySong(this.props.song.id);
   }

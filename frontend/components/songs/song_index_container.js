@@ -5,7 +5,7 @@ import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
-import { addQueue, fetchPlaySong, pauseSong, resumeSong } from '../../actions/player_actions';
+import { addQueue, fetchPlaySong, pauseSong, resumeSong, clearQueue } from '../../actions/player_actions';
 
 const msp = (state, ownProps) => {
   let songs;
@@ -65,6 +65,7 @@ const mdp = dispatch => {
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
     pauseSong: () => dispatch(pauseSong()),
     resumeSong: () => dispatch(resumeSong()),
+    clearQueue: () => dispatch(clearQueue()),
   }
 }
 
