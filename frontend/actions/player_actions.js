@@ -3,6 +3,7 @@ export const PLAY_SONG = "PLAY_SONG";
 export const PAUSE_SONG = "PAUSE_SONG";
 export const RESUME_SONG = "RESUME_SONG";
 export const CLEAR_QUEUE = "CLEAR_QUEUE";
+export const DELETE_QUEUE = "DELETE_QUEUE";
 export const SHUFFLE = "SHUFFLE";
 import * as SongApi from '../util/song_api_util';
 
@@ -28,6 +29,12 @@ export const resumeSong = () => {
 export const clearQueue = () => {
   return {
     type: CLEAR_QUEUE
+  }
+}
+
+export const deleteQueue = () => {
+  return {
+    type: DELETE_QUEUE
   }
 }
 

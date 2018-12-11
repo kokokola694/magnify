@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchPlaySong, pauseSong, resumeSong, clearQueue, shuffle } from '../../actions/player_actions';
+import { fetchPlaySong, pauseSong, resumeSong, clearQueue, shuffle, deleteQueue } from '../../actions/player_actions';
 
 class Player extends React.Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class Player extends React.Component {
   nextSong () {
     if (this.state.repeat === "one") {
       this.player.current.currentTime = 0;
-      if (this.player.current.paused) this.player.current.play();
+      if (this.player.current.paused && this.props.playing) this.player.current.play();
     } else {
       const index = this.state.index + 1;
       const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
@@ -175,7 +175,7 @@ class Player extends React.Component {
     console.log(index);
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (index < 0 || index >= queue.length) {
-      this.props.clearQueue();
+      this.props.deleteQueue();
       this.setState({
         currentSong: null, currentTitle: null, currentArtist: null,
         currentPic: null, index: 0, duration: "--:--",
@@ -226,6 +226,12 @@ class Player extends React.Component {
       <button id="previous" onClick={this.prevSong} type="button" data-state="previous"></button>
     );
 
+    const nextButton = !this.props.playSong ? (
+      <button id="next-null" type="button" data-state="next"></button>
+    ) : (
+      <button id="next" onClick={this.nextSong} type="button" data-state="next"></button>
+    );
+
     const shuffleButton = this.props.shuffled ? (
       <button id="unshuffle" onClick={this.props.shuffle} type="button" data-state="shuffle"></button>
     ) : (
@@ -256,7 +262,7 @@ class Player extends React.Component {
                 {shuffleButton}
                 {prevButton}
                 {playPauseButton}
-                <button id="next" onClick={this.nextSong} type="button" data-state="next"></button>
+                {nextButton}
                 {repeatButton}
             </section>
 
@@ -295,6 +301,7 @@ const mdp = dispatch => {
     resumeSong: () => dispatch(resumeSong()),
     pauseSong: () => dispatch(pauseSong()),
     clearQueue: () => dispatch(clearQueue()),
+    deleteQueue: () => dispatch(deleteQueue()),
     shuffle: () => dispatch(shuffle())
   }
 }

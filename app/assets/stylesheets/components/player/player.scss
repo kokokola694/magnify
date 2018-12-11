@@ -110,11 +110,11 @@
 }
 
 #playpause:hover {
-  width: 52px;
-  height: 52px;
+  // width: 52px;
+  // height: 52px;
 }
 
- #previous, #previous-null, #next {
+ #previous, #previous-null, #next, #next-null {
   width: 15px;
   height: 15px;
   background-size: contain;
@@ -190,7 +190,7 @@
 
 #audio-controls-center-top {
   display: flex;
-  width: 35%;
+  width: 25%;
   justify-content: space-between;
   align-items: center;
 }
@@ -199,7 +199,7 @@
   background-image: image-url('player-prev.svg');
 }
 
-#next {
+#next, #next-null {
   background-image: image-url('player-next.svg');
 }
 
@@ -280,11 +280,11 @@ input[type=range]:hover::-webkit-slider-runnable-track {
   background: #1db954;
 }
 
-#previous-null {
+#previous-null, #next-null {
   opacity: 0.3;
   cursor: default;
 }
 
-#previous-null:hover {
+#previous-null:hover, #next-null:hover {
   opacity: 0.3;
 }
