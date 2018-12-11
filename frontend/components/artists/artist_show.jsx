@@ -22,9 +22,20 @@ class ArtistShow extends React.Component {
   play() {
     const songIds = this.props.artist.song_ids;
     this.props.fetchSongs(songIds)
-    .then(songs => this.props.addQueue(Object.values(songs.songs)))
+    .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
     .then(() => this.props.fetchPlaySong(songIds[0]))
   }
+
+  shuffle (songs) {
+    let currentIdx = songs.length - 1;
+    let randIdx;
+    while (currentIdx >= 0) {
+      randIdx = Math.floor(Math.random() * currentIdx);
+      [songs[currentIdx], songs[randIdx]] = [songs[randIdx], songs[currentIdx]];
+      currentIdx -= 1;
+    }
+    return songs;
+  };
 
   render () {
     const saveButton = this.props.savedIndicator ? (

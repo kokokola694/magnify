@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class PlaylistShow extends React.Component {
   constructor(props) {
     super(props);
-    // this.addQueue = this.addQueue.bind(this);
+    this.play = this.play.bind(this);
   }
 
   componentDidMount() {
@@ -18,16 +18,23 @@ class PlaylistShow extends React.Component {
     // }
   }
 
-  // addQueue (song) {
-  //   this.props.fetchAlbums().then(() => this.props.fetchArtists())
-  //   .then(() => this.props.fetchSongs(this.props.playlist.song_ids))
-  //   .then((songs) => this.props.receiveQueue(Object.values(songs).map(song => ({
-  //         title: song.title,
-  //         audio: song.audioUrl,
-  //         image: "",
-  //         artist: ""
-  //       }))))
-  //     }
+  play() {
+    const songIds = this.props.playlist.song_ids;
+    this.props.fetchSongs(songIds)
+    .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
+    .then(() => this.props.fetchPlaySong(songIds[0]))
+  }
+
+  shuffle (songs) {
+    let currentIdx = songs.length - 1;
+    let randIdx;
+    while (currentIdx >= 0) {
+      randIdx = Math.floor(Math.random() * currentIdx);
+      [songs[currentIdx], songs[randIdx]] = [songs[randIdx], songs[currentIdx]];
+      currentIdx -= 1;
+    }
+    return songs;
+  };
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
@@ -75,7 +82,6 @@ class PlaylistShow extends React.Component {
     const openModal = belongsToCurrentUser ? this.props.openModal : saveButton;
 
 
-    // <button onClick={() => this.addQueue()} className="green-play">Play</button>
     return (
       <section className="playlist-show show">
         <header>
@@ -86,6 +92,7 @@ class PlaylistShow extends React.Component {
               <h2>{this.props.playlist.author}</h2>
             </div>
             <div className="show-play-length">
+              <button onClick={this.play} className="green-play">Play</button>
               <h3>{songIds.length} Songs</h3>
             </div>
             <div id="delete-dropdown">

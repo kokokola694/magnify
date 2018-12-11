@@ -11,9 +11,22 @@ class SongIndexItem extends React.Component {
   }
 
   play () {
-    this.props.addQueue(this.props.queue);
+    this.props.addQueue(this.props.queue, this.shuffle(this.props.queue));
     this.props.fetchPlaySong(this.props.song.id);
   }
+
+  shuffle (songs) {
+    const shuffledSongs = songs.slice(1);
+    let currentIdx = shuffledSongs.length - 1;
+    let randIdx;
+    while (currentIdx >= 0) {
+      randIdx = Math.floor(Math.random() * currentIdx);
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
+      currentIdx -= 1;
+    }
+    shuffledSongs.unshift(songs[0]);
+    return shuffledSongs;
+  };
 
   pause() {
     this.props.pauseSong();

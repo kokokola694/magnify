@@ -25,7 +25,7 @@ const mdp = dispatch => {
     createSave: (saveInfo) => dispatch(createSave(saveInfo)),
     deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo)),
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
-    addQueue: (queue) => dispatch(addQueue(queue)),
+    addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
     fetchSongs: (ids) => dispatch(fetchSongs(ids))
   }
 }

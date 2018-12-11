@@ -3,12 +3,19 @@ export const PLAY_SONG = "PLAY_SONG";
 export const PAUSE_SONG = "PAUSE_SONG";
 export const RESUME_SONG = "RESUME_SONG";
 export const CLEAR_QUEUE = "CLEAR_QUEUE";
+export const SHUFFLE = "SHUFFLE";
 import * as SongApi from '../util/song_api_util';
 
 export const playSong = song => {
   return {
     type: PLAY_SONG,
     song
+  }
+}
+
+export const shuffle = () => {
+  return {
+    type: SHUFFLE
   }
 }
 
@@ -30,10 +37,11 @@ export const pauseSong = () => {
   }
 }
 
-export const addQueue = (queue) => {
+export const addQueue = (queue, shuffledQueue) => {
   return {
     type: ADD_QUEUE,
-    queue
+    queue,
+    shuffledQueue
   }
 }
 

@@ -61,7 +61,7 @@ const mdp = dispatch => {
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     fetchArtist: (id) => dispatch(fetchArtist(id)),
     fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),
-    addQueue: (queue) => dispatch(addQueue(queue)),
+    addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
     pauseSong: () => dispatch(pauseSong()),
     resumeSong: () => dispatch(resumeSong()),

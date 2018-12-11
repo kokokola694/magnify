@@ -109,14 +109,6 @@
    background-image: image-url('gray_volume.png');
 }
 
-.controls button[data-state="unshuffle"] {
-   background-image: image-url('unshuffle.png');
-}
-
-.controls button[data-state="shuffle"] {
-   background-image: image-url('shuffle.png');
-}
-
 #playpause:hover {
   width: 52px;
   height: 52px;
@@ -133,9 +125,17 @@
   height: 30px;
 }
 
+#shuffle, #unshuffle {
+  width: 25px;
+  height: 25px;
+}
+
 #shuffle {
-  width: 30px;
-  height: 30px;
+  background-image: image-url('shuffle.png');
+}
+
+#unshuffle {
+  background-image: image-url('unshuffle.png');
 }
 
 #repeat, #unrepeat {

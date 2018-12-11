@@ -1,7 +1,7 @@
-import { ADD_QUEUE, PLAY_SONG, PAUSE_SONG, RESUME_SONG, CLEAR_QUEUE } from '../actions/player_actions';
+import { ADD_QUEUE, PLAY_SONG, PAUSE_SONG, RESUME_SONG, CLEAR_QUEUE, SHUFFLE } from '../actions/player_actions';
 import merge from 'lodash/merge';
 
-const defaultState = { queue: [], playSong: null, playing: false };
+const defaultState = { queue: [], shuffledQueue:[], playSong: null, playing: false, shuffled: false };
 
 export default (state = defaultState, action) => {
   Object.freeze(state);
@@ -10,6 +10,7 @@ export default (state = defaultState, action) => {
     case ADD_QUEUE:
       newState = merge({}, state);
       newState.queue = action.queue;
+      newState.shuffledQueue = action.shuffledQueue;
       return newState;
     case PLAY_SONG:
       newState = merge({}, state);
@@ -26,6 +27,10 @@ export default (state = defaultState, action) => {
       return newState;
     case CLEAR_QUEUE:
       return defaultState;
+    case SHUFFLE:
+      newState = merge({}, state);
+      newState.shuffled = !newState.shuffled;
+      return newState;
     default:
       return state;
   }
