@@ -43,8 +43,9 @@ class Player extends React.Component {
 
   componentDidUpdate (oldProps) {
     let player = this.player.current;
+    const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (this.props.playSong && oldProps.playSong !== this.props.playSong) {
-        const queueIdArray = this.props.queue.map(song => song.id);
+        const queueIdArray = queue.map(song => song.id);
         const index = queueIdArray.indexOf(this.props.playSong.song.id);
         this.setPlayerInfo(index);
     }
@@ -96,7 +97,9 @@ class Player extends React.Component {
   }
 
   changeButton (type) {
-    if (type == 'play') {
+    if (this.state.currentSong === null) {
+      return;
+    } else if (type == 'play') {
       this.props.resumeSong();
     } else if (type == 'pause') {
       this.props.pauseSong();
@@ -126,8 +129,9 @@ class Player extends React.Component {
 
   prevSong () {
     const index = this.state.index - 1;
-    if (index >= 0 && index < this.props.queue.length) {
-      this.props.fetchPlaySong(this.props.queue[index].id)
+    const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
+    if (index >= 0 && index < queue.length) {
+      this.props.fetchPlaySong(queue[index].id)
       .then( () => this.setPlayerInfo(index))
     } else {
       this.setPlayerInfo(index);
@@ -169,6 +173,7 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
+    console.log(index);
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (index < 0 || index >= queue.length) {
       this.props.clearQueue();
