@@ -17,7 +17,9 @@ class SongIndexItem extends React.Component {
   }
 
   shuffle (songs) {
-    const shuffledSongs = songs.slice(1);
+    // debugger
+    const firstSong = songs.find(song => song.id === this.props.song.id);
+    const shuffledSongs = songs.filter(song => song.id !== this.props.song.id);
     let currentIdx = shuffledSongs.length - 1;
     let randIdx;
     while (currentIdx >= 0) {
@@ -25,7 +27,7 @@ class SongIndexItem extends React.Component {
       [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
-    shuffledSongs.unshift(songs[0]);
+    shuffledSongs.unshift(firstSong);
     return shuffledSongs;
   };
 
