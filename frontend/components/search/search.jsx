@@ -28,14 +28,23 @@ class Search extends React.Component {
     document.body.style.backgroundImage = "linear-gradient(#1d409e, black)";
     this.props.fetchPlaylists();
     // this.props.searchPlaylists(this.state.input);
-    this.props.searchArtists(this.state.input);
+    // this.props.searchArtists(this.state.input);
+    this.props.fetchArtists();
     // this.props.searchAlbums(this.state.input);
-    this.props.searchSongs(this.state.input);
+    // this.props.searchSongs(this.state.input);
+    this.props.fetchSongs();
   }
 
   render () {
-    const navPresent = this.props.location.pathname.split('/')[2] === "recent";
-    const searchNav = navPresent ? null : (
+    const navPresent = this.state.input === "";
+    const emptySearch = (
+      <div id="empty-search">
+        <h1>Search Magnify</h1>
+        <h2>Find your favorite songs, artists, albums and playlists</h2>
+      </div>
+    )
+
+    const searchNav = navPresent ? emptySearch : (
       <Route path='/search/' component={SearchNavbarContainer}/>
     );
     return (

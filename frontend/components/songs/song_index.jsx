@@ -70,10 +70,14 @@ class SongIndex extends React.Component {
 
   render() {
     // debugger
+
+    const pathArr = this.props.match.path.split('/');
+    // debugger
+    const songs = (pathArr[2] === "results") ? this.props.songs.slice(0,5) : this.props.songs
     const songlist =
-      this.props.songs.map(s => <SongIndexItem key={s.id}
+      songs.map(s => <SongIndexItem key={s.id}
         song={s} playlist={this.props.playlist}
-        openModal={openModal} queue={this.props.songs} addQueue={this.props.addQueue}
+        openModal={openModal} queue={songs} addQueue={this.props.addQueue}
         fetchPlaySong={this.props.fetchPlaySong} playing={this.props.playing}
         playSongId={this.props.playSongId} pauseSong={this.props.pauseSong}
         resumeSong={this.props.resumeSong} clearQueue={this.props.clearQueue} />)

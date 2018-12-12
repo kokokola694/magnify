@@ -14,7 +14,7 @@ class Sidebar extends React.Component {
           <section className="side-bar-links">
             <section>
               <NavLink to="/search/recent" isActive={this.props.atSearch}>
-                <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+                <svg viewBox="0 0 512 512" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
                   <path d="M349.714 347.937l93.714 109.969-16.254
                      13.969-93.969-109.969q-48.508 36.825-109.207
                      36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476
@@ -30,7 +30,7 @@ class Sidebar extends React.Component {
             </section>
             <section>
               <NavLink to="/browse/playlists" isActive={this.props.atBrowse}>
-                <svg viewBox="0 0 512 512" width="24" height="24"
+                <svg viewBox="0 0 512 512" width="22" height="22"
                   xmlns="http://www.w3.org/2000/svg"><path d="M 256.274 60.84 L
                   84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73
                   L 320.228 293.73 L 320.228 443.063 L 428.222 443.063 L 428.222
@@ -43,7 +43,7 @@ class Sidebar extends React.Component {
             </section>
             <section>
               <NavLink to="/collection/playlists" isActive={this.props.atCollection}>
-                <svg viewBox="0 0 512 512" width="24" height="24"
+                <svg viewBox="0 0 512 512" width="22" height="22"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M311.873 77.46l166.349 373.587-39.111
                     17.27-166.349-373.587zM64

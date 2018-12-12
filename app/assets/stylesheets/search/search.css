@@ -30,3 +30,21 @@
   text-align: center;
   padding: 60px 0 10px 0;
 }
+
+#empty-search {
+  text-align: center;
+  margin-top: 20vh;
+}
+
+#empty-search h1 {
+  font-size: 28px;
+  letter-spacing: -.005em;
+  font-weight: 700;
+}
+
+#empty-search h2 {
+  font-size: 14px;
+  letter-spacing: .015em;
+  color: #b3b3b3;
+  padding-top: 10px;
+}
