@@ -127,6 +127,10 @@ class Player extends React.Component {
   }
 
   prevSong () {
+    if (this.player.current.currentTime > 5) {
+      this.player.current.currentTime = 0;
+      return;
+    }
     const index = this.state.index - 1;
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (index >= 0 && index < queue.length) {
@@ -172,7 +176,6 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
-    console.log(index);
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (index < 0 || index >= queue.length) {
       this.props.deleteQueue();

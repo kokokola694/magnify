@@ -17,7 +17,6 @@ class SongIndexItem extends React.Component {
   }
 
   shuffle (songs) {
-    // debugger
     const firstSong = songs.find(song => song.id === this.props.song.id);
     const shuffledSongs = songs.filter(song => song.id !== this.props.song.id);
     let currentIdx = shuffledSongs.length - 1;
