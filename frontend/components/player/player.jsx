@@ -13,7 +13,7 @@ class Player extends React.Component {
       muted: false,
       volume: "100",
       index: 0,
-      repeat: "none" // ["none", "one"] for now.
+      repeat: "none"
     });
 
     this.player = React.createRef();
@@ -108,12 +108,13 @@ class Player extends React.Component {
   }
 
   nextSong () {
-    if (this.state.repeat === "one") {
+    if (this.state.repeat === "one" || (this.state.repeat === "all" && this.props.queue.length === 1)) {
       this.player.current.currentTime = 0;
       if (this.player.current.paused && this.props.playing) this.player.current.play();
     } else {
-      const index = this.state.index + 1;
+      let index = this.state.index + 1;
       const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
+      if (this.state.repeat === "all" && index === queue.length ) index = 0;
       if (index >= 0 && index < queue.length) {
         this.props.fetchPlaySong(queue[index].id)
         .then( () => this.setPlayerInfo(index))
@@ -155,7 +156,14 @@ class Player extends React.Component {
   }
 
   toggleRepeat () {
-    const nextState = this.state.repeat === "none" ? "one" : "none";
+    let nextState; this.state.repeat === "none" ? "one" : "none";
+    if (this.state.repeat === "none") {
+      nextState = "all";
+    } else if (this.state.repeat === "all") {
+      nextState = "one";
+    } else {
+      nextState = "none";
+    }
     this.setState({repeat: nextState});
   }
 
@@ -195,17 +203,6 @@ class Player extends React.Component {
     }
   }
 
-  // shuffle (songs) {
-  // 	let currentIdx = songs.length - 1;
-  // 	let randIdx;
-  // 	while (currentIdx >= 0) {
-  // 		randIdx = Math.floor(Math.random() * currentIdx);
-  //     [songs[currentIdx], songs[randIdx]] = [songs[randIdx], songs[currentIdx]];
-  //     currentIdx -= 1;
-  // 	}
-  // 	return songs;
-  // };
-
   render() {
     const playPauseButton = this.props.playing ? (
       <button onClick={() => this.play()} id="playpause"
@@ -241,11 +238,20 @@ class Player extends React.Component {
       <button id="shuffle" onClick={this.props.shuffle} type="button" data-state="shuffle"></button>
     )
 
-    const repeatButton = this.state.repeat === "none" ? (
-      <button id="repeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
-    ) : (
-      <button id="unrepeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
-    )
+    let repeatButton;
+    if (this.state.repeat === "none") {
+      repeatButton = (
+        <button id="repeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+      )
+    } else if (this.state.repeat === "one") {
+      repeatButton = (
+        <button id="repeatone" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+      )
+    } else {
+      repeatButton = (
+        <button id="repeatall" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+      )
+    }
 
     return (
       <section id="audioContainer">

@@ -42,7 +42,8 @@ export default (state = defaultState, action) => {
       if (state.playSong) newState.playing = true;
       return newState;
     case CLEAR_QUEUE:
-      newState = merge({}, clearState, state);
+      newState = merge({}, clearState);
+      newState.shuffled = state.shuffled;
       return newState;
     case DELETE_QUEUE:
       return defaultState;

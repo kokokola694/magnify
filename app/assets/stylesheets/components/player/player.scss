@@ -138,7 +138,7 @@
   background-image: image-url('unshuffle.png');
 }
 
-#repeat, #unrepeat {
+#repeat, #repeatone, #repeatall {
   width: 25px;
   height: 25px;
 }
@@ -208,7 +208,11 @@
   background-image: image-url('repeat.png');
 }
 
-#unrepeat {
+#repeatone {
+  background-image: image-url('repeatgreenone.png');
+}
+
+#repeatall {
   background-image: image-url('repeatgreen.png');
 }
 
