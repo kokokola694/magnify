@@ -25,7 +25,7 @@ const NavBar = ({currentUser, logout}) => {
   return (
     <nav className="nav-bar">
       <section className="logo nav-bar-logo">
-        Magnify
+        <section id="favicon"></section>Magnify
       </section>
       <section className="nav-bar-right">
         <section className="nav-bar-links">

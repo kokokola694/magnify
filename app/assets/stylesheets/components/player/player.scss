@@ -191,6 +191,7 @@
 #audio-controls-center-top {
   display: flex;
   width: 25%;
+  min-width: 200px;
   justify-content: space-between;
   align-items: center;
 }

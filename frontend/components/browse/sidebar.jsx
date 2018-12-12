@@ -8,7 +8,9 @@ class Sidebar extends React.Component {
     return (
       <div className="side-bar">
         <section className="side-bar-top">
-          <section className="side-bar-logo logo">Magnify</section>
+          <section className="side-bar-logo logo">
+            <section id="favicon"></section>
+            Magnify</section>
           <section className="side-bar-links">
             <section>
               <NavLink to="/search/recent" isActive={this.props.atSearch}>

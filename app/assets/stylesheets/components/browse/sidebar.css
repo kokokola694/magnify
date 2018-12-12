@@ -16,10 +16,12 @@
 }
 
 .side-bar-logo {
-  font-size: 35px;
+  font-size: 20px;
   text-align: center;
   font-weight: 700;
   color: white;
+  display: flex;
+  align-items: center;
 }
 
 .side-bar-top {

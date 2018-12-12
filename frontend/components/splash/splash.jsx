@@ -24,7 +24,9 @@ const Splash = () => {
 
 
       <footer className="splash-footer">
-        <section className="splash-logo"><Link to='/'>Magnify</Link></section>
+        <section className="splash-logo">
+          <section id="favicon"></section>
+          <Link to='/'>Magnify</Link></section>
         <section className="splash-footer-link">
           <div className="splash-footer-list">
             <section>

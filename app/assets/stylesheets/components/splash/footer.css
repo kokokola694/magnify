@@ -1,5 +1,6 @@
 .splash-footer {
   display: flex;
+  /* align-items: baseline; */
   background-color: black;
   color: white;
   box-sizing: border-box;
@@ -11,7 +12,10 @@
   cursor: pointer;
   font-size: 20px;
   font-weight: 700;
-  width: 10%;
+  width: 20%;
+  height: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .splash-footer-link {
