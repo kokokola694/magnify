@@ -88,6 +88,22 @@ ar12 = Artist.new(name: "Yui")
 attach_photo(ar12, "yui.jpg")
 attach_show_photo(ar12,"yui_show.jpg")
 
+ar13 = Artist.new(name: "Mac Ayres")
+attach_photo(ar13, "ayres.jpg")
+attach_show_photo(ar13,"ayres_show.jpg")
+
+ar14 = Artist.new(name: "Lauv")
+attach_photo(ar14, "lauv.jpg")
+attach_show_photo(ar14,"lauv_show.jpg")
+
+ar15 = Artist.new(name: "Crush")
+attach_photo(ar15, "crush.jpg")
+attach_show_photo(ar15,"crush_show.jpg")
+
+ar16 = Artist.new(name: "Heize")
+attach_photo(ar16, "heize.jpg")
+attach_show_photo(ar16,"heize_show.jpg")
+
 
 
 
@@ -132,6 +148,20 @@ attach_photo(ab13, "red_swan_cover.png")
 
 ab14 = Album.new(title: "Holidays in the Sun", year: 2010, artist_id: ar12.id)
 attach_photo(ab14, "holidays.jpg")
+
+ab15 = Album.new(title: "Drive Slow", year: 2017, artist_id: ar13.id)
+attach_photo(ab15, "drive_slow.jpg")
+
+ab16 = Album.new(title: "Paris in the Rain", year: 2017, artist_id: ar14.id)
+attach_photo(ab16, "paris_album.jpg")
+
+ab17 = Album.new(title: "Don't Forget", year: 2016, artist_id: ar15.id)
+attach_photo(ab17, "dontforget_album.jpg")
+
+ab18 = Album.new(title: "And July", year: 2016, artist_id: ar16.id)
+attach_photo(ab18, "july_album.jpg")
+
+
 
 # s17 = Song.new(title: "Bad Day", artist_id: ar1.id, album_id: ab1.id)
 # attach_audio(s17, "06+%EC%8B%AB%EC%9D%80+%EB%82%A0.mp3")
@@ -199,6 +229,18 @@ attach_audio(s18, "red_swan.mp3")
 s19 = Song.new(title: "Again", artist_id: ar12.id, album_id: ab14.id, duration: "4:11")
 attach_audio(s19, "again.mp3")
 
+s20 = Song.new(title: "Easy", artist_id: ar13.id, album_id: ab15.id, duration: "5:15")
+attach_audio(s20, "easy.mp3")
+
+s21 = Song.new(title: "Paris in the Rain", artist_id: ar14.id, album_id: ab16.id, duration: "3:25")
+attach_audio(s21, "paris.mp3")
+
+s22 = Song.new(title: "Don't Forget", artist_id: ar15.id, album_id: ab17.id, duration: "3:45")
+attach_audio(s22, "dontforget.mp3")
+
+s23 = Song.new(title: "And July", artist_id: ar16.id, album_id: ab18.id, duration: "3:47")
+attach_audio(s23, "july.mp3")
+
 pl1 = Playlist.new(title: "My Favorite Songs", author_id: u1.id)
 attach_photo(pl1, "playlist-icon.png")
 pl2 = Playlist.new(title: "Chill", author_id: u1.id)
@@ -230,10 +272,14 @@ Save.create!(saver_id: u1.id, savable_id: pl3.id, savable_type: :Playlist)
 Save.create!(saver_id: u2.id, savable_id: pl1.id, savable_type: :Playlist)
 Save.create!(saver_id: u1.id, savable_id: s5.id, savable_type: :Song)
 Save.create!(saver_id: u1.id, savable_id: s3.id, savable_type: :Song)
+Save.create!(saver_id: u1.id, savable_id: s13.id, savable_type: :Song)
+Save.create!(saver_id: u1.id, savable_id: s18.id, savable_type: :Song)
 Save.create!(saver_id: u2.id, savable_id: s2.id, savable_type: :Song)
 Save.create!(saver_id: u2.id, savable_id: s5.id, savable_type: :Song)
 Save.create!(saver_id: u1.id, savable_id: ar1.id, savable_type: :Artist)
 Save.create!(saver_id: u1.id, savable_id: ar2.id, savable_type: :Artist)
+Save.create!(saver_id: u1.id, savable_id: ar5.id, savable_type: :Artist)
+Save.create!(saver_id: u1.id, savable_id: ar7.id, savable_type: :Artist)
 Save.create!(saver_id: u2.id, savable_id: ar1.id, savable_type: :Artist)
 Save.create!(saver_id: u2.id, savable_id: ar2.id, savable_type: :Artist)
 
