@@ -92,7 +92,7 @@
 }
 
 
-.empty-desc > a {
+.empty-desc > a, .empty-queue > a {
   font-size: 12px;
   font-weight: 400;
   color: #101010;
@@ -104,7 +104,7 @@
   padding: 12px 48px 14px;
 }
 
-.empty-desc > a:hover {
+.empty-desc > a:hover, .empty-queue > a {
   font-size: 13px;
   padding: 14px 50px 16px;
 }

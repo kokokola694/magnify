@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchPlaySong, pauseSong, resumeSong, clearQueue, shuffle, deleteQueue } from '../../actions/player_actions';
+import Queue from './queue';
+import { withRouter } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Player extends React.Component {
   constructor(props) {
@@ -253,6 +256,20 @@ class Player extends React.Component {
       )
     }
 
+    const onQueuePage = this.props.location.pathname === "/queue";
+
+
+    const queueButton = onQueuePage ? (
+      <NavLink to='/browse/playlists'>
+        <section id="queue-icon-green"></section>
+      </NavLink>
+    ) : (
+      <NavLink to='/queue'>
+        <section id="queue-icon"></section>
+      </NavLink>
+    )
+
+
     return (
       <section id="audioContainer">
         <audio id="audio" controls src={this.state.currentSong}
@@ -284,6 +301,7 @@ class Player extends React.Component {
                </div>
              </section>
              <section id="audio-controls-right">
+               {queueButton}
                {muteButton}
                <input id="vol" type="range" min="0" max="100" step="1" value={this.state.volume}
                  onChange={(e) => this.slideVolume(e)}  onInput={(e) => this.slideVolume(e)}/>
@@ -315,4 +333,4 @@ const mdp = dispatch => {
   }
 }
 
-export default connect(msp, mdp)(Player);
+export default withRouter(connect(msp, mdp)(Player));

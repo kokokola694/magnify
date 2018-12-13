@@ -30,6 +30,8 @@ const msp = (state, ownProps) => {
   } else if (ownProps.match.path.slice(0,7) === "/search") {
     input = ownProps.location.pathname.split('/')[3];
     songs = Object.values(state.entities.songs).filter(song => song.title.toLowerCase().includes(input.toLowerCase()));
+  } else if (ownProps.match.path.split('/')[1] === "queue") {
+      songs = ownProps.queueSongs;
   } else {
     songs = Object.values(state.entities.songs);
   }
@@ -50,7 +52,9 @@ const msp = (state, ownProps) => {
     albums: state.entities.albums,
     artists: state.entities.artists,
     playSongId: playSong.song.id,
-    playing: state.ui.player.playing
+    playing: state.ui.player.playing,
+    queue: state.ui.player.queue,
+    shuffledQueue: state.ui.player.shuffledQueue
   }
 }
 

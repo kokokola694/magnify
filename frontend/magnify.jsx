@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.getState = store.getState;
   window.dispatch = store.dispatch;
   window.fetchPlaylists = PlaylistActions.fetchPlaylists;
+  window.fetchSongs = SongActions.fetchSongs;
   window.fetchArtists = ArtistActions.fetchArtists;
   window.fetchArtist = ArtistActions.fetchArtist;
   window.searchSongs = SongActions.searchSongs;

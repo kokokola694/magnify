@@ -150,6 +150,24 @@
   align-items: center;
 }
 
+#queue-icon {
+  background-image: image-url('queue.png');
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-size: contain;
+  margin-right: 10px;
+}
+
+#queue-icon-green {
+  background-image: image-url('queue_green.png');
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-size: contain;
+  margin-right: 10px;
+}
+
 #audio-controls-center {
   width: 50%;
   display: flex;
@@ -245,9 +263,9 @@ progress[value]::-webkit-progress-value {
 
 input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 30%; /* Specific width is required for Firefox. */
+    width: 25%; /* Specific width is required for Firefox. */
     background: transparent; /* Otherwise white in Chrome */
-    margin: 0 6px;
+    margin: 0 3px;
 }
 
 input[type=range]::-webkit-slider-thumb {

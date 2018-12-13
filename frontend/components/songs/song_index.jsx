@@ -11,7 +11,11 @@ class SongIndex extends React.Component {
 
   componentDidMount() {
     const pathArr = this.props.match.path.split('/');
-    if (pathArr[pathArr.length - 1] === "songs") {
+
+    if (pathArr[1] === "queue") {
+      // debugger
+      this.props.fetchSongs(this.props.queue);
+    } else if (pathArr[pathArr.length - 1] === "songs") {
       document.body.style.backgroundImage = "linear-gradient(#3c4758, black)";
       if (this.props.match.path.slice(0,11) === "/collection") {
         this.props.fetchSongs(this.props.currentUser.saved_song_ids);
@@ -36,8 +40,6 @@ class SongIndex extends React.Component {
     } else if (this.props.match.path.slice(0,7) === "/search") {
       this.props.searchSongs(this.props.input);
     }
-
-
     // if (this.props.songIds) {
     //   this.props.fetchSongs(this.props.songIds);
     // } else if (this.props.match.params.playlistId) {
@@ -47,7 +49,10 @@ class SongIndex extends React.Component {
 
   componentDidUpdate (oldProps) {
     // debugger
-    if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
+    const pathArr = this.props.match.path.split('/');
+    if (pathArr[1] === "queue" && this.props.queue !== oldProps.queue) {
+      this.props.fetchSongs(this.props.queue);
+    } else if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
       this.props.fetchPlaylist(this.props.match.params.playlistId)
       .then((action) => this.props.fetchSongs(action.playlist.song_ids));
     } else if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
@@ -84,6 +89,9 @@ class SongIndex extends React.Component {
         fetchPlaySong={this.props.fetchPlaySong} playing={this.props.playing}
         playSongId={this.props.playSongId} pauseSong={this.props.pauseSong}
         resumeSong={this.props.resumeSong} clearQueue={this.props.clearQueue} />)
+
+
+
     return (
       <section>
         <ul className="song-index-list">
