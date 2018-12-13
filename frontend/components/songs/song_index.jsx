@@ -15,8 +15,6 @@ class SongIndex extends React.Component {
       document.body.style.backgroundImage = "linear-gradient(#3c4758, black)";
       if (this.props.match.path.slice(0,11) === "/collection") {
         this.props.fetchSongs(this.props.currentUser.saved_song_ids);
-      } else if (this.props.match.path.slice(0,7) === "/search") {
-        this.props.searchSongs(this.props.input);
       } else {
         this.props.fetchSongs();
       }
@@ -35,7 +33,9 @@ class SongIndex extends React.Component {
       .then((action) => {
         this.props.fetchSongs(action.playlist.song_ids)
       });
-    };
+    } else if (this.props.match.path.slice(0,7) === "/search") {
+      this.props.searchSongs(this.props.input);
+    }
 
 
     // if (this.props.songIds) {
@@ -46,6 +46,7 @@ class SongIndex extends React.Component {
   }
 
   componentDidUpdate (oldProps) {
+    // debugger
     if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
       this.props.fetchPlaylist(this.props.match.params.playlistId)
       .then((action) => this.props.fetchSongs(action.playlist.song_ids));
@@ -55,6 +56,8 @@ class SongIndex extends React.Component {
     } else if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
       this.props.fetchArtist(this.props.match.params.artistId)
       .then((action) => this.props.fetchSongs(action.artist.song_ids));
+    } else if (this.props.match.path.slice(0,7) === "/search" && this.props.location.pathname !== oldProps.location.pathname) {
+      this.props.searchSongs(this.props.input);
     }
   }
 

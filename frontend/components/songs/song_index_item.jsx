@@ -78,7 +78,7 @@ class SongIndexItem extends React.Component {
 
     // <button onClick={this.play} className="song-index-item-img"></button>
     return (
-      <li className="song-index-item">
+      <li onDoubleClick={this.play} tabIndex={this.props.song.id} className="song-index-item">
         <div id="song-item-left">
           {playButton}
           <section className="song-info">

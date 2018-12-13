@@ -9,26 +9,31 @@ class PlaylistIndex extends React.Component {
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(#1d409e, black)";
     if (this.props.match.path.slice(0,11) === "/collection") {
-      this.props.fetchPlaylists(this.props.currentUser.saved_playlist_ids);
-      this.props.fetchPlaylists(this.props.currentUser.playlist_ids);
-    // } else if (this.props.match.path.slice(0,7) === "/search") {
-    //   this.props.searchPlaylists(this.props.input);
+      const playlistIds =
+        this.props.currentUser.saved_playlist_ids.concat(this.props.currentUser.playlist_ids);
+      this.props.fetchPlaylists(playlistIds);
+    } else if (this.props.match.path.slice(0,7) === "/search") {
+      this.props.searchPlaylists(this.props.input);
     } else if (this.props.match.path.slice(0,7) === "/browse") {
       this.props.fetchPlaylists();
     }
   }
 
-  // componentDidUpdate(oldProps) {
-  //   debugger
-  //   if (oldProps.playlists[oldProps.playlists.length-1] !== this.props.playlists[this.props.playlists.length-1]) {
-  //     if (this.props.match.path.slice(0,11) === "/collection") {
-  //       this.props.fetchPlaylists(this.props.currentUser.saved_playlist_ids);
-  //       this.props.fetchPlaylists(this.props.currentUser.playlist_ids);
-  //     } else if (this.props.match.path.slice(0,7) === "/browse") {
-  //       this.props.fetchPlaylists();
-  //     }
-  //   }
-  // }
+  componentDidUpdate(oldProps) {
+    if (oldProps.playlists.length !== this.props.playlists.length) {
+      if (this.props.match.path.slice(0,11) === "/collection") {
+        const playlistIds =
+          this.props.currentUser.saved_playlist_ids.concat(this.props.currentUser.playlist_ids);
+        this.props.fetchPlaylists(playlistIds);
+      } else if (this.props.match.path.slice(0,7) === "/browse") {
+        this.props.fetchPlaylists();
+      }
+    } else if (oldProps.location.pathname !== oldProps.location.pathname) {
+      if (this.props.match.path.slice(0,7) === "/search") {
+        this.props.searchPlaylists(this.props.input);
+      }
+    }
+  }
 
   render() {
     const pl = this.props.playlists.map(p => <PlaylistIndexItem key={p.id} playlist={p}/>)

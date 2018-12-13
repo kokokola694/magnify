@@ -17,6 +17,14 @@ class ArtistIndex extends React.Component {
     }
   }
 
+  componentDidUpdate(oldProps) {
+    if (oldProps.location.pathname !== oldProps.location.pathname) {
+      if (this.props.match.path.slice(0,7) === "/search") {
+        this.props.searchArtists(this.props.input);
+      }
+    }
+  }
+
   render() {
     const ar = this.props.artists.map(a => <ArtistIndexItem key={a.id} artist={a}/>)
     const arCount = ar.length;

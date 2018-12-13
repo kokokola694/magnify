@@ -1,5 +1,6 @@
 import {RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER} from '../actions/session_actions';
 import {RECEIVE_USER, RECEIVE_FOLLOW, REMOVE_FOLLOW} from '../actions/user_actions';
+import {NEW_PLAYLIST, REMOVE_PLAYLIST} from '../actions/playlist_actions';
 import { merge } from 'lodash';
 import { RECEIVE_SAVE, REMOVE_SAVE } from '../actions/save_actions';
 
@@ -32,6 +33,17 @@ export default (state = {}, action) => {
       const idx2 = newState3[action.followerId].follows_user_ids.indexOf(action.followedId);
       newState3[action.followerId].follows_user_ids.splice(idx2, 1);
       return newState3;
+    case NEW_PLAYLIST:
+      const newState4 = merge({}, state);
+      newState4[action.playlist.author_id].playlist_ids.push(action.playlist.id);
+      return newState4;
+      break;
+    case REMOVE_PLAYLIST:
+      const newState5 = merge({}, state);
+      const idx3 = newState5[action.playlist.author_id].playlist_ids.indexOf(action.playlist.id);
+      newState5[action.playlist.author_id].playlist_ids.splice(idx3, 1);
+      return newState5;
+      break;
     default:
       return state;
   }

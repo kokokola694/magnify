@@ -11,10 +11,18 @@ class AlbumIndex extends React.Component {
 
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchAlbums(this.props.currentUser.saved_album_ids);
-    // } else if (this.props.match.path.slice(0,7) === "/search") {
-    //   this.props.searchAlbums(this.props.input);
-  } else if (this.props.match.path.slice(0,7) === "/browse") {
+    } else if (this.props.match.path.slice(0,7) === "/search") {
+      this.props.searchAlbums(this.props.input);
+    } else if (this.props.match.path.slice(0,7) === "/browse") {
       this.props.fetchAlbums();
+    }
+  }
+
+  componentDidUpdate(oldProps) {
+    if (oldProps.location.pathname !== oldProps.location.pathname) {
+      if (this.props.match.path.slice(0,7) === "/search") {
+        this.props.searchAlbums(this.props.input);
+      }
     }
   }
 

@@ -26,13 +26,9 @@ class Search extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(#1d409e, black)";
-    this.props.fetchPlaylists();
-    // this.props.searchPlaylists(this.state.input);
-    // this.props.searchArtists(this.state.input);
-    this.props.fetchArtists();
-    // this.props.searchAlbums(this.state.input);
-    // this.props.searchSongs(this.state.input);
-    this.props.fetchSongs();
+    // this.props.fetchPlaylists();
+    // this.props.fetchArtists();
+    // this.props.fetchSongs();
   }
 
   render () {

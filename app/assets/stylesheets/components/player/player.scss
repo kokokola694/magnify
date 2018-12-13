@@ -245,9 +245,9 @@ progress[value]::-webkit-progress-value {
 
 input[type=range] {
   -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    width: 40%; /* Specific width is required for Firefox. */
+    width: 30%; /* Specific width is required for Firefox. */
     background: transparent; /* Otherwise white in Chrome */
-    margin: 0 20px;
+    margin: 0 6px;
 }
 
 input[type=range]::-webkit-slider-thumb {
