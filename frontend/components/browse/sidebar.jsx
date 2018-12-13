@@ -1,10 +1,16 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import RecentItem from './recent_item';
 
 class Sidebar extends React.Component {
 
 
+
   render() {
+    const recentItems = this.props.recent.map(playSong =>
+      <RecentItem key={playSong.song.id} song={playSong.song} album={playSong.album} artist={playSong.artist} />);
+
     return (
       <div className="side-bar">
         <section className="side-bar-top">
@@ -53,7 +59,16 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
           </section>
+
+          <section className="recent">
+            <h1>Recently Played</h1>
+            <ul className="recent-list">
+              {recentItems}
+            </ul>
+          </section>
         </section>
+
+
 
         <section className="side-bar-bottom">
           <section className="side-bar-line"></section>
@@ -68,4 +83,16 @@ class Sidebar extends React.Component {
   }
 }
 
-export default Sidebar;
+const msp = state => {
+  return {
+    recent: state.ui.player.recent
+  }
+}
+
+const mdp = dispatch => {
+  return {
+
+  }
+}
+
+export default connect(msp, mdp)(Sidebar);

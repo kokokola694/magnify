@@ -1,8 +1,8 @@
 import { ADD_QUEUE, PLAY_SONG, PAUSE_SONG, RESUME_SONG, CLEAR_QUEUE, SHUFFLE, DELETE_QUEUE } from '../actions/player_actions';
 import merge from 'lodash/merge';
 
-const defaultState = { queue: [], shuffledQueue:[], playSong: null, playing: false, shuffled: false };
-const clearState = { queue: [], shuffledQueue:[], playSong: null, playing: false };
+const defaultState = { queue: [], shuffledQueue:[], playSong: null, playing: false, shuffled: false, recent: [] };
+const clearState = { queue: [], shuffledQueue:[], playSong: null, playing: false, recent: [] };
 
 
 const shuffle = (songs, firstSong) => {
@@ -32,6 +32,10 @@ export default (state = defaultState, action) => {
       newState = merge({}, state);
       newState.playSong = action.song;
       newState.playing = true;
+      // debugger
+      newState.recent = newState.recent.filter(playSong => playSong.song.id !== action.song.song.id);
+      newState.recent.unshift(action.song);
+      newState.recent = newState.recent.slice(0,5);
       return newState;
     case PAUSE_SONG:
       newState = merge({}, state);
@@ -44,9 +48,12 @@ export default (state = defaultState, action) => {
     case CLEAR_QUEUE:
       newState = merge({}, clearState);
       newState.shuffled = state.shuffled;
+      newState.recent = state.recent;
       return newState;
     case DELETE_QUEUE:
-      return defaultState;
+      newState = merge({}, defaultState);
+      newState.recent = state.recent;
+      return newState;
     case SHUFFLE:
       newState = merge({}, state);
       newState.shuffled = !newState.shuffled;

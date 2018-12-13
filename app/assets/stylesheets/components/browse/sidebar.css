@@ -27,23 +27,22 @@
 .side-bar-top {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 22%;
+  height: 60%;
 }
 
 .side-bar-links {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  height: 65%;
   font-weight: 500;
   font-size: 13px;
+  margin: 20px 0;
 }
 
 .side-bar-links section {
   display: flex;
   align-items: center;
   align-content: center;
+  margin: 10px 0;
 }
 
 .side-bar-links div {
@@ -109,6 +108,32 @@
   width: 100%;
   box-sizing: border-box;
   margin-bottom: 20px;
+}
+
+.recent {
+  margin-top: 10px;
+}
+
+.recent h1 {
+  text-transform: uppercase;
+  font-size: 12px;
+  margin: 0 0 20px 0;
+}
+
+.recent-item {
+  font-size: 12px;
+  margin: 13px 0;
+}
+
+.recent-item:hover {
+  color: white;
+}
+
+.recent-item h4 {
+  text-transform: uppercase;
+  font-size: 10px;
+  margin: 5px 0;
+  letter-spacing: .16em;
 }
 
 .material-icons {
