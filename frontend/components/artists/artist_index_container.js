@@ -9,6 +9,8 @@ const msp = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
   if (ownProps.match.path.slice(0,11) === "/collection") {
     artists = Object.values(state.entities.artists).filter(artist => currentUser.saved_artist_ids.includes(artist.id));
+  } else if (ownProps.match.path.slice(0,16) === "/browse/featured") {
+    artists = Object.values(state.entities.artists).slice(2,16);
   } else if (ownProps.match.path.slice(0,7) === "/browse") {
     artists = Object.values(state.entities.artists)
   } else if (ownProps.match.path.slice(0,7) === "/search") {

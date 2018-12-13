@@ -10,6 +10,7 @@ import ArtistShowContainer from '../artists/artist_show_container';
 import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
 import UserShowContainer from '../users/user_show_container';
+import Featured from './featured';
 import Player from '../player/player';
 
 
@@ -21,6 +22,7 @@ const Browse = () => {
 
       <main className="homepage-main">
         <Switch>
+          <Route path='/browse/featured' component={Featured}/>
           <Route path='/browse/playlists/:playlistId' component={PlaylistShowContainer}/>
           <Route path='/browse/playlists' component={PlaylistIndexContainer}/>
           <Route path='/browse/albums/:albumId' component={AlbumShowContainer}/>

@@ -11,6 +11,8 @@ const msp = (state, ownProps) => {
   let input;
   if (ownProps.match.path.slice(0,11) === "/collection") {
     albums = Object.values(state.entities.albums).filter(album => currentUser.saved_album_ids.includes(album.id));
+  } else if (ownProps.match.path.slice(0,16) === "/browse/featured") {
+    albums = Object.values(state.entities.albums).slice(4,18);
   } else if (ownProps.match.path.slice(0,7) === "/browse") {
     if (artistId) {
       albums = Object.values(state.entities.albums).filter(album => album.artist_id == artistId);

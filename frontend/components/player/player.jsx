@@ -260,7 +260,7 @@ class Player extends React.Component {
 
 
     const queueButton = onQueuePage ? (
-      <NavLink to='/browse/playlists'>
+      <NavLink to='/browse/featured'>
         <section id="queue-icon-green"></section>
       </NavLink>
     ) : (

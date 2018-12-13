@@ -7,7 +7,7 @@ class PlaylistIndex extends React.Component {
   }
 
   componentDidMount() {
-    document.body.style.backgroundImage = "linear-gradient(#1d409e, black)";
+    document.body.style.backgroundImage = "linear-gradient(rgb(117, 78, 112), black)";
     if (this.props.match.path.slice(0,11) === "/collection") {
       const playlistIds =
         this.props.currentUser.saved_playlist_ids.concat(this.props.currentUser.playlist_ids);

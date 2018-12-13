@@ -29,7 +29,7 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
             <section>
-              <NavLink to="/browse/playlists" isActive={this.props.atBrowse}>
+              <NavLink to="/browse/featured" isActive={this.props.atBrowse}>
                 <svg viewBox="0 0 512 512" width="22" height="22"
                   xmlns="http://www.w3.org/2000/svg"><path d="M 256.274 60.84 L
                   84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73

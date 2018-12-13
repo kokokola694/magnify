@@ -8,6 +8,10 @@ class PlaylistShow extends React.Component {
     this.play = this.play.bind(this);
   }
 
+  componentDidMount () {
+    document.body.style.backgroundImage = "linear-gradient(rgb(117, 78, 112), black)";
+  }
+
   play() {
     this.props.clearQueue();
     this.props.addQueue(this.props.songs, this.shuffle(this.props.songs))
