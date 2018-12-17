@@ -11,8 +11,7 @@ class Player extends React.Component {
     this.state = ({
       currentSong: null, currentPic: "", currentTitle: "",
       currentArtist: "", currentTime: "00:00", duration: "--:--",
-      progress: "", muted: false, volume: "100",
-      index: 0, repeat: "none"
+      muted: false, volume: "100", index: 0, repeat: "none"
     });
 
     this.player = React.createRef();
@@ -70,9 +69,11 @@ class Player extends React.Component {
   toProgress (e) {
     if (!this.state.currentSong) return;
     let player = this.player.current;
-    let progress = this.progress.current;
-    const pos = (e.pageX - progress.offsetLeft) / progress.offsetWidth;
-    player.currentTime = pos * player.duration;
+    if (player.currentTime) {
+      let progress = this.progress.current;
+      const pos = (e.pageX - progress.offsetLeft) / progress.offsetWidth;
+      player.currentTime = pos * player.duration;
+    }
   }
 
   play () {
@@ -91,14 +92,14 @@ class Player extends React.Component {
   }
 
   changeButton (type) {
-    if (this.state.currentSong === null) {
-      return;
-    } else if (type == 'play') {
-      this.props.resumeSong();
-    } else if (type == 'pause') {
-      this.props.pauseSong();
-    } else if (type == 'mute') {
+    if (type == 'mute') {
       this.setState({ muted: !this.state.muted });
+    } else if (!this.state.currentSong) {
+      return;
+    } else if (type == 'play' && !this.props.playing) {
+      this.props.resumeSong();
+    } else if (type == 'pause' && this.props.playing) {
+      this.props.pauseSong();
     }
   }
 
@@ -118,7 +119,6 @@ class Player extends React.Component {
         this.player.current.currentTime = 0;
       }
     }
-
   }
 
   prevSong () {
@@ -128,15 +128,7 @@ class Player extends React.Component {
     }
     const index = this.state.index - 1;
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
-    if (index >= 0 && index < queue.length) {
-      this.props.fetchPlaySong(queue[index].id)
-      .then( () => this.setPlayerInfo(index))
-    } else {
-      this.setPlayerInfo(index);
-      this.player.current.pause();
-      this.changeButton('pause');
-      this.player.current.currentTime = 0;
-    }
+    this.props.fetchPlaySong(queue[index].id).then( () => this.setPlayerInfo(index))
   }
 
   slideVolume (e) {
@@ -248,7 +240,6 @@ class Player extends React.Component {
     }
 
     const onQueuePage = this.props.location.pathname === "/queue";
-
 
     const queueButton = onQueuePage ? (
       <NavLink to='/browse/featured'>
