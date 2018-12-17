@@ -1,6 +1,6 @@
 # Magnify
 
-[Magnify](https://magnify-.herokuapp.com/#/) is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
+[Magnify](https://magnify-play.herokuapp.com/#/) is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
 
 ![album-show](app/assets/images/featured.gif)
 
