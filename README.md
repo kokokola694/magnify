@@ -2,7 +2,7 @@
 
 [Magnify](https://magnify-.herokuapp.com/#/) is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
 
-![album-show](app/assets/images/album_show_ss.png)
+![album-show](app/assets/images/featured.gif)
 
 
 ## Technology
@@ -15,12 +15,12 @@
 ### Creating and Updating Playlists
 Imitating Spotify, the user interacts with intuitive drop-down menus and modal windows to create and add songs to their playlists.
 
-![addplaylistsong](app/assets/images/addplaylist.gif)
+![addplaylistsong](app/assets/images/addplaylist3.gif)
 
 ### Continuous Playback
 The music player appears as long as the user is logged in, and it continuously plays songs in queue without interruption as the user navigates the site.
 
-![player](app/assets/images/player_ss.png)
+![player](app/assets/images/player_ss2.png)
 
 This functionality was achieved by having the music player component interact with its corresponding Redux slice of state containing the songs to play. Upon clicking on any song, the state is updated with the song's information and is sent to the audio player.
 
@@ -29,13 +29,9 @@ Music player related events, such as pausing the song and updating the progress 
 ```javascript
 play () {
   let player = this.refs.player;
-  if (player.paused || player.ended) {
-    player.play();
-    this.changeButton('play');
-  } else {
-    player.pause();
-    this.changeButton('pause');
-  }
+  const action = player.paused || player.ended ? "play" : "pause";
+  player[action]();
+  this.changeButton(action);
 }
 ```
 
@@ -47,6 +43,6 @@ Users are able to search for their favorite artists, albums, songs, and playlist
 The results are divided into indices for artists, albums, playlists, and songs. As the user types into the search bar, the search component updates the url path with the user input. The media index components (when rendered on the search route) are set up to then fetch and filter the relevant data.
 
 ## Future Plans
-* Implementation of shuffling and repeating songs
 * Featured songs (new releases, customized mixes)
 * Uploading photos for user avatars
+* Responsiveness to mobile devices

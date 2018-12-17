@@ -84,12 +84,10 @@ class Player extends React.Component {
   play () {
     let player = this.player.current;
     if (this.state.currentSong && (player.paused || player.ended)) {
-      player.play();
-      this.changeButton('play');
-  	} else {
-      player.pause();
-      this.changeButton('pause');
-    }
+      const action = player.paused || player.ended ? "play" : "pause";
+      player[action]();
+      this.changeButton(action);
+  	}
   }
 
   mute () {

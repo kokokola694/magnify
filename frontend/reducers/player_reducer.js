@@ -57,7 +57,7 @@ export default (state = defaultState, action) => {
     case SHUFFLE:
       newState = merge({}, state);
       newState.shuffled = !newState.shuffled;
-      if (newState.shuffled) {
+      if (newState.shuffled && newState.queue.length > 0) {
         newState.shuffledQueue = shuffle(newState.queue, newState.playSong.song);
       }
       return newState;
