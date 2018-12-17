@@ -1,10 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { fetchPlaySong, pauseSong, resumeSong, clearQueue, shuffle, deleteQueue } from '../../actions/player_actions';
+import { Link, withRouter, NavLink } from 'react-router-dom';
 import Queue from './queue';
-import { withRouter } from 'react-router-dom';
-import { NavLink } from 'react-router-dom';
+import {  fetchPlaySong, pauseSong, resumeSong,
+  shuffle, deleteQueue } from '../../actions/player_actions';
 
 class Player extends React.Component {
   constructor(props) {
@@ -12,11 +11,8 @@ class Player extends React.Component {
     this.state = ({
       currentSong: null, currentPic: "", currentTitle: "",
       currentArtist: "", currentTime: "00:00", duration: "--:--",
-      progress: "",
-      muted: false,
-      volume: "100",
-      index: 0,
-      repeat: "none"
+      progress: "", muted: false, volume: "100",
+      index: 0, repeat: "none"
     });
 
     this.player = React.createRef();
@@ -47,7 +43,6 @@ class Player extends React.Component {
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (this.props.playSong && oldProps.playSong !== this.props.playSong) {
         const queueIdArray = queue.map(song => song.id);
-        // debugger
         const index = queueIdArray.indexOf(this.props.playSong.song.id);
         this.setPlayerInfo(index);
     }
@@ -69,12 +64,11 @@ class Player extends React.Component {
     progressBar.style.width = Math.floor((player.currentTime / player.duration) * 100) + '%';
     const currentTime = this.convertToMS(player.currentTime);
     this.setState({ currentTime });
-    if (player.ended) {
-      this.nextSong();
-    }
+    if (player.ended) this.nextSong();
   }
 
   toProgress (e) {
+    if (!this.state.currentSong) return;
     let player = this.player.current;
     let progress = this.progress.current;
     const pos = (e.pageX - progress.offsetLeft) / progress.offsetWidth;
@@ -83,7 +77,7 @@ class Player extends React.Component {
 
   play () {
     let player = this.player.current;
-    if (this.state.currentSong && (player.paused || player.ended)) {
+    if (this.state.currentSong) {
       const action = player.paused || player.ended ? "play" : "pause";
       player[action]();
       this.changeButton(action);
@@ -117,8 +111,7 @@ class Player extends React.Component {
       const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
       if (this.state.repeat === "all" && index === queue.length ) index = 0;
       if (index >= 0 && index < queue.length) {
-        this.props.fetchPlaySong(queue[index].id)
-        .then( () => this.setPlayerInfo(index))
+        this.props.fetchPlaySong(queue[index].id).then( () => this.setPlayerInfo(index))
       } else {
         this.setPlayerInfo(index);
         this.player.current.pause();
@@ -234,23 +227,23 @@ class Player extends React.Component {
     );
 
     const shuffleButton = this.props.shuffled ? (
-      <button id="unshuffle" onClick={this.props.shuffle} type="button" data-state="shuffle"></button>
+      <button id="unshuffle" onClick={this.props.shuffle} type="button"></button>
     ) : (
-      <button id="shuffle" onClick={this.props.shuffle} type="button" data-state="shuffle"></button>
+      <button id="shuffle" onClick={this.props.shuffle} type="button"></button>
     )
 
     let repeatButton;
     if (this.state.repeat === "none") {
       repeatButton = (
-        <button id="repeat" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+        <button id="repeat" onClick={this.toggleRepeat} type="button"></button>
       )
     } else if (this.state.repeat === "one") {
       repeatButton = (
-        <button id="repeatone" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+        <button id="repeatone" onClick={this.toggleRepeat} type="button"></button>
       )
     } else {
       repeatButton = (
-        <button id="repeatall" onClick={this.toggleRepeat} type="button" data-state="repeat"></button>
+        <button id="repeatall" onClick={this.toggleRepeat} type="button"></button>
       )
     }
 
@@ -259,11 +252,11 @@ class Player extends React.Component {
 
     const queueButton = onQueuePage ? (
       <NavLink to='/browse/featured'>
-        <section id="queue-icon-green"></section>
+        <section id="queue-icon-green" className="queue-button"></section>
       </NavLink>
     ) : (
       <NavLink to='/queue'>
-        <section id="queue-icon"></section>
+        <section id="queue-icon" className="queue-button"></section>
       </NavLink>
     )
 
@@ -290,12 +283,13 @@ class Player extends React.Component {
                 {repeatButton}
             </section>
 
-               <div className="progress" onClick={(e) => this.toProgress(e)}>
-                 <h2>{this.state.currentTime}</h2>
-                  <progress id="progress" ref={this.progress}  value="0" min="0">
+               <div className="progress">
+                 <h2 className="timestamps">{this.state.currentTime}</h2>
+                  <progress id="progress" ref={this.progress}
+                    onClick={(e) => this.toProgress(e)}  value="0" min="0">
                      <span id="progress-bar" ref={this.progressBar} ></span>
                   </progress>
-                  <h2>{this.state.duration}</h2>
+                  <h2 className="timestamps">{this.state.duration}</h2>
                </div>
              </section>
              <section id="audio-controls-right">
@@ -325,7 +319,6 @@ const mdp = dispatch => {
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
     resumeSong: () => dispatch(resumeSong()),
     pauseSong: () => dispatch(pauseSong()),
-    clearQueue: () => dispatch(clearQueue()),
     deleteQueue: () => dispatch(deleteQueue()),
     shuffle: () => dispatch(shuffle())
   }

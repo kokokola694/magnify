@@ -9,12 +9,9 @@
   box-sizing: border-box;
   padding: 12px 12px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  // background-image: image-url("playerss.png");
-
 }
 
-#audioContainer h2 {
-  display: inline;
+.timestamps {
   color: #b3b3b3;
   font-size: 10px;
   margin: 10px 5px 10px 5px;
@@ -23,12 +20,10 @@
 
 /* controls */
 .controls {
-	padding:0;
-	margin:0;
-}
-.controls {
-	overflow:hidden;
-	background:transparent;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	background: transparent;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -36,11 +31,10 @@
   height: 100%;
 }
 
-.controls .progress {
+.progress {
   display: flex;
   justify-content: center;
   align-items: center;
-	cursor:pointer;
   width: 100%;
   height: 100%;
   border-radius: 100%;
@@ -62,31 +56,22 @@
   background-size:contain;
   background-repeat:no-repeat;
 }
-// .controls progress {
-//
-//    width:80%;
-//    height:20%;
-//    margin-top:0.125rem;
-//    border:none;
-//    color:#0095dd;
-//    // -moz-border-radius:28px;
-//    -webkit-border-radius:50%;
-//    border-radius:50%;
-// }
-.controls progress span {
 
-	width:100%;
-	height:100%;
-	display:inline-block;
-
+.controls progress {
+	cursor: pointer;
+  padding: 13px 0;
 }
 
-// .controls progress::-webkit-progress-value {
-// 	background-color:#b2b2b2;
-// }
+.controls progress span {
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+}
+
+// buttons
 
 .controls button:hover {
-   opacity:0.7;
+   opacity: 0.7;
 }
 
 .controls button[data-state="play"] {
@@ -109,15 +94,18 @@
    background-image: image-url('gray_volume.png');
 }
 
-#playpause:hover {
-  // width: 52px;
-  // height: 52px;
-}
-
  #previous, #previous-null, #next, #next-null {
   width: 12px;
   height: 12px;
   background-size: contain;
+}
+
+#previous, #previous-null {
+  background-image: image-url('player-prev.svg');
+}
+
+#next, #next-null {
+  background-image: image-url('player-next.svg');
 }
 
 #mute {
@@ -143,37 +131,19 @@
   height: 25px;
 }
 
-#audio-controls-right {
-  width: 18%;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+#repeat {
+  background-image: image-url('repeat.png');
 }
 
-#queue-icon {
-  background-image: image-url('queue.png');
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  background-size: contain;
-  margin-right: 10px;
+#repeatone {
+  background-image: image-url('repeatgreenone.png');
 }
 
-#queue-icon-green {
-  background-image: image-url('queue_green.png');
-  width: 25px;
-  height: 25px;
-  display: inline-block;
-  background-size: contain;
-  margin-right: 10px;
+#repeatall {
+  background-image: image-url('repeatgreen.png');
 }
 
-#audio-controls-center {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+// left side
 
 #audio-controls-left {
   width: 18%;
@@ -206,6 +176,40 @@
   justify-content: center;
 }
 
+// right side
+
+#audio-controls-right {
+  width: 18%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.queue-button {
+  width: 25px;
+  height: 25px;
+  display: inline-block;
+  background-size: contain;
+  margin-right: 10px;
+}
+
+#queue-icon {
+  background-image: image-url('queue.png');
+}
+
+#queue-icon-green {
+  background-image: image-url('queue_green.png');
+}
+
+#audio-controls-center {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+// center
+
 #audio-controls-center-top {
   display: flex;
   width: 25%;
@@ -214,34 +218,14 @@
   align-items: center;
 }
 
-#previous, #previous-null {
-  background-image: image-url('player-prev.svg');
-}
-
-#next, #next-null {
-  background-image: image-url('player-next.svg');
-}
-
-#repeat {
-  background-image: image-url('repeat.png');
-}
-
-#repeatone {
-  background-image: image-url('repeatgreenone.png');
-}
-
-#repeatall {
-  background-image: image-url('repeatgreen.png');
-}
 
 progress[value] {
-  /* Reset the default appearance */
   margin: 10px 5px 10px 5px;
   -webkit-appearance: none;
    appearance: none;
    width: 470px;
-   max-width:80%;
-   height:20%;
+   max-width: 80%;
+   height: 100%;
 }
 
 

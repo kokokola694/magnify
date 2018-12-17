@@ -32,7 +32,6 @@ export default (state = defaultState, action) => {
       newState = merge({}, state);
       newState.playSong = action.song;
       newState.playing = true;
-      // debugger
       newState.recent = newState.recent.filter(playSong => playSong.song.id !== action.song.song.id);
       newState.recent.unshift(action.song);
       newState.recent = newState.recent.slice(0,5);

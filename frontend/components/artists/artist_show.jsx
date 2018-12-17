@@ -13,10 +13,6 @@ class ArtistShow extends React.Component {
   }
 
   play() {
-    // const songIds = this.props.artist.song_ids.sort();
-    // this.props.fetchSongs(songIds)
-    // .then(songs => this.props.addQueue(Object.values(songs.songs), this.shuffle(Object.values(songs.songs))))
-    // .then(() => this.props.fetchPlaySong(songIds[0]))
     this.props.clearQueue();
     this.props.addQueue(this.props.songs, this.shuffle(this.props.songs));
     this.props.fetchPlaySong(this.props.songs[0].id);
