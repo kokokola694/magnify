@@ -17,7 +17,7 @@ class DropMenu extends React.Component {
   }
 
   handleAdd () {
-    dispatch(this.props.openModal("addToPlaylist"));
+    this.props.openModal("addToPlaylist");
   }
 
   handleRemove () {
@@ -130,7 +130,7 @@ const msp = (state, ownProps) => {
 const mdp = dispatch => {
   return {
     closeModal: () => closeModal(),
-    openModal: (modal) => openModal(modal),
+    openModal: (modal) => dispatch(openModal(modal)),
     deletePlaylistSong: (playlistSong) => dispatch(deletePlaylistSong(playlistSong)),
     fetchSelectedSong: (id) => dispatch(fetchSelectedSong(id)),
     createSave: (saveInfo) => dispatch(createSave(saveInfo)),

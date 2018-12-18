@@ -4,6 +4,7 @@ export default (state = "", action) => {
   switch (action.type) {
     case RECEIVE_INPUT:
       return action.input;
-    default: return state;
+    default:
+      return state;
   }
 }

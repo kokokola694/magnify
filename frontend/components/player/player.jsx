@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter, NavLink } from 'react-router-dom';
 import Queue from './queue';
 import {  fetchPlaySong, pauseSong, resumeSong,
-  shuffle, deleteQueue } from '../../actions/player_actions';
+  shuffle, clearQueue } from '../../actions/player_actions';
 
 class Player extends React.Component {
   constructor(props) {
@@ -172,7 +172,7 @@ class Player extends React.Component {
   setPlayerInfo (index) {
     const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
     if (index < 0 || index >= queue.length) {
-      this.props.deleteQueue();
+      this.props.clearQueue();
       this.setState({
         currentSong: null, currentTitle: null, currentArtist: null,
         currentPic: null, index: 0, duration: "--:--",
@@ -243,11 +243,11 @@ class Player extends React.Component {
 
     const queueButton = onQueuePage ? (
       <NavLink to='/browse/featured'>
-        <section id="queue-icon-green" className="queue-button"></section>
+        <section id="queue-icon-green"></section>
       </NavLink>
     ) : (
       <NavLink to='/queue'>
-        <section id="queue-icon" className="queue-button"></section>
+        <section id="queue-icon"></section>
       </NavLink>
     )
 
@@ -310,7 +310,7 @@ const mdp = dispatch => {
     fetchPlaySong: (id) => dispatch(fetchPlaySong(id)),
     resumeSong: () => dispatch(resumeSong()),
     pauseSong: () => dispatch(pauseSong()),
-    deleteQueue: () => dispatch(deleteQueue()),
+    clearQueue: () => dispatch(clearQueue()),
     shuffle: () => dispatch(shuffle())
   }
 }
