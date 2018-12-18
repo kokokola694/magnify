@@ -1,7 +1,6 @@
 export const RECEIVE_SONGS = "RECEIVE_SONGS";
 export const RECEIVE_SONG = "RECEIVE_SONG";
 export const RECEIVE_SELECTED_SONG = "RECEIVE_SELECTED_SONG";
-// export const REMOVE_SELECTED_SONG = "REMOVE_SELECTED_SONG";
 import * as SongApi from '../util/song_api_util';
 
 export const fetchSongs = (ids) => dispatch => {
@@ -46,13 +45,6 @@ const receiveSong = ({song, artist, album}) => {
 const receiveSelectedSong = ({song}) => {
   return {
     type: RECEIVE_SELECTED_SONG,
-    selectedSong: song
-  }
-}
-
-const removeSelectedSong = ({song}) => {
-  return {
-    type: REMOVE_SELECTED_SONG,
     selectedSong: song
   }
 }

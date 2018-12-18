@@ -1,6 +1,5 @@
 .splash-footer {
   display: flex;
-  /* align-items: baseline; */
   background-color: black;
   color: white;
   box-sizing: border-box;
@@ -59,4 +58,9 @@
   font-size: 12px;
   letter-spacing: .08em;
   text-transform: uppercase;
+}
+
+
+@media (max-width: 48em) {
+
 }

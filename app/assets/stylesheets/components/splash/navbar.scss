@@ -21,10 +21,6 @@
   margin-right: 10px;
 }
 
-.logo {
-  // letter-spacing: .02em;
-}
-
 .nav-bar-logo {
   cursor: pointer;
   font-size: 20px;
@@ -39,26 +35,129 @@
   color: #1ed760;
 }
 
+.nav-menu {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.nav-drop-menu {
+  background-image: image_url('hamburger.png');
+  width: 40px;
+  height: 40px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: none;
+}
+
+.menu-btn, .nav-drop-menu {
+  z-index: 10;
+}
+
+.menu-btn:checked ~ .nav-drop-menu {
+  background-image: image_url('exit.png');
+  width: 50px;
+  height: 50px;
+}
+
 .nav-bar-right {
   display: flex;
-  width: 30%;
-  justify-content: space-between;
+  justify-content: flex-end;
+  align-items: center;
   font-size: 14px;
   font-weight: 700;
+}
+
+.nav-bar-right a {
+  margin: 0 12px;
 }
 
 .nav-bar-right a:hover {
   color: #1ed751;
 }
 
-.nav-bar-links {
-  display: flex;
-  width: 45%;
-  justify-content: space-around;
+#nav-div {
+  margin: 0 12px;
+  font-size: 20px;
+  font-weight: 400;
 }
 
-.nav-bar-session {
-  display: flex;
-  width: 45%;
-  justify-content: space-around;
+.menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+#mobile-nav-logo {
+  display: none;
+}
+
+@media (max-width: 48em) {
+  .nav-bar {
+    background-color: rgba(0, 0, 0, 1);
+    padding: 14px 7px;
+  }
+
+  .nav-bar-right {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+    background: black;
+    padding: 38px;
+  }
+
+  .nav-bar-links a, .nav-bar-session a {
+    display: block;
+  }
+
+  .nav-bar-links a {
+    font-size: 30px;
+    margin: 25px 0;
+  }
+
+  .nav-bar-session a {
+    margin: 25px 0;
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .nav-bar-logo {
+    width: 50%;
+    margin-left: 5px;
+    font-size: 16px;
+  }
+
+  #favicon {
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+  }
+
+  .nav-menu {
+    height: 30px;
+  }
+
+  .nav-drop-menu {
+    display: block;
+  }
+
+  #nav-div {
+    transform: rotate(90deg);
+    width: 30px;
+    height: 30px;
+    margin: 55px 0;
+  }
+
+  .menu-btn:checked ~ .nav-bar-right {
+    display: block;
+  }
+
+  #mobile-nav-logo {
+    display: flex;
+    margin: 50px 0;
+  }
 }

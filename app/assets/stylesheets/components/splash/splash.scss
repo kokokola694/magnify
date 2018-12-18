@@ -1,4 +1,4 @@
-.splash {
+#splash {
   background-image: image_url('abstract-background-61.jpg');
 }
 
@@ -10,7 +10,6 @@
   display: flex;
   flex-direction: column;
   color: white;
-  -webkit-text-fill-color: white; /* Will override color (regardless of order) */
   text-align: center;
 }
 
@@ -30,21 +29,16 @@
   -webkit-text-stroke-color: black;
 }
 
-.splash-main a {
-  display: inline-block;
-  margin-top: 16px;
-  background-color: #1db954;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1;
-  border-radius: 500px;
-  padding: 16px 48px 18px;
-  transition-duration: .25s;
-  letter-spacing: 2px;
-  min-width: 160px;
-  text-transform: uppercase;
-}
+@media (max-width: 48em) {
+  #splash {
+    background-position: center;
+  }
 
-.splash-main a:hover {
-  background-color: #1ed760;
+  .splash-main h1 {
+    font-size: 50px;
+  }
+
+  .splash-main h2 {
+    font-size: 16px;
+  }
 }

@@ -1,7 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-// Remove else logic - this comp is rendered when not logged in.
 const NavBar = ({currentUser, logout}) => {
   const sessionLinks = () => {
     if (currentUser) {
@@ -27,14 +26,23 @@ const NavBar = ({currentUser, logout}) => {
       <section className="logo nav-bar-logo">
         <section id="favicon"></section>Magnify
       </section>
-      <section className="nav-bar-right">
-        <section className="nav-bar-links">
-          <a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>LinkedIn</a>
-          <a href='https://github.com/kokokola694'>Github</a>
+      <div className="nav-menu">
+        <input className="menu-btn" type="checkbox" id="menu-btn" />
+        <label className="nav-drop-menu" htmlFor="menu-btn"><span className="navicon"></span></label>
+        <section className="nav-bar-right">
+          <section className="nav-bar-links">
+            <a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>LinkedIn</a>
+            <a href='https://github.com/kokokola694'>Github</a>
+          </section>
+           <div id="nav-div">|</div>
+           {sessionLinks()}
+           <section id="mobile-nav-logo" className="nav-bar-logo">
+             <section id="favicon"></section>Magnify
+           </section>
         </section>
-         <div>|</div>
-         {sessionLinks()}
-      </section>
+
+      </div>
+
 
     </nav>
   )
