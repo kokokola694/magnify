@@ -104,3 +104,25 @@
   font-weight: 700;
   margin: 45px;
 }
+
+
+@media (max-width: 48em) {
+  .show {
+    flex-direction: column;
+    align-items: center;
+    padding-right: 30px;
+  }
+
+  .show main {
+    margin-top: 50px;
+    width: 90%;
+  }
+
+  .show header {
+    width: 90%;
+  }
+
+  .show-img {
+    width: 50%;
+  }
+}
