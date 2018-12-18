@@ -99,15 +99,19 @@
   }
 
   .nav-bar-right {
-    display: none;
+    display: block;
     flex-direction: column;
     position: fixed;
     top: 0;
-    right: 0;
+    right: -100vw;
     height: 100vh;
     width: 100vw;
     background: black;
     padding: 38px;
+    transition    : all 0.2s ease-in-out;
+    -o-transition       : all 0.2s ease-in-out;
+    -moz-transition     : all 0.3s ease-in-out;
+    -webkit-transition  : all 0.3s ease-in-out;
   }
 
   .nav-bar-links a, .nav-bar-session a {
@@ -153,7 +157,7 @@
   }
 
   .menu-btn:checked ~ .nav-bar-right {
-    display: block;
+    transform: translateX(-100vw);
   }
 
   #mobile-nav-logo {

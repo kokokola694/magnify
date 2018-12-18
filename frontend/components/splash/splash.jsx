@@ -20,9 +20,6 @@ const Splash = () => {
         </section>
       </div>
 
-
-
-
       <footer className="splash-footer">
         <section className="splash-logo">
           <section id="favicon"></section>

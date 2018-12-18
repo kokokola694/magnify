@@ -181,6 +181,11 @@
     margin: 0;
   }
 
+  .side-bar-links section {
+    width: 33%;
+    justify-content: center;
+  }
+
   .side-bar-links a {
     display: flex;
     flex-direction: column;

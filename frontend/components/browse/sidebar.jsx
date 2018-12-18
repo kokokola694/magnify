@@ -1,8 +1,11 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
+import RecentItem from './recent_item';
 
 class Sidebar extends React.Component {
-
+  constructor(props) {
+    super(props);
+  }
 
 
   render() {

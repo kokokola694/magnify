@@ -299,12 +299,67 @@ input[type=range]:hover::-webkit-slider-runnable-track {
 
 @media (max-width: 48em) {
   #audioContainer {
-    height: 50px;
+    height: 70px;
     bottom: 50px;
     background: black;
+    padding: 2px;
+  }
+
+  .progress {
+    display: none;
   }
 
   #audio-controls {
+    flex-direction: column;
+  }
+
+  #audio-controls-right {
     display: none;
   }
+
+  #playpause {
+    width: 33px;
+    height: 33px;
+  }
+
+  #repeat, #repeatone, #repeatall, #shuffle, #unshuffle {
+    width: 18px;
+    height: 18px;
+  }
+
+  #previous, #previous-null, #next, #next-null {
+     width: 9px;
+     height: 9px;
+   }
+
+  #audio-controls-left {
+    width: 40%;
+    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #player-info {
+    margin: 0;
+  }
+
+  #audio-controls-left h1 {
+    font-size: 11px;
+    font-weight: 400;
+    overflow: ellipsis;
+    color: white;
+    letter-spacing: 0;
+  }
+
+  #audio-controls-left h3 {
+    font-size: 9px;
+    font-weight: 400;
+    color: #b3b3b3;
+  }
+
+  #player-pic {
+    display: none;
+  }
+
+
 }
