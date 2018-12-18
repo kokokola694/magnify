@@ -1,5 +1,5 @@
 .side-bar {
-  max-width: 230px;
+  width: 230px;
   position: fixed;
   top: 0;
   left: 0;
@@ -159,4 +159,38 @@
 
   /* Support for IE. */
   font-feature-settings: 'liga';
+}
+
+@media (max-width: 48em) {
+  .side-bar {
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 50px;
+    top: auto;
+    background: black;
+  }
+
+  .side-bar-logo, .recent, .side-bar-bottom  {
+    display: none;
+  }
+
+  .side-bar-links {
+    flex-direction: row;
+    justify-content: space-around;
+    margin: 0;
+  }
+
+  .side-bar-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+
+  .side-bar-links div {
+    left: auto;
+    bottom: auto;
+  }
 }

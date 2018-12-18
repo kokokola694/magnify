@@ -53,3 +53,18 @@
     padding-top: 10px;
     border-bottom: 2px solid #1db954;
 }
+
+@media (max-width: 48em) {
+  .complete-navbar {
+    padding: 30px 40px 10px 40px;
+    flex-direction: column;
+  }
+
+  .browse-navbar {
+    width: 100%;
+  }
+
+  .browse-navbar a {
+    font-size: 9px;
+  }
+}

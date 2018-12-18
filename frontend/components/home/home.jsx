@@ -10,7 +10,7 @@ import Player from '../player/player';
 
 const App = () => {
   return (
-    <>
+    <div className="homepage">
       <Route path="/" component={Player} />
       <Switch>
         <ProtectedRoute path="/browse/" component={Browse}/>
@@ -18,7 +18,7 @@ const App = () => {
         <ProtectedRoute path="/search/" component={Search}/>
         <ProtectedRoute path="/queue/" component={Queue}/>
       </Switch>
-    </>
+    </div>
   )
 }
 

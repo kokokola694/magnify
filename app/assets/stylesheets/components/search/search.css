@@ -48,3 +48,17 @@
   color: #b3b3b3;
   padding-top: 10px;
 }
+
+@media (max-width: 48em) {
+  .search-navbar {
+    display: none;
+  }
+
+  .search-bar {
+    font-size: 28px;
+  }
+
+  .search-main {
+    top: 120px;
+  }
+}

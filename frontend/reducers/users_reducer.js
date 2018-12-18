@@ -25,7 +25,7 @@ export default (state = {}, action) => {
       ids = "saved_" + action.savableType.toLowerCase() + "_ids";
       idx = newState[action.saverId][ids].indexOf(action.savableId);
       newState[action.saverId][ids].splice(idx, 1);
-      return newState1;
+      return newState;
       break;
 
     case RECEIVE_FOLLOW:
@@ -36,7 +36,7 @@ export default (state = {}, action) => {
     case REMOVE_FOLLOW:
       const idx1 = newState[action.followedId].followers_user_ids.indexOf(action.followerId);
       newState[action.followedId].followers_user_ids.splice(idx1, 1);
-      
+
       const idx2 = newState[action.followerId].follows_user_ids.indexOf(action.followedId);
       newState[action.followerId].follows_user_ids.splice(idx2, 1);
       return newState;

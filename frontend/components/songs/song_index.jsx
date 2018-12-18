@@ -77,10 +77,8 @@ class SongIndex extends React.Component {
   }
 
   render() {
-    // debugger
 
     const pathArr = this.props.match.path.split('/');
-    // debugger
     const songs = (pathArr[2] === "results") ? this.props.songs.slice(0,5) : this.props.songs
     const songlist =
       songs.map(s => <SongIndexItem key={s.id}

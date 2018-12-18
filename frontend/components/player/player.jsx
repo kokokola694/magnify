@@ -257,6 +257,8 @@ class Player extends React.Component {
         <audio id="audio" controls src={this.state.currentSong}
            preload="auto" onLoadedMetadata={() => this.onLoaded()}
            onTimeUpdate={() => this.updateProgress()} ref={this.player}></audio>
+
+          <div id="mobile-controls"> TEST </div>
           <div id="audio-controls" className="controls" data-state="hidden">
             <section id="audio-controls-left">
               <img id="player-pic" src={this.state.currentPic}/>

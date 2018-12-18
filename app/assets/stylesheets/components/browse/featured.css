@@ -8,3 +8,15 @@
   font-weight: 600;
   margin-left: 50px;
 }
+
+@media (max-width: 48em) {
+  .featured {
+    padding: 0;
+  }
+
+  .featured-head {
+    text-align: center;
+    font-size: 15px;
+    margin: 20px 0 10px 10px;
+  }
+}

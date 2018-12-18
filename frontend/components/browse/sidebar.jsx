@@ -1,7 +1,5 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import RecentItem from './recent_item';
 
 class Sidebar extends React.Component {
 
@@ -83,16 +81,4 @@ class Sidebar extends React.Component {
   }
 }
 
-const msp = state => {
-  return {
-    recent: state.ui.player.recent
-  }
-}
-
-const mdp = dispatch => {
-  return {
-
-  }
-}
-
-export default connect(msp, mdp)(Sidebar);
+export default Sidebar;

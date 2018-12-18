@@ -32,3 +32,51 @@
   background: #c2c2c2;
   cursor: pointer;
 }
+
+.dropmenu-songinfo {
+  display: none;
+  width: 100%;
+  font-size: 12px;
+  margin: 50px 0 50px 0;
+}
+
+.dropmenu-songinfo img {
+  width: 30%;
+  margin: 20px auto;
+}
+
+@media (max-width: 48em) {
+  .dropmenu {
+    display: block;
+    z-index: 10;
+    position: fixed;
+    top: auto;
+    bottom: -60vh;
+    left: 0;
+    right: auto;
+    height: 60vh;
+    width: 100vw;
+    text-align: center;
+    background: black;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    transition    : all 0.2s ease-in-out;
+    -o-transition       : all 0.2s ease-in-out;
+    -moz-transition     : all 0.3s ease-in-out;
+    -webkit-transition  : all 0.3s ease-in-out;
+  }
+
+  .disp {
+    transform: translateY(-60vh);
+  }
+
+  .dropmenu-songinfo {
+    display: block;
+  }
+
+  #song-item-right #mobile-drop-artist {
+    margin: 5px 0;
+    font-size: 12px;
+  }
+}

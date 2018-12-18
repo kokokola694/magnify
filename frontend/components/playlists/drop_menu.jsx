@@ -104,15 +104,24 @@ class DropMenu extends React.Component {
     return (
       <div className="drop">
         <button onClick={this.handleDisp} className="drop-btn">•••</button>
-        <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`}>
-          <li className="playlist-addto" onClick={() => this.handleAdd()}>
-            <button className="playlist-addto-btn" >
-              Add To Playlist
-            </button>
-          </li>
-          { removeButton }
-          { saveButton }
-        </ul>
+
+
+          <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`}>
+            <div className="dropmenu-songinfo">
+              <img src={this.props.album.photoUrl} />
+              <h1>{this.props.song.title}</h1>
+              <h2 id="mobile-drop-artist">{this.props.artist.name}</h2>
+
+            </div>
+            <li className="playlist-addto" onClick={() => this.handleAdd()}>
+              <button className="playlist-addto-btn" >
+                Add To Playlist
+              </button>
+            </li>
+            { removeButton }
+            { saveButton }
+          </ul>
+
       </div>
     )
   }
@@ -123,7 +132,9 @@ const msp = (state, ownProps) => {
 
   return {
     selectedSong: state.ui.selectedSong,
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    album: state.entities.albums[ownProps.song.album_id],
+    artist: state.entities.artists[ownProps.song.artist_id]
   }
 }
 

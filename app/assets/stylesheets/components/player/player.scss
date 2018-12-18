@@ -291,3 +291,20 @@ input[type=range]:hover::-webkit-slider-runnable-track {
 #previous-null:hover, #next-null:hover {
   opacity: 0.3;
 }
+
+#mobile-controls {
+  display: none;
+}
+
+
+@media (max-width: 48em) {
+  #audioContainer {
+    height: 50px;
+    bottom: 50px;
+    background: black;
+  }
+
+  #audio-controls {
+    display: none;
+  }
+}

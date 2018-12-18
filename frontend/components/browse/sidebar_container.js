@@ -12,7 +12,8 @@ const msp = (state, ownProps) => {
     currentUser: state.entities.users[state.session.id],
     atBrowse,
     atCollection,
-    atSearch
+    atSearch,
+    recent: state.ui.player.recent
   }
 }
 

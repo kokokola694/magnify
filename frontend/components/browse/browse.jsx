@@ -16,7 +16,7 @@ import Player from '../player/player';
 
 const Browse = () => {
   return (
-    <section className="homepage">
+    <section >
       <Route path='/' component={SideBarContainer} />
       <Route path='/browse/:page' component={BrowseNavbarContainer}/>
 

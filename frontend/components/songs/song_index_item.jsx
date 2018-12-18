@@ -82,6 +82,7 @@ class SongIndexItem extends React.Component {
           {playButton}
           <section className="song-info">
             {songTitle}
+            <p id="mobile-song-artist">{this.props.song.artistName}</p>
             <section className="song-info-bottom">
               {artistName}
               <div className="middot">&middot;</div>

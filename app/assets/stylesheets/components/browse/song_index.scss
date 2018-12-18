@@ -68,7 +68,6 @@
   width: 12px;
   height: 100%;
   padding: 7px;
-  // background-image: image-url("music.png");
   background-repeat: no-repeat;
   transition-duration: 0.2s;
 }
@@ -83,7 +82,6 @@
 }
 
 .song-index-item:hover {
-  // background-image: image-url('play.png');
   transition-duration: 0.2s;
 }
 
@@ -114,8 +112,30 @@
   color: #1db954
 }
 
-/* .song-index-item audio {
-  max-width: 250px;
-  max-height: 100%;
-  padding:5px 0px 0px 20px;
-} */
+#mobile-song-artist {
+  display: none;
+  color: #b3b3b3;
+  font-size: 11px;
+}
+
+@media (max-width: 48em) {
+  .song-index-list {
+    padding: 0 10px 0 10px;
+    overflow: scroll;
+  }
+
+  .song-index-item {
+    padding: 5px 0;
+    height: 50px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  #mobile-song-artist {
+    display: block;
+  }
+
+  .song-info-bottom {
+    display: none;
+  }
+}
