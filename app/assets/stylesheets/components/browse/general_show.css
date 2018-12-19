@@ -61,27 +61,6 @@
   text-transform: uppercase;
 }
 
-.playlist-delete-btn{
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-size: 12px;
-  margin-top: 15px;
-  color: white;
-  border: 1px solid #616467;
-  border-radius: 500px;
-  transition-duration: .25s;
-  padding: 10px 40px 12px;
-  min-width: 160px;
-  background: gray;
-}
-
-.playlist-delete-btn:hover {
-  color: red;
-  background: black;
-  border: 1px solid red;
-
-}
-
 .empty-desc {
   display: flex;
   flex-direction: column;

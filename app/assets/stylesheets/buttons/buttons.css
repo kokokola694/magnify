@@ -153,3 +153,26 @@
 .unfollow-user-btn:hover, .artist-save:hover {
   background-color: black;
 }
+
+@media (max-width: 48em) {
+
+  .green-play, .artist-save {
+    padding: 12px 36px 12px;
+  }
+
+  .artist-show-buttons {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .artist-show-buttons .green-play {
+    width: 30%;
+    margin: 10px 0;
+  }
+
+  .artist-show-buttons .artist-save {
+    width: 60%;
+  }
+
+}

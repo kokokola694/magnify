@@ -48,3 +48,57 @@
   justify-content: center;
   align-items: center;
 }
+
+
+.playlist-delete-btn{
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 12px;
+  margin-top: 15px;
+  color: white;
+  border: 1px solid #616467;
+  border-radius: 500px;
+  transition-duration: .25s;
+  padding: 10px 40px 12px;
+  min-width: 160px;
+  background: gray;
+}
+
+.playlist-delete-btn:hover {
+  color: red;
+  background: black;
+  border: 1px solid red;
+}
+
+@media (max-width: 48em) {
+  .artist-show-head {
+    top: 20%;
+  }
+
+  .artist-img-container {
+    overflow: hidden;
+  }
+
+  .artist-show-img {
+     width: 400%;
+     max-width: 400%;
+     position: relative;
+     left: -130%;
+  }
+
+  .artist-show-head h1 {
+    font-size: 40px;
+  }
+
+  .artist-show-sections {
+    text-align: center;
+    padding: 30px 0;
+  }
+
+  .playlist-delete-btn {
+    font-size: 10px;
+    padding: 10px 25px 10px;
+    min-width: 120px;
+  }
+
+}
