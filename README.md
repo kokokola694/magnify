@@ -1,9 +1,12 @@
 # Magnify
 
-[Magnify](https://magnify-play.herokuapp.com/#/) is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
+[Live](https://magnify-play.herokuapp.com/#/)
+
+![magnify](app/assets/images/magnify-splash.png)
+
+Magnify is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
 
 ![album-show](app/assets/images/featured.gif)
-
 
 ## Technology
 * Ruby on Rails backend, with data stored using PostgreSQL
@@ -11,6 +14,12 @@
 * Images and audio files stored using ActiveStorage / AWS S3
 
 ## Key Features
+
+### Mobile Responsiveness
+To allow mobile users to join the musical fun, Magnify utilizes CSS media queries to adjust to different screen sizes. For example, on the splash page, the links on the navigation bar are grouped up into hamburger menu bar - just like the real Spotify!
+
+![responsive-menu](app/assets/images/hamburger.gif)
+
 
 ### Creating and Updating Playlists
 Imitating Spotify, the user interacts with intuitive drop-down menus and modal windows to create and add songs to their playlists.
@@ -45,4 +54,3 @@ The results are divided into indices for artists, albums, playlists, and songs. 
 ## Future Plans
 * Featured songs (new releases, customized mixes)
 * Uploading photos for user avatars
-* Responsiveness to mobile devices
