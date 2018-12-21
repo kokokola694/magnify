@@ -8,7 +8,7 @@ import { withRouter } from 'react-router-dom';
 class CreatePlaylist extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { title: '' };
+    this.state = { title: '', submitted: false };
     this.updateTitle = this.updateTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -18,15 +18,18 @@ class CreatePlaylist extends React.Component {
   }
 
   handleSubmit () {
+    this.setState({submitted: true});
     if (this.props.nested === "false") {
-      this.props.createPlaylist(this.state).then( playlist => {
+      this.props.createPlaylist({title: this.state.title}).then( playlist => {
         this.props.closeModal();
         this.props.history.push(`/collection/playlists/${playlist.playlist.id}`);
       });
     } else {
-      this.props.createPlaylist(this.state)
-        .then(action => {
-        this.props.addPlaylistSong({song_id: this.props.selectedSong.id, playlist_id: action.playlist.id})
+      this.props.createPlaylist({title: this.state.title})
+        .then(action => { this.props.addPlaylistSong({
+          song_id: this.props.selectedSong.id,
+          playlist_id: action.playlist.id
+        })
         .then( playlistSong => {
         this.props.closeModal();
         this.props.history.push(`/collection/playlists/${playlistSong.playlistId}`);
@@ -45,6 +48,13 @@ class CreatePlaylist extends React.Component {
     ) : (
       () => this.props.closeModal()
     );
+
+    const submitButton = this.state.submitted ? (
+      <button className="playlist-create-btn" >Create</button>
+    ) : (
+      <button className="playlist-create-btn" onClick={this.handleSubmit} >Create</button>
+    )
+
     return (
 
       <section className="create-playlist">
@@ -56,7 +66,7 @@ class CreatePlaylist extends React.Component {
         </label>
         <section className="modal-buttons">
           <button className="artist-save" onClick={closeM}>Cancel</button>
-          <button className="playlist-create-btn" onClick={this.handleSubmit} >Create</button>
+          {submitButton}
         </section>
       </section>
     )
