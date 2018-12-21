@@ -42,20 +42,9 @@
   border-radius: 2px;
 }
 
-.song-index-item:hover {
+.song-index-item:hover, .song-index-item:focus {
   background-color: rgba(0,0,0,0.4);
   transition-duration: 0.3s;
-}
-
-.song-index-item:focus {
-  background-color: rgba(0,0,0,0.4);
-  transition-duration: 0.3s;
-}
-
-.playing-song {
-  background-color: rgba(0,0,0,0.4);
-  transition-duration: 0.3s;
-  color: green;
 }
 
 .song-info {

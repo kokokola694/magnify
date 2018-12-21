@@ -22,11 +22,14 @@ class ArtistShow extends React.Component {
     const shuffledSongs = songs.slice(1);
     let currentIdx = shuffledSongs.length - 1;
     let randIdx;
+
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
-      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] =
+        [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
+
     shuffledSongs.unshift(songs[0]);
     return shuffledSongs;
   };
@@ -59,18 +62,19 @@ class ArtistShow extends React.Component {
             </section>
           </section>
           <img className="artist-show-img" src={this.props.artist.showPhotoUrl}/>
-
         </section>
 
 
         <main>
           <div>
             <h2 className="artist-show-sections">Popular</h2>
-            <SongIndexContainer artist={this.props.artist} songIds={this.props.artist.song_ids}/>
+            <SongIndexContainer artist={this.props.artist}
+              songIds={this.props.artist.song_ids}/>
           </div>
           <div>
             <h2 className="artist-show-sections">Albums</h2>
-            <AlbumIndexContainer artist={this.props.artist} albumIds={this.props.artist.album_ids}/>
+            <AlbumIndexContainer artist={this.props.artist}
+              albumIds={this.props.artist.album_ids}/>
           </div>
         </main>
       </section>

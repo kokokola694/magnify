@@ -60,17 +60,17 @@ class SessionForm extends React.Component {
     const errors = this.props.errors.map((err,i) => <li key={i}>{err}</li>);
 
     return (
-      <section className="session-content">
+      <div className="session-content">
         <header className="logo session-logo">
-          <section id="favicon-session"></section>
+          <div id="favicon-session"></div>
           <Link to='/'>Magnify</Link></header>
 
         <button className="session-demo" onClick={this.handleDemo}>Demo Log In</button>
-        <section className="session-demo-divider">
-          <section className="session-demo-line"></section>
-          <section className="session-demo-divider-text">or</section>
-          <section className="session-demo-line"></section>
-        </section>
+        <div className="session-demo-divider">
+          <div className="session-demo-line"></div>
+          <div className="session-demo-divider-text">or</div>
+          <div className="session-demo-line"></div>
+        </div>
 
         <ul className="session-errors">
           {errors}
@@ -83,12 +83,12 @@ class SessionForm extends React.Component {
             value={this.state.password} placeholder="Password"/>
           <input className="session-submit-button" id="session-submit" type="submit" value={submitButton}></input>
         </form>
-        <section className="session-switch">
-          <section className="session-bot-line"></section>
+        <div className="session-switch">
+          <div className="session-bot-line"></div>
           <p>{otherLinkPretext}</p>
           <Link onClick={this.props.clearErrors} className="session-switch-link" to={otherLinkPath}>{otherLinkVal}</Link>
-        </section>
-      </section>
+        </div>
+      </div>
     )
   }
 }

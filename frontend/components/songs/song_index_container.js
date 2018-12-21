@@ -1,51 +1,61 @@
 import { connect } from 'react-redux';
 import { fetchSongs, searchSongs } from '../../actions/song_actions';
-import SongIndex from './song_index';
 import { withRouter } from 'react-router';
 import { fetchAlbum } from '../../actions/album_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
-import { addQueue, fetchPlaySong, pauseSong, resumeSong, clearQueue } from '../../actions/player_actions';
+import { addQueue, fetchPlaySong, pauseSong,
+  resumeSong, clearQueue } from '../../actions/player_actions';
+import SongIndex from './song_index';
 
 const msp = (state, ownProps) => {
   let songs;
   const albumId = ownProps.match.params.albumId;
   const artistId = ownProps.match.params.artistId;
   const playlist = ownProps.playlist;
+  const currentUser = state.entities.users[state.session.id];
   let input = null;
+
+  // Album, artist, or playlist show pages
   if (albumId) {
-    songs = Object.values(state.entities.songs).filter(song => song.album_id == albumId);
+    songs = Object.values(state.entities.songs)
+      .filter(song => song.album_id == albumId);
   } else if (artistId) {
-    songs = Object.values(state.entities.songs).filter(song => song.artist_id == artistId);
+    songs = Object.values(state.entities.songs)
+      .filter(song => song.artist_id == artistId);
   } else if (!!playlist) {
-      const songIds = ownProps.playlist.song_ids || { length: 0 }
-      if (songIds.length === 0) {
-        songs = [];
-      } else {
-        songs = Object.values(state.entities.songs).filter(song => songIds.includes(song.id));
-      }
+      const songIds = ownProps.playlist.song_ids;
+      songs = songIds.length === 0 ? [] : (
+        Object.values(state.entities.songs)
+          .filter(song => songIds.includes(song.id))
+      );
+
   } else if (ownProps.match.path.slice(0,11) === "/collection") {
-    const currentUser = state.entities.users[state.session.id];
-    songs = Object.values(state.entities.songs).filter(song => currentUser.saved_song_ids.includes(song.id));
+    songs = Object.values(state.entities.songs)
+      .filter(song => currentUser.saved_song_ids.includes(song.id));
   } else if (ownProps.match.path.slice(0,7) === "/search") {
     input = ownProps.location.pathname.split('/')[3];
-    songs = Object.values(state.entities.songs).filter(song => song.title.toLowerCase().includes(input.toLowerCase()));
+    songs = Object.values(state.entities.songs)
+      .filter(song => song.title.toLowerCase().includes(input.toLowerCase()));
   } else if (ownProps.match.path.split('/')[1] === "queue") {
-      songs = ownProps.queueSongs;
+    songs = ownProps.queueSongs;
   } else {
     songs = Object.values(state.entities.songs);
   }
+
+
   const updatedSongs = songs.map(song => {
     const artistName = state.entities.artists[song.artist_id].name;
     const albumName = state.entities.albums[song.album_id].title;
-    return Object.assign({}, song, {artistName}, {albumName});
+    return Object.assign({}, song, { artistName }, { albumName });
   })
-  const playSong = state.ui.player.playSong || {song: ""};
+
+  const playSong = state.ui.player.playSong || { song: "" };
 
   return {
     songs: updatedSongs,
     currentUserId: state.session.id,
-    currentUser: state.entities.users[state.session.id],
+    currentUser,
     indexType: ownProps.match.params.url,
     playlist,
     input,

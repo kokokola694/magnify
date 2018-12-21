@@ -21,11 +21,13 @@ class SongIndexItem extends React.Component {
     const shuffledSongs = songs.filter(song => song.id !== this.props.song.id);
     let currentIdx = shuffledSongs.length - 1;
     let randIdx;
+
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
       [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
+
     shuffledSongs.unshift(firstSong);
     return shuffledSongs;
   };
@@ -42,24 +44,33 @@ class SongIndexItem extends React.Component {
 
   render() {
     const artistName = (
-      <Link to={`/browse/artists/${this.props.song.artist_id}`}>{this.props.song.artistName}</Link>
+      <Link to={`/browse/artists/${this.props.song.artist_id}`}>
+        {this.props.song.artistName}
+      </Link>
     )
 
     const albumName = (
-      <Link to={`/browse/albums/${this.props.song.album_id}`}>{this.props.song.albumName}</Link>
+      <Link to={`/browse/albums/${this.props.song.album_id}`}>
+        {this.props.song.albumName}
+      </Link>
     )
 
-    let playButton
+    let playButton;
     if (this.props.playSongId !== this.props.song.id ) {
-      playButton = (<svg onClick={this.play} className="song-index-item-img icon-play" viewBox="0 0 85 100"><path fill="currentColor"
+      playButton = (<svg onClick={this.play} className="song-index-item-img icon-play"
+        viewBox="0 0 85 100"><path fill="currentColor"
         d="M81 44.6c5 3 5 7.8 0 10.8L9 98.7c-5 3-9 .7-9-5V6.3c0-5.7 4-8 9-5l72
         43.3z"><title></title></path></svg>)
+
     } else if (this.props.playing) {
-      playButton = (<svg onClick={this.pause}  className="song-index-item-img icon-pause green-text" viewBox="0 0 60 100"><path fill="currentColor"
+      playButton = (<svg onClick={this.pause}  className="song-index-item-img
+        icon-pause green-text" viewBox="0 0 60 100"><path fill="currentColor"
         d="M0 8c0-5 3-8 8-8s9 3 9 8v84c0 5-4 8-9 8s-8-3-8-8V8zm43 0c0-5 3-8
         8-8s8 3 8 8v84c0 5-3 8-8 8s-8-3-8-8V8z"><title></title></path></svg>)
+
     } else {
-      playButton = (<svg onClick={this.resume} className="song-index-item-img icon-play green-text" viewBox="0 0 85 100"><path fill="currentColor"
+      playButton = (<svg onClick={this.resume} className="song-index-item-img
+        icon-play green-text" viewBox="0 0 85 100"><path fill="currentColor"
         d="M81 44.6c5 3 5 7.8 0 10.8L9 98.7c-5 3-9 .7-9-5V6.3c0-5.7 4-8 9-5l72
         43.3z"><title></title></path></svg>)
     }

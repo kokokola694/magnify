@@ -22,24 +22,28 @@ class PlaylistShow extends React.Component {
     const shuffledSongs = songs.slice(1);
     let currentIdx = shuffledSongs.length - 1;
     let randIdx;
+
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
-      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] =
+        [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
+
     shuffledSongs.unshift(songs[0]);
     return shuffledSongs;
   };
 
   render () {
     const songIds = this.props.playlist.song_ids || {length: ""};
-    const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUserId;
+    const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUser.id;
     const extraInfo = belongsToCurrentUser ? (
       <>
         <h2 className="find-more">Find more of the music you love</h2>
         <Link to='/browse/playlists'>Browse</Link>
       </>
   ) : null;
+
     const emptyDesc = songIds.length === 0 ? (
       <section className="empty-desc">
         <svg width="50" height="49" viewBox="0 0 80 79"
@@ -53,7 +57,6 @@ class PlaylistShow extends React.Component {
         {extraInfo}
       </section>
     ) : null;
-
 
     const saveButton = this.props.savedIndicator ? (
       <button className="show-save" onClick={() => this.props.deleteSave({
@@ -72,23 +75,34 @@ class PlaylistShow extends React.Component {
     );
 
     const playlistSongs = this.props.playlist.song_ids || {length: ""};
+
+    const playButton = playlistSongs.length === 0 ? null : (
+      <button onClick={this.play} className="green-play">Play</button>
+    );
     const plural = playlistSongs.length === 1 ? "Song" : "Songs";
 
     const openModal = belongsToCurrentUser ? this.props.openModal : saveButton;
 
+    const photoUrl = playlistSongs.length === 0 ? (
+      this.props.playlist.photoUrl
+    ) : (
+      this.props.firstPhoto
+    );
 
     return (
       <section className="playlist-show show">
         <header>
-          <img className="show-img temp" src={this.props.playlist.photoUrl}/>
+          <img className="show-img temp" src={photoUrl}/>
           <section className="show-info">
             <div className="show-title-author">
               <h1>{this.props.playlist.title}</h1>
-              <h2>{this.props.playlist.author}</h2>
+              <h2><Link to={`/browse/users/${this.props.playlist.author_id}`}>
+                {this.props.playlist.author}
+              </Link></h2>
             </div>
             <div className="show-play-length">
-              <button onClick={this.play} className="green-play">Play</button>
-              <h3>{songIds.length} Songs</h3>
+              {playButton}
+              <h3>{songIds.length} {plural}</h3>
             </div>
             <div id="delete-dropdown">
               {openModal}

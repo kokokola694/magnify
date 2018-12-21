@@ -30,7 +30,8 @@ class AlbumIndex extends React.Component {
   render() {
     const al = this.props.albums.map(a => <AlbumIndexItem key={a.id} album={a}/>)
     const alCount = al.length;
-    const searchHead = this.props.match.path.slice(0,15) === "/search/results" && alCount > 0 ? (
+    const searchHead = this.props.match.path.slice(0,15) === "/search/results"
+      && alCount > 0 ? (
       <h1 className="search-headings">Albums</h1>
     ) : null;
     return (

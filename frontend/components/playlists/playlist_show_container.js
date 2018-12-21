@@ -14,13 +14,11 @@ import { addQueue, fetchPlaySong, clearQueue } from '../../actions/player_action
 const msp = (state, ownProps) => {
   const playlistId = ownProps.match.params.playlistId;
   const playlist = state.entities.playlists[playlistId] || {song_ids: []};
-  const currentUserId = state.session.id;
-  const currentUser = state.entities.users[currentUserId]
+  const currentUser = state.entities.users[state.session.id];
   const savedIndicator = currentUser.saved_playlist_ids.includes(parseInt(playlistId));
-  const albums = state.entities.albums;
-  const artists = state.entities.artists;
   const songs = Object.values(state.entities.songs).filter(song => playlist.song_ids.includes(song.id));
-  return { playlist, currentUserId, currentUser, savedIndicator, songs }
+  const firstPhoto = songs.length === 0 ? null : state.entities.albums[songs[0].album_id].photoUrl;
+  return { playlist, currentUser, savedIndicator, songs, firstPhoto }
 }
 
 const mdp = dispatch => {
