@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchPlaylists, searchPlaylists } from '../../actions/playlist_actions';
+import { fetchSongs } from '../../actions/song_actions';
 import PlaylistIndex from './playlist_index';
 import { withRouter } from 'react-router'
 
@@ -30,18 +31,24 @@ const msp = (state, ownProps) => {
     playlists = Object.values(state.entities.playlists)
       .filter(playlist => playlist.title.toLowerCase().includes(input.toLowerCase()));
   }
-  
+
+  const songs = Object.values(state.entities.songs);
+  const albums = Object.values(state.entities.albums);
+
   return {
     playlists,
     currentUser,
-    input
+    input,
+    songs,
+    albums
   }
 }
 
 const mdp = dispatch => {
   return {
     fetchPlaylists: (ids) => dispatch(fetchPlaylists(ids)),
-    searchPlaylists: (input) => dispatch(searchPlaylists(input))
+    searchPlaylists: (input) => dispatch(searchPlaylists(input)),
+    fetchSongs: (ids) => dispatch(fetchSongs(ids))
   }
 }
 
