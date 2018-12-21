@@ -6,13 +6,12 @@ import React from 'react';
 const msp = (state, ownProps) => {
   const path = ownProps.location.pathname;
   const noNavBar = path.split('/').length === 4;
+  
   return {
     navType: "browse",
     noNavBar,
     openModal: (
-      <div className="playlist-create">
-
-      </div>
+      <div className="playlist-create"></div>
     )
   }
 }

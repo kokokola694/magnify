@@ -9,82 +9,88 @@ class SongIndex extends React.Component {
   }
 
   componentDidMount() {
+    const { fetchSongs, queue, currentUser, fetchAlbum,
+      fetchArtist, fetchPlaylist } = this.props;
+
     const pathArr = this.props.match.path.split('/');
+    const params = this.props.match.params;
 
     if (pathArr[1] === "queue") {
-      this.props.fetchSongs(this.props.queue);
+      fetchSongs(queue);
 
       // Either collection or browse page
     } else if (pathArr[pathArr.length - 1] === "songs") {
       document.body.style.backgroundImage = "linear-gradient(#3c4758, black)";
+
       if (this.props.match.path.slice(0,11) === "/collection") {
-        this.props.fetchSongs(this.props.currentUser.saved_song_ids);
+        fetchSongs(currentUser.saved_song_ids);
       } else {
-        this.props.fetchSongs();
+        fetchSongs();
       }
 
-    } else if (this.props.match.params.albumId) {
-      this.props.fetchAlbum(this.props.match.params.albumId)
-      .then((action) => this.props.fetchSongs(action.album.song_ids));
+      // Album, artist, playlist show pages
+    } else if (params.albumId) {
+      fetchAlbum(params.albumId)
+      .then((payload) => fetchSongs(payload.album.song_ids));
 
-    } else if (this.props.match.params.artistId) {
-      this.props.fetchArtist(this.props.match.params.artistId)
-      .then((action) => this.props.fetchSongs(action.artist.song_ids));
+    } else if (params.artistId) {
+      fetchArtist(params.artistId)
+      .then((payload) => fetchSongs(payload.artist.song_ids));
 
-    } else if (this.props.match.params.playlistId) {
-      this.props.fetchPlaylist(this.props.match.params.playlistId)
-      .then((action) => this.props.fetchSongs(action.playlist.song_ids));
-
-    } else if (this.props.match.path.slice(0,7) === "/search") {
-      this.props.searchSongs(this.props.input);
+    } else if (params.playlistId) {
+      fetchPlaylist(params.playlistId)
+      .then((payload) => fetchSongs(payload.playlist.song_ids));
     }
   }
 
   componentDidUpdate (oldProps) {
     const pathArr = this.props.match.path.split('/');
+    const params = this.props.match.params;
+    const oldParams = oldProps.match.params;
+    const { fetchSongs, queue, fetchPlaylist, fetchAlbum, fetchArtist } = this.props;
 
-    if (pathArr[1] === "queue" && this.props.queue !== oldProps.queue) {
-      this.props.fetchSongs(this.props.queue);
+    if (pathArr[1] === "queue" && queue !== oldProps.queue) {
+      fetchSongs(queue);
 
-    } else if (oldProps.match.params.playlistId !== this.props.match.params.playlistId) {
-      this.props.fetchPlaylist(this.props.match.params.playlistId)
-      .then((action) => this.props.fetchSongs(action.playlist.song_ids));
+    } else if (oldParams.playlistId !== params.playlistId) {
+      this.props.fetchPlaylist(params.playlistId)
+      .then((payload) => fetchSongs(payload.playlist.song_ids));
 
-    } else if (oldProps.match.params.albumId !== this.props.match.params.albumId) {
-      this.props.fetchAlbum(this.props.match.params.albumId)
-      .then((action) => this.props.fetchSongs(action.album.song_ids));
+    } else if (oldParams.albumId !== params.albumId) {
+      fetchAlbum(params.albumId)
+      .then((payload) => fetchSongs(payload.album.song_ids));
 
-    } else if (oldProps.match.params.artistId !== this.props.match.params.artistId) {
-      this.props.fetchArtist(this.props.match.params.artistId)
-      .then((action) => this.props.fetchSongs(action.artist.song_ids));
-
-    } else if (this.props.match.path.slice(0,7) === "/search" &&
-        this.props.location.pathname !== oldProps.location.pathname) {
-      this.props.searchSongs(this.props.input);
+    } else if (oldParams.artistId !== params.artistId) {
+      fetchArtist(params.artistId)
+      .then((payload) => fetchSongs(payload.artist.song_ids));
     }
   }
 
   render() {
     const pathArr = this.props.match.path.split('/');
+    const { songs, playlist, addQueue, fetchPlaySong, playing, pauseSong,
+      resumeSong, clearQueue, playSongId } = this.props;
 
     // Search top results only shows 5 songs
-    const songs = (pathArr[2] === "results") ?
-      this.props.songs.slice(0,5) : this.props.songs;
+    const updatedSongs = (pathArr[2] === "results") ?
+      songs.slice(0,5) : songs;
 
-    const songlist =
-      songs.map( s => <SongIndexItem
-        key={s.id}
-        song={s}
-        playlist={this.props.playlist}
+    const songlist = updatedSongs.map( song =>
+      <SongIndexItem
+        key={song.id}
+        song={song}
+        playlist={playlist}
         openModal={openModal}
-        queue={songs}
-        addQueue={this.props.addQueue}
-        fetchPlaySong={this.props.fetchPlaySong}
-        playing={this.props.playing}
-        playSongId={this.props.playSongId}
-        pauseSong={this.props.pauseSong}
-        resumeSong={this.props.resumeSong}
-        clearQueue={this.props.clearQueue} /> );
+        queue={updatedSongs}
+        addQueue={addQueue}
+        fetchPlaySong={fetchPlaySong}
+        playing={playing}
+        playSongId={playSongId}
+        pauseSong={pauseSong}
+        resumeSong={resumeSong}
+        clearQueue={clearQueue}
+      />
+    );
 
     return (
       <div>

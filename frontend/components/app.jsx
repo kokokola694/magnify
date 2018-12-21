@@ -1,9 +1,9 @@
 import React from 'react';
 import Splash from './splash/splash';
-import {AuthRoute, ProtectedRoute} from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import { Switch, Route } from 'react-router-dom';
 import LoginFormContainer from './splash/login_form_container';
 import SignupFormContainer from './splash/signup_form_container';
-import { Switch, Route } from 'react-router-dom';
 import Modal from './playlists/modal';
 import Home from './home/home';
 

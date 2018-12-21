@@ -12,11 +12,3 @@ export const fetchArtist = (id) => {
     url: `/api/artists/${id}`
   })
 }
-
-export const searchArtists = input => {
-  return $.ajax({
-    method: "GET",
-    url: "api/artists",
-    data: {input}
-  })
-}

@@ -12,11 +12,3 @@ export const fetchAlbum = (id) => {
     url: `/api/albums/${id}`
   })
 }
-
-export const searchAlbums = (input) => {
-  return $.ajax({
-    method: "GET",
-    url: "api/albums",
-    data: {input}
-  })
-}

@@ -7,13 +7,9 @@ import React from 'react';
 export default () => {
   return (
     <>
-
       <SongIndexContainer />
-
       <ArtistIndexContainer />
-
       <AlbumIndexContainer />
-
       <PlaylistIndexContainer />
     </>
   )

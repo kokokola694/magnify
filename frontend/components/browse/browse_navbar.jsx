@@ -1,19 +1,21 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 
-const BrowseNavbar = (props) => {
-  const browseBar =  props.noNavBar ? null : (
+const BrowseNavbar = ({ noNavBar, navType, openModal }) => {
+  const browseBar =  noNavBar ? null : (
     <nav className="complete-navbar">
       <div></div>
       <nav className="browse-navbar">
-        {props.navType === "search" ? <NavLink to={`/search/results`}>Top Results</NavLink> : null}
-        {props.navType === "browse" ? <NavLink to={`/${props.navType}/featured`}>Featured</NavLink> : null}
-        <NavLink to={`/${props.navType}/playlists`}>Playlists</NavLink>
-        <NavLink to={`/${props.navType}/artists`}>Artists</NavLink>
-        <NavLink to={`/${props.navType}/albums`}>Albums</NavLink>
-        <NavLink to={`/${props.navType}/songs`}>Songs</NavLink>
+        {navType === "search" ?
+          <NavLink to={`/search/results`}>Top Results</NavLink> : null}
+        {navType === "browse" ? 
+          <NavLink to={`/${navType}/featured`}>Featured</NavLink> : null}
+        <NavLink to={`/${navType}/playlists`}>Playlists</NavLink>
+        <NavLink to={`/${navType}/artists`}>Artists</NavLink>
+        <NavLink to={`/${navType}/albums`}>Albums</NavLink>
+        <NavLink to={`/${navType}/songs`}>Songs</NavLink>
       </nav>
-      {props.openModal}
+      {openModal}
     </nav>
   );
   return (

@@ -25,7 +25,7 @@ class CreatePlaylist extends React.Component {
         this.props.history.push(`/collection/playlists/${playlist.playlist.id}`);
       });
     } else {
-      this.props.createPlaylist({title: this.state.title})
+      this.props.createPlaylist({ title: this.state.title })
         .then(action => { this.props.addPlaylistSong({
           song_id: this.props.selectedSong.id,
           playlist_id: action.playlist.id
@@ -43,11 +43,8 @@ class CreatePlaylist extends React.Component {
     if (!this.props.modal) {
       return null;
     }
-    const closeM = (this.props.nested === "true") ? (
-      () => this.props.openModal()
-    ) : (
-      () => this.props.closeModal()
-    );
+    const closeModal = (this.props.nested === "true") ?
+    ( () => this.props.openModal() ) : ( () => this.props.closeModal() );
 
     const submitButton = this.state.submitted ? (
       <button className="playlist-create-btn" >Create</button>
@@ -58,14 +55,15 @@ class CreatePlaylist extends React.Component {
     return (
 
       <section className="create-playlist">
-        <button id="exit-modal" onClick={closeM} className="exit-modal">X</button>
+        <button id="exit-modal" onClick={closeModal} className="exit-modal">X</button>
         <h1>Create new playlist</h1>
         <label className="modal-label">
           <h2>Playlist Name</h2>
-          <input className="modal-title" onChange={this.updateTitle} type="text" placeholder="Start typing..." value={this.state.title} />
+          <input className="modal-title" onChange={this.updateTitle} type="text"
+            placeholder="Start typing..." value={this.state.title} />
         </label>
         <section className="modal-buttons">
-          <button className="artist-save" onClick={closeM}>Cancel</button>
+          <button className="artist-save" onClick={closeModal}>Cancel</button>
           {submitButton}
         </section>
       </section>

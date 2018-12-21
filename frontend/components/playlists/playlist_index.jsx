@@ -10,32 +10,13 @@ class PlaylistIndex extends React.Component {
     document.body.style.backgroundImage = "linear-gradient(rgb(117, 78, 112), black)";
     this.props.fetchSongs();
     if (this.props.match.path.slice(0,11) === "/collection") {
-      const playlistIds =
-        this.props.currentUser.saved_playlist_ids.concat(this.props.currentUser.playlist_ids);
+      const playlistIds = this.props.currentUser.saved_playlist_ids
+        .concat(this.props.currentUser.playlist_ids);
       this.props.fetchPlaylists(playlistIds);
-    } else if (this.props.match.path.slice(0,7) === "/search") {
-      this.props.searchPlaylists(this.props.input);
-    } else if (this.props.match.path.slice(0,7) === "/browse") {
+    } else {
       this.props.fetchPlaylists();
     }
   }
-
-  // componentDidUpdate(oldProps) {
-  //   if (oldProps.playlists.length !== this.props.playlists.length) {
-  //     this.props.fetchSongs();
-  //     if (this.props.match.path.slice(0,11) === "/collection") {
-  //       const playlistIds =
-  //         this.props.currentUser.saved_playlist_ids.concat(this.props.currentUser.playlist_ids);
-  //       this.props.fetchPlaylists(playlistIds);
-  //     } else if (this.props.match.path.slice(0,7) === "/browse") {
-  //       this.props.fetchPlaylists();
-  //     }
-  //   } else if (oldProps.location.pathname !== oldProps.location.pathname) {
-  //     if (this.props.match.path.slice(0,7) === "/search") {
-  //       this.props.searchPlaylists(this.props.input);
-  //     }
-  //   }
-  // }
 
   render() {
     const songs = this.props.songs;
@@ -46,6 +27,7 @@ class PlaylistIndex extends React.Component {
       const photo = firstSong ?
         albums.find(album => album.id == firstSong.album_id).photoUrl :
         p.photoUrl;
+        
       return ( <PlaylistIndexItem key={p.id} playlist={p} photoUrl={photo}/> );
     });
 

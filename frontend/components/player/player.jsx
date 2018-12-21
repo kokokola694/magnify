@@ -39,10 +39,11 @@ class Player extends React.Component {
 
   componentDidUpdate (oldProps) {
     let player = this.player.current;
-    const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
-    if (this.props.playSong && oldProps.playSong !== this.props.playSong) {
-        const queueIdArray = queue.map(song => song.id);
-        const index = queueIdArray.indexOf(this.props.playSong.song.id);
+    const { shuffled, shuffledQueue, queue, playSong } = this.props;
+    const updatedQueue = shuffled ? shuffledQueue : queue;
+    if (playSong && oldProps.playSong !== playSong) {
+        const queueIdArray = updatedQueue.map(song => song.id);
+        const index = queueIdArray.indexOf(playSong.song.id);
         this.setPlayerInfo(index);
     }
   }
@@ -59,6 +60,7 @@ class Player extends React.Component {
     let player = this.player.current;
     let progress = this.progress.current;
     let progressBar = this.progressBar.current;
+
     progress.value = player.currentTime;
     progressBar.style.width = Math.floor((player.currentTime / player.duration) * 100) + '%';
     const currentTime = this.convertToMS(player.currentTime);
@@ -104,31 +106,38 @@ class Player extends React.Component {
   }
 
   nextSong () {
-    if (this.state.repeat === "one" || (this.state.repeat === "all" && this.props.queue.length === 1)) {
-      this.player.current.currentTime = 0;
-      if (this.player.current.paused && this.props.playing) this.player.current.play();
+    let player = this.player.current;
+    const { repeat } = this.state;
+    const { queue, playing, shuffled, shuffledQueue, fetchPlaySong } = this.props;
+
+    if (this.state.repeat === "one" || (repeat === "all" && queue.length === 1)) {
+      player.currentTime = 0;
+      if (player.paused && playing) player.play();
     } else {
       let index = this.state.index + 1;
-      const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
-      if (this.state.repeat === "all" && index === queue.length ) index = 0;
-      if (index >= 0 && index < queue.length) {
-        this.props.fetchPlaySong(queue[index].id).then( () => this.setPlayerInfo(index))
+      const updatedQueue = shuffled ? shuffledQueue : queue;
+      if (repeat === "all" && index === updatedQueue.length ) index = 0;
+      if (index >= 0 && index < updatedQueue.length) {
+        fetchPlaySong(updatedQueue[index].id).then( () => this.setPlayerInfo(index))
       } else {
         this.setPlayerInfo(index);
-        this.player.current.pause();
-        this.player.current.currentTime = 0;
+        player.pause();
+        player.currentTime = 0;
       }
     }
   }
 
   prevSong () {
-    if (this.player.current.currentTime > 5) {
-      this.player.current.currentTime = 0;
+    let player = this.player.current;
+    const { queue, shuffled, shuffledQueue, fetchPlaySong } = this.props;
+
+    if (player.currentTime > 5) {
+      player.currentTime = 0;
       return;
     }
     const index = this.state.index - 1;
-    const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
-    this.props.fetchPlaySong(queue[index].id).then( () => this.setPlayerInfo(index))
+    const updatedQueue = shuffled ? shuffledQueue : queue;
+    fetchPlaySong(updatedQueue[index].id).then( () => this.setPlayerInfo(index) )
   }
 
   slideVolume (e) {
@@ -170,9 +179,10 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
-    const queue = this.props.shuffled ? this.props.shuffledQueue : this.props.queue;
-    if (index < 0 || index >= queue.length) {
-      this.props.clearQueue();
+    const { shuffled, shuffledQueue, queue, clearQueue, playSong } = this.props;
+    const updatedQueue = shuffled ? shuffledQueue : queue;
+    if (index < 0 || index >= updatedQueue.length) {
+      clearQueue();
       this.setState({
         currentSong: null, currentTitle: null, currentArtist: null,
         currentPic: null, index: 0, duration: "--:--",
@@ -180,17 +190,22 @@ class Player extends React.Component {
       })
     } else {
       this.setState({
-        currentSong: this.props.playSong.song.audioUrl,
-        currentTitle: this.props.playSong.song.title,
-        currentArtist: this.props.playSong.artist.name,
-        currentPic: this.props.playSong.album.photoUrl,
+        currentSong: playSong.song.audioUrl,
+        currentTitle: playSong.song.title,
+        currentArtist: playSong.artist.name,
+        currentPic: playSong.album.photoUrl,
         index
       });
     }
   }
 
   render() {
-    const playPauseButton = this.props.playing ? (
+    const { playing, playSong, shuffled, shuffle } = this.props;
+    const { muted, index, repeat, currentSong,
+      currentPic, currentTitle, currentArtist,
+      currentTime, duration, volume } = this.state;
+
+    const playPauseButton = playing ? (
       <button onClick={() => this.play()} id="playpause"
         type="button" data-state="pause"></button>
     ) : (
@@ -198,7 +213,7 @@ class Player extends React.Component {
         type="button" data-state="play"></button>
     )
 
-    const muteButton = this.state.muted ? (
+    const muteButton = muted ? (
       <button id="mute" onClick={() => this.mute()} type="button"
         data-state="unmute"></button>
     ) : (
@@ -206,30 +221,30 @@ class Player extends React.Component {
         data-state="mute"></button>
     )
 
-    const prevButton = this.state.index === 0 ? (
+    const prevButton = index === 0 ? (
       <button id="previous-null" type="button" data-state="previous"></button>
     ) : (
       <button id="previous" onClick={this.prevSong} type="button" data-state="previous"></button>
     );
 
-    const nextButton = !this.props.playSong ? (
+    const nextButton = !playSong ? (
       <button id="next-null" type="button" data-state="next"></button>
     ) : (
       <button id="next" onClick={this.nextSong} type="button" data-state="next"></button>
     );
 
-    const shuffleButton = this.props.shuffled ? (
-      <button id="unshuffle" onClick={this.props.shuffle} type="button"></button>
+    const shuffleButton = shuffled ? (
+      <button id="unshuffle" onClick={shuffle} type="button"></button>
     ) : (
-      <button id="shuffle" onClick={this.props.shuffle} type="button"></button>
+      <button id="shuffle" onClick={shuffle} type="button"></button>
     )
 
     let repeatButton;
-    if (this.state.repeat === "none") {
+    if (repeat === "none") {
       repeatButton = (
         <button id="repeat" onClick={this.toggleRepeat} type="button"></button>
       )
-    } else if (this.state.repeat === "one") {
+    } else if (repeat === "one") {
       repeatButton = (
         <button id="repeatone" onClick={this.toggleRepeat} type="button"></button>
       )
@@ -251,20 +266,19 @@ class Player extends React.Component {
       </NavLink>
     )
 
-
     return (
       <section id="audioContainer">
-        <audio id="audio" controls src={this.state.currentSong}
+        <audio id="audio" controls src={currentSong}
            preload="auto" onLoadedMetadata={() => this.onLoaded()}
            onTimeUpdate={() => this.updateProgress()} ref={this.player}></audio>
 
           <div id="mobile-controls"> TEST </div>
           <div id="audio-controls" className="controls" data-state="hidden">
             <section id="audio-controls-left">
-              <img id="player-pic" src={this.state.currentPic}/>
+              <img id="player-pic" src={currentPic}/>
               <div id="player-info">
-                <h1>{this.state.currentTitle}</h1>
-                <h3>{this.state.currentArtist}</h3>
+                <h1>{currentTitle}</h1>
+                <h3>{currentArtist}</h3>
               </div>
             </section>
             <section id="audio-controls-center">
@@ -277,18 +291,18 @@ class Player extends React.Component {
             </section>
 
                <div className="progress">
-                 <h2 className="timestamps">{this.state.currentTime}</h2>
+                 <h2 className="timestamps">{currentTime}</h2>
                   <progress id="progress" ref={this.progress}
                     onClick={(e) => this.toProgress(e)}  value="0" min="0">
                      <span id="progress-bar" ref={this.progressBar} ></span>
                   </progress>
-                  <h2 className="timestamps">{this.state.duration}</h2>
+                  <h2 className="timestamps">{duration}</h2>
                </div>
              </section>
              <section id="audio-controls-right">
                {queueButton}
                {muteButton}
-               <input id="vol" type="range" min="0" max="100" step="1" value={this.state.volume}
+               <input id="vol" type="range" min="0" max="100" step="1" value={volume}
                  onChange={(e) => this.slideVolume(e)}  onInput={(e) => this.slideVolume(e)}/>
            </section>
           </div>
@@ -298,12 +312,13 @@ class Player extends React.Component {
 }
 
 const msp = (state, ownProps) => {
+  const { playSong, queue, shuffledQueue, playing, shuffled } = state.ui.player;
   return {
-    playSong: state.ui.player.playSong,
-    queue: state.ui.player.queue,
-    shuffledQueue: state.ui.player.shuffledQueue,
-    playing: state.ui.player.playing,
-    shuffled: state.ui.player.shuffled
+    playSong,
+    queue,
+    shuffledQueue,
+    playing,
+    shuffled
   }
 }
 

@@ -7,10 +7,9 @@ import DeletePlaylist from './delete_playlist';
 
 
 function Modal({modal, closeModal}) {
-  if (!modal) {
-    return null;
-  }
+  if (!modal) return null;
   let component;
+
   switch (modal) {
     case 'createPlaylist':
       component = <CreatePlaylist nested="false"/>;
@@ -27,6 +26,7 @@ function Modal({modal, closeModal}) {
     default:
       return null;
   }
+  
   return (
     <div className="modal-background">
       <div className="modal-child" onClick={e => e.stopPropagation()}>

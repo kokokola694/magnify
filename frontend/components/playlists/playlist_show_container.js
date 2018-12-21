@@ -1,46 +1,54 @@
-import { connect } from 'react-redux';
+import React from 'react';
 import PlaylistShow from './playlist_show';
+import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPlaylist } from '../../actions/playlist_actions';
 import { fetchSongs } from '../../actions/song_actions';
-import { fetchArtists } from '../../actions/artist_actions';
-import { fetchAlbums } from '../../actions/album_actions';
-import React from 'react';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { createSave, deleteSave } from '../../actions/save_actions';
 import { addQueue, fetchPlaySong, clearQueue } from '../../actions/player_actions';
 
 
 const msp = (state, ownProps) => {
+  const { playlists, users, albums, songs } = state.entities;
+
   const playlistId = ownProps.match.params.playlistId;
-  const playlist = state.entities.playlists[playlistId] || {song_ids: []};
-  const currentUser = state.entities.users[state.session.id];
-  const savedIndicator = currentUser.saved_playlist_ids.includes(parseInt(playlistId));
-  const songs = Object.values(state.entities.songs).filter(song => playlist.song_ids.includes(song.id));
-  const firstPhoto = songs.length === 0 ? null : state.entities.albums[songs[0].album_id].photoUrl;
-  return { playlist, currentUser, savedIndicator, songs, firstPhoto }
+  const playlist = playlists[playlistId] || {song_ids: []};
+  const currentUser = users[state.session.id];
+  const savedIndicator = currentUser.saved_playlist_ids
+    .includes(parseInt(playlistId));
+  const updatedSongs = Object.values(songs)
+    .filter(song => playlist.song_ids.includes(song.id));
+  const firstPhoto = updatedSongs.length === 0 ?
+    null : albums[updatedSongs[0].album_id].photoUrl;
+
+  return {
+    songs: updatedSongs,
+    playlist,
+    currentUser,
+    savedIndicator,
+    firstPhoto,
+  }
 }
 
 const mdp = dispatch => {
   return {
     createSave: (saveInfo) => dispatch(createSave(saveInfo)),
     deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo)),
+    fetchPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
+    fetchSongs: (ids) => dispatch(fetchSongs(ids)),
+    addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
+    clearQueue: () => dispatch(clearQueue()),
+    fetchPlaySong: (song) => dispatch(fetchPlaySong(song)),
     closeModal: () => dispatch(closeModal()),
     openModal: (
       <div className="playlist-delete">
-        <button className="playlist-delete-btn" onClick={() => dispatch(openModal("deletePlaylist"))}>
+        <button className="playlist-delete-btn"
+          onClick={() => dispatch(openModal("deletePlaylist"))}>
           Delete
         </button>
       </div>
     ),
-    fetchPlaylist: (playlistId) => dispatch(fetchPlaylist(playlistId)),
-    receiveQueue: (queue) => dispatch(receiveQueue(queue)),
-    fetchAlbums: (ids) => dispatch(fetchAlbums(ids)),
-    fetchArtists: (ids) => dispatch(fetchArtists(ids)),
-    fetchSongs: (ids) => dispatch(fetchSongs(ids)),
-    addQueue: (queue, shuffledQueue) => dispatch(addQueue(queue, shuffledQueue)),
-    clearQueue: () => dispatch(clearQueue()),
-    fetchPlaySong: (song) => dispatch(fetchPlaySong(song))
   }
 }
 

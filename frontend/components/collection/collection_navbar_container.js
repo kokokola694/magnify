@@ -18,8 +18,9 @@ const mdp = dispatch => {
     closeModal: () => dispatch(closeModal()),
     openModal: (
       <div className="playlist-create">
-        <button className="playlist-create-btn" onClick={() => dispatch(openModal("createPlaylist"))}>
-          New Playlist
+        <button className="playlist-create-btn"
+          onClick={() => dispatch(openModal("createPlaylist"))}>
+            New Playlist
         </button>
       </div>
     )

@@ -17,24 +17,27 @@ class UserShow extends React.Component {
     }
   }
 
-
   render () {
+
     const user = this.props.user || {photoUrl: "", username: ""};
-    const following = this.props.currentUser.follows_user_ids.includes(user.id);
+    const { currentUser, unfollowUser, followUser } = this.props;
+    const following = currentUser.follows_user_ids.includes(user.id);
+
     const button = following ? (
-      <button className="unfollow-user-btn" onClick={() => this.props.unfollowUser({
-          followed_id: user.id,
-          follower_id: this.props.currentUser.id
-        })}>Unfollow</button>
+      <button className="unfollow-user-btn" onClick={() =>
+          unfollowUser({ followed_id: user.id, follower_id: currentUser.id})}>
+          Unfollow
+      </button>
     ) : (
-      <button className="follow-user-btn" onClick={() => this.props.followUser({
-          followed_id: user.id,
-          follower_id: this.props.currentUser.id
-        })}>Follow</button>
+      <button className="follow-user-btn" onClick={() =>
+          followUser({ followed_id: user.id, follower_id: currentUser.id})}>
+          Follow
+      </button>
     )
 
-    const ownPage = this.props.currentUser.id === user.id;
+    const ownPage = currentUser.id === user.id;
     const followButton = ownPage ? null : button;
+
     return (
       <section id="user-show">
         <header id="user-show-head">

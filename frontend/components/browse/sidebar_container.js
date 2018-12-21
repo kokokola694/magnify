@@ -8,6 +8,7 @@ const msp = (state, ownProps) => {
   const atBrowse = () => currentPathArray[1] === "browse";
   const atCollection = () => currentPathArray[1] === "collection";
   const atSearch = () => currentPathArray[1] === "search";
+  
   return {
     currentUser: state.entities.users[state.session.id],
     atBrowse,

@@ -1,12 +1,12 @@
-import { connect } from 'react-redux';
-import SearchNavbar from './search_navbar';
-import { withRouter } from 'react-router-dom';
 import React from 'react';
+import SearchNavbar from './search_navbar';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 const msp = (state, ownProps) => {
   const path = ownProps.location.pathname;
   const noNavBar = path.split('/')[2] === "recent";
-  const input = ownProps.location.pathname.split('/')[3];
+  const input = path.split('/')[3];
   return {
     navType: "search",
     input,
@@ -14,9 +14,4 @@ const msp = (state, ownProps) => {
   }
 }
 
-const mdp = dispatch => {
-  return {
-  }
-}
-
-export default withRouter(connect(msp, mdp)(SearchNavbar));
+export default withRouter(connect(msp, null)(SearchNavbar));

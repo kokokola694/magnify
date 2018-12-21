@@ -1,15 +1,15 @@
 import React from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
-const SearchNavbar = (props) => {
+const SearchNavbar = ({input}) => {
 
   return (
     <nav className="search-navbar browse-navbar">
-      <NavLink to={`/search/results/${props.input}`}>Top Results</NavLink>
-      <NavLink to={`/search/playlists/${props.input}`}>Playlists</NavLink>
-      <NavLink to={`/search/artists/${props.input}`}>Artists</NavLink>
-      <NavLink to={`/search/albums/${props.input}`}>Albums</NavLink>
-      <NavLink to={`/search/songs/${props.input}`}>Songs</NavLink>
+      <NavLink to={`/search/results/${input}`}>Top Results</NavLink>
+      <NavLink to={`/search/playlists/${input}`}>Playlists</NavLink>
+      <NavLink to={`/search/artists/${input}`}>Artists</NavLink>
+      <NavLink to={`/search/albums/${input}`}>Albums</NavLink>
+      <NavLink to={`/search/songs/${input}`}>Songs</NavLink>
     </nav>
   )
 }

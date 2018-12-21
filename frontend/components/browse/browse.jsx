@@ -1,6 +1,6 @@
 import React from 'react';
-import SideBarContainer from './sidebar_container';
 import { Route, Switch } from 'react-router-dom';
+import SideBarContainer from './sidebar_container';
 import PlaylistIndexContainer from '../playlists/playlist_index_container';
 import AlbumIndexContainer from '../albums/album_index_container';
 import ArtistIndexContainer from '../artists/artist_index_container';
@@ -11,8 +11,6 @@ import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
 import UserShowContainer from '../users/user_show_container';
 import Featured from './featured';
-import Player from '../player/player';
-
 
 const Browse = () => {
   return (

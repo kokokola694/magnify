@@ -1,19 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const AlbumIndexItem = ({album}) => {
+const AlbumIndexItem = ({album: {id, photoUrl, title, artist_id, artistName}}) => {
   return (
     <li className="index-item">
-      <Link to={`/browse/albums/${album.id}`}>
-        <img className="index-item-img" src={album.photoUrl}/>
-        <section>{album.title}</section>
+      <Link to={`/browse/albums/${id}`}>
+        <img className="index-item-img" src={photoUrl}/>
+        <section>{title}</section>
       </Link>
-      <Link to={`/browse/artists/${album.artist_id}`}>
-        <section className="album-item-artist">{album.artistName}</section>
+      <Link to={`/browse/artists/${artist_id}`}>
+        <section className="album-item-artist">{artistName}</section>
       </Link>
-
     </li>
-
   )
 }
 

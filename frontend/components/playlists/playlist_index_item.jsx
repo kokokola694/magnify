@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PlaylistIndexItem = ({playlist, photoUrl}) => {
+const PlaylistIndexItem = ({ playlist, photoUrl }) => {
 
   return (
     <li className="index-item">
@@ -9,8 +9,9 @@ const PlaylistIndexItem = ({playlist, photoUrl}) => {
         <img className="index-item-img" src={photoUrl}/>
         <section>{playlist.title}</section>
       </Link>
-      <Link id="user-show-link" to={`/browse/users/${playlist.author_id}`}>{playlist.author}</Link>
-
+      <Link id="user-show-link" to={`/browse/users/${playlist.author_id}`}>
+        {playlist.author}
+      </Link>
     </li>
 
   )

@@ -1,5 +1,5 @@
 import React from 'react';
-import {AuthRoute, ProtectedRoute} from '../../util/route_util';
+import { ProtectedRoute } from '../../util/route_util';
 import Browse from '../browse/browse';
 import Collection from '../collection/collection';
 import Search from '../search/search_container';

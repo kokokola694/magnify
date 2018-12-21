@@ -12,11 +12,6 @@ export const fetchArtist = (id) => dispatch => {
   .then(artist => dispatch(receiveArtist(artist)))
 }
 
-export const searchArtists = input => dispatch => {
-  return ArtistApi.searchArtists(input)
-  .then(artists => dispatch(receiveArtists(artists)))
-}
-
 
 const receiveArtists = (artists) => {
   return {

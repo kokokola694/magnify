@@ -38,26 +38,21 @@ class Queue extends React.Component {
       </section>
     )
   }
-
 }
 
 const msp = state => {
-  const playSong = state.ui.player.playSong || {song: ""};
-  const shuffled = state.ui.player.shuffled;
-  const queue = !shuffled ? state.ui.player.queue : state.ui.player.shuffledQueue;
-  const queueIds = queue.map(song => song.id);
+  let { playSong, shuffled, queue, shuffledQueue } = state.ui.player;
+
+  playSong = playSong || {song: ""};
+  const updatedQueue = !shuffled ? queue : shuffledQueue;
+  const queueIds = updatedQueue.map(song => song.id);
   const playingSongIdx = queueIds.indexOf(playSong.song.id);
-  const queueSongs = queue.slice(playingSongIdx);
+  const queueSongs = updatedQueue.slice(playingSongIdx);
+
   return {
     queueSongs,
     shuffled,
   }
 }
 
-const mdp = dispatch => {
-  return {
-
-  }
-}
-
-export default connect(msp, mdp)(Queue);
+export default connect(msp, null)(Queue);

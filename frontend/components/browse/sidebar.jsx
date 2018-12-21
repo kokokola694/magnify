@@ -7,10 +7,13 @@ class Sidebar extends React.Component {
     super(props);
   }
 
-
   render() {
-    const recentItems = this.props.recent.map(playSong =>
-      <RecentItem key={playSong.song.id} song={playSong.song} album={playSong.album} artist={playSong.artist} />);
+    const { recent, atSearch, atBrowse, atCollection,
+      currentUser, logout} = this.props;
+
+    const recentItems = recent.map(playSong =>
+      <RecentItem key={playSong.song.id} song={playSong.song}
+        album={playSong.album} artist={playSong.artist} />);
 
     return (
       <div className="side-bar">
@@ -20,7 +23,7 @@ class Sidebar extends React.Component {
             Magnify</section>
           <section className="side-bar-links">
             <section>
-              <NavLink to="/search/recent" isActive={this.props.atSearch}>
+              <NavLink to="/search/recent" isActive={atSearch}>
                 <svg viewBox="0 0 512 512" width="22" height="22" xmlns="http://www.w3.org/2000/svg">
                   <path d="M349.714 347.937l93.714 109.969-16.254
                      13.969-93.969-109.969q-48.508 36.825-109.207
@@ -36,7 +39,7 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
             <section>
-              <NavLink to="/browse/featured" isActive={this.props.atBrowse}>
+              <NavLink to="/browse/featured" isActive={atBrowse}>
                 <svg viewBox="0 0 512 512" width="22" height="22"
                   xmlns="http://www.w3.org/2000/svg"><path d="M 256.274 60.84 L
                   84.324 166.237 L 84.324 443.063 L 193.27 443.063 L 193.27 293.73
@@ -49,7 +52,7 @@ class Sidebar extends React.Component {
               </NavLink>
             </section>
             <section>
-              <NavLink to="/collection/playlists" isActive={this.props.atCollection}>
+              <NavLink to="/collection/playlists" isActive={atCollection}>
                 <svg viewBox="0 0 512 512" width="22" height="22"
                   xmlns="http://www.w3.org/2000/svg">
                   <path d="M311.873 77.46l166.349 373.587-39.111
@@ -69,15 +72,13 @@ class Sidebar extends React.Component {
           </section>
         </section>
 
-
-
         <section className="side-bar-bottom">
           <section className="side-bar-line"></section>
-          <Link to={`/browse/users/${this.props.currentUser.id}`} className="side-bar-current-user">
-            <img className="side-bar-pic" src={this.props.currentUser.photoUrl}/>
-            <section>{this.props.currentUser.username}</section>
+          <Link to={`/browse/users/${currentUser.id}`} className="side-bar-current-user">
+            <img className="side-bar-pic" src={currentUser.photoUrl}/>
+            <section>{currentUser.username}</section>
           </Link>
-          <button className="logout" onClick={this.props.logout}>Log Out</button>
+          <button className="logout" onClick={logout}>Log Out</button>
         </section>
       </div>
     )

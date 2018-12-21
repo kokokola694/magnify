@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { fetchSongs, searchSongs } from '../../actions/song_actions';
 import { withRouter } from 'react-router';
+import { fetchSongs } from '../../actions/song_actions';
 import { fetchAlbum } from '../../actions/album_actions';
 import { fetchArtist } from '../../actions/artist_actions';
 import { fetchPlaylist } from '../../actions/playlist_actions';
@@ -9,69 +9,64 @@ import { addQueue, fetchPlaySong, pauseSong,
 import SongIndex from './song_index';
 
 const msp = (state, ownProps) => {
-  let songs;
-  const albumId = ownProps.match.params.albumId;
-  const artistId = ownProps.match.params.artistId;
-  const playlist = ownProps.playlist;
+  let input;
+  let songs = Object.values(state.entities.songs);
+  let { albums, artists } = state.entities;
+
+  const pathUrl = ownProps.match.path;
+  const { albumId, artistId, url } = ownProps.match.params;
+  const { playlist, queueSongs } = ownProps;
+
   const currentUser = state.entities.users[state.session.id];
-  let input = null;
 
   // Album, artist, or playlist show pages
   if (albumId) {
-    songs = Object.values(state.entities.songs)
-      .filter(song => song.album_id == albumId);
+    songs = songs.filter(song => song.album_id == albumId);
   } else if (artistId) {
-    songs = Object.values(state.entities.songs)
-      .filter(song => song.artist_id == artistId);
+    songs = songs.filter(song => song.artist_id == artistId);
   } else if (!!playlist) {
-      const songIds = ownProps.playlist.song_ids;
-      songs = songIds.length === 0 ? [] : (
-        Object.values(state.entities.songs)
-          .filter(song => songIds.includes(song.id))
-      );
+      const songIds = playlist.song_ids;
+      songs = songIds.length === 0 ?
+        [] : songs.filter(song => songIds.includes(song.id));
 
-  } else if (ownProps.match.path.slice(0,11) === "/collection") {
-    songs = Object.values(state.entities.songs)
-      .filter(song => currentUser.saved_song_ids.includes(song.id));
-  } else if (ownProps.match.path.slice(0,7) === "/search") {
+  // Library, search results, queue pages
+  } else if (pathUrl.slice(0,11) === "/collection") {
+    songs = songs.filter(song => currentUser.saved_song_ids.includes(song.id));
+  } else if (pathUrl.slice(0,7) === "/search") {
     input = ownProps.location.pathname.split('/')[3];
-    songs = Object.values(state.entities.songs)
-      .filter(song => song.title.toLowerCase().includes(input.toLowerCase()));
-  } else if (ownProps.match.path.split('/')[1] === "queue") {
-    songs = ownProps.queueSongs;
-  } else {
-    songs = Object.values(state.entities.songs);
+    songs = songs.filter(song =>
+      song.title.toLowerCase().includes(input.toLowerCase()));
+  } else if (pathUrl.split('/')[1] === "queue") {
+    songs = queueSongs;
   }
 
-
   const updatedSongs = songs.map(song => {
-    const artistName = state.entities.artists[song.artist_id].name;
-    const albumName = state.entities.albums[song.album_id].title;
+    const artistName = artists[song.artist_id].name;
+    const albumName = albums[song.album_id].title;
     return Object.assign({}, song, { artistName }, { albumName });
   })
 
   const playSong = state.ui.player.playSong || { song: "" };
+  const { queue, shuffledQueue, playing } = state.ui.player;
 
   return {
     songs: updatedSongs,
-    currentUserId: state.session.id,
     currentUser,
-    indexType: ownProps.match.params.url,
     playlist,
     input,
-    albums: state.entities.albums,
-    artists: state.entities.artists,
+    albums,
+    artists,
+    playing,
+    queue,
+    shuffledQueue,
+    indexType: url,
     playSongId: playSong.song.id,
-    playing: state.ui.player.playing,
-    queue: state.ui.player.queue,
-    shuffledQueue: state.ui.player.shuffledQueue
   }
 }
 
 const mdp = dispatch => {
   return {
     fetchSongs: (ids) => dispatch(fetchSongs(ids)),
-    searchSongs: (input) => dispatch(searchSongs(input)),
     fetchAlbum: (id) => dispatch(fetchAlbum(id)),
     fetchArtist: (id) => dispatch(fetchArtist(id)),
     fetchPlaylist: (id) => dispatch(fetchPlaylist(id)),

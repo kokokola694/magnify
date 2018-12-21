@@ -1,10 +1,6 @@
 import React from 'react';
 import NavBarContainer from './navbar_container';
-import { Route, Link } from 'react-router-dom';
-import LoginFormContainer from './login_form_container';
-import SignupFormContainer from './signup_form_container';
-import AuthRoute from '../../util/route_util';
-import Browse from '../browse/browse';
+import { Link } from 'react-router-dom';
 
 const Splash = () => {
   return (
@@ -14,9 +10,7 @@ const Splash = () => {
         <section className="splash-main">
           <h1>Music for everyone.</h1>
           <h2>"Millions" of songs for free.</h2>
-          <div>
-            <Link to='/signup'>Get Magnify Free</Link>
-          </div>
+          <div><Link to='/signup'>Get Magnify Free</Link></div>
         </section>
       </div>
 
@@ -29,10 +23,18 @@ const Splash = () => {
             <section>
               <h3>About</h3>
               <ul >
-                <li><a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>LinkedIn</a></li>
-                <li><a href='https://github.com/kokokola694'>Github</a></li>
+                <li>
+                  <a href='https://www.linkedin.com/in/michael-ko-7bb503b1/'>
+                    LinkedIn
+                  </a>
+                </li>
+
+                <li>
+                  <a href='https://github.com/kokokola694'>Github</a>
+                </li>
               </ul>
             </section>
+
             <section>
               <h3>Useful Links</h3>
               <ul >
@@ -41,11 +43,29 @@ const Splash = () => {
               </ul>
             </section>
           </div>
+
           <ul className="splash-footer-icons">
-            <li><a href="http://instagram.com/spotify"><i className="fab fa-instagram"></i></a></li>
-            <li><a href="http://twitter.com/spotify"><i className="fab fa-twitter"></i></a></li>
-            <li><a href="http://facebook.com/Spotify"><i className="fab fa-facebook-f"></i></a></li>
+
+            <li>
+              <a href="http://instagram.com/spotify">
+                <i className="fab fa-instagram"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="http://twitter.com/spotify">
+                <i className="fab fa-twitter"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="http://facebook.com/Spotify">
+                <i className="fab fa-facebook-f"></i>
+              </a>
+            </li>
+
           </ul>
+
         </section>
       </footer>
     </div>

@@ -18,7 +18,6 @@ class Search extends React.Component {
   }
 
   handleInput (e) {
-
     this.setState({input: e.currentTarget.value}, () => {
       this.props.history.push(`/search/results/${this.state.input}`);
     });
@@ -26,9 +25,6 @@ class Search extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(#1d409e, black)";
-    // this.props.fetchPlaylists();
-    // this.props.fetchArtists();
-    // this.props.fetchSongs();
   }
 
   render () {
@@ -43,6 +39,7 @@ class Search extends React.Component {
     const searchNav = navPresent ? emptySearch : (
       <Route path='/search/' component={SearchNavbarContainer}/>
     );
+    
     return (
       <section className="homepage">
         <Route path='/' component={SideBarContainer} />

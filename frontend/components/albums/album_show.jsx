@@ -12,11 +12,21 @@ class AlbumShow extends React.Component {
     document.body.style.backgroundImage = "linear-gradient(rgb(68, 52, 84), black)";
   }
 
+  componentDidUpdate (oldProps) {
+    const oldParams = oldProps.match.params;
+    const params = this.props.match.params;
+    if (oldParams.albumId !== params.albumId) {
+      const { fetchSongs, fetchAlbum } = this.props;
+      fetchAlbum(params.albumId).then((payload) =>
+        fetchSongs(payload.album.song_ids));
+      }
+  }
 
   play() {
-    this.props.clearQueue();
-    this.props.addQueue(this.props.songs, this.shuffle(this.props.songs))
-    this.props.fetchPlaySong(this.props.songs[0].id);
+    const { clearQueue, addQueue, fetchPlaySong, songs } = this.props;
+    clearQueue();
+    addQueue(songs, this.shuffle(songs))
+    fetchPlaySong(songs[0].id);
   }
 
   shuffle (songs) {
@@ -25,7 +35,8 @@ class AlbumShow extends React.Component {
     let randIdx;
     while (currentIdx >= 0) {
       randIdx = Math.floor(Math.random() * currentIdx);
-      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] = [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
+      [shuffledSongs[currentIdx], shuffledSongs[randIdx]] =
+        [shuffledSongs[randIdx], shuffledSongs[currentIdx]];
       currentIdx -= 1;
     }
     shuffledSongs.unshift(songs[0]);
@@ -33,36 +44,38 @@ class AlbumShow extends React.Component {
   };
 
   render () {
-    const artist = this.props.album.artist || {name: ""};
-    const saveButton = this.props.savedIndicator ? (
-      <button className="show-save" onClick={() => this.props.deleteSave({
-          savable_id: this.props.album.id,
+    const { savedIndicator, deleteSave, currentUser,
+      createSave, album } = this.props;
+
+    const artist = album.artist || {name: ""};
+    const saveButton = savedIndicator ? (
+      <button className="show-save" onClick={() => deleteSave({
+          savable_id: album.id,
           savable_type: "Album",
-          saver_id: this.props.currentUser.id
+          saver_id: currentUser.id
         })}>
         Remove From Your Library</button>
     ) : (
-      <button className="show-save" onClick={() => this.props.createSave({
-          savable_id: this.props.album.id,
+      <button className="show-save" onClick={() => createSave({
+          savable_id: album.id,
           savable_type: "Album",
-          saver_id: this.props.currentUser.id
+          saver_id: currentUser.id
         })}>
         Save To Your Library</button>
     );
 
-    const albumSongs = this.props.album.song_ids || {length: ""};
-    const plural = albumSongs.length === 1 ? "Song" : "Songs";
-
+    const albumSongs = album.song_ids || { length: "" };
+    const pluralSongs = albumSongs.length === 1 ? "Song" : "Songs";
 
     return (
       <section className="show">
         <header>
-          <img className="show-img" src={this.props.album.photoUrl}/>
+          <img className="show-img" src={album.photoUrl}/>
           <section className="show-info">
             <div className="show-title-author">
-              <h1>{this.props.album.title}</h1>
+              <h1>{album.title}</h1>
               <h2>
-                <Link to={`/browse/artists/${this.props.album.artist_id}`}>
+                <Link to={`/browse/artists/${album.artist_id}`}>
                   {artist.name}
                 </Link>
               </h2>
@@ -70,9 +83,9 @@ class AlbumShow extends React.Component {
             <section className="show-play-length">
               <button onClick={this.play} className="green-play">Play</button>
               <div className="album-year-songs">
-                <h3>{this.props.album.year}</h3>
+                <h3>{album.year}</h3>
                 <h3 className="middot">&middot;</h3>
-                <h3>{albumSongs.length} {plural}</h3>
+                <h3>{albumSongs.length} {pluralSongs}</h3>
               </div>
 
             </section>
@@ -80,7 +93,10 @@ class AlbumShow extends React.Component {
           </section>
         </header>
         <main>
-          <SongIndexContainer album={this.props.album} albumSongIds={this.props.album.song_ids}/>
+          <SongIndexContainer
+            album={album}
+            albumSongIds={album.song_ids}
+          />
         </main>
       </section>
     )

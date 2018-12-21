@@ -27,8 +27,12 @@ class DeletePlaylist extends React.Component {
         <button onClick={() => this.props.closeModal()} id="exit-modal">X</button>
         <h1>Do you really want to delete this playlist?</h1>
         <section className="modal-buttons">
-          <button className="artist-save" onClick={() => this.props.closeModal()}>Cancel</button>
-          <button className="playlist-create-btn" onClick={this.handleSubmit} >Delete</button>
+          <button className="artist-save" onClick={() => this.props.closeModal()}>
+            Cancel
+          </button>
+          <button className="playlist-create-btn" onClick={this.handleSubmit}>
+            Delete
+          </button>
         </section>
       </section>
     )

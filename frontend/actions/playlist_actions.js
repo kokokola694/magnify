@@ -40,12 +40,6 @@ export const deletePlaylistSong = (playlistSong) => dispatch => {
   .then( (playlistSong) => dispatch(removePlaylistSong(playlistSong)))
 }
 
-export const searchPlaylists = (input) => dispatch => {
-  return PlaylistApi.searchPlaylists(input)
-  .then( playlists => dispatch(receivePlaylists(playlists)))
-}
-
-
 const receivePlaylists = (playlists) => {
   return {
     type: RECEIVE_PLAYLISTS,

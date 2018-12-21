@@ -43,11 +43,3 @@ export const deletePlaylistSong = (playlistSong) => {
     data: {playlistSong}
   })
 }
-
-export const searchPlaylists = (input) => {
-  return $.ajax({
-    method: "GET",
-    url: 'api/playlists',
-    data: {input}
-  })
-}

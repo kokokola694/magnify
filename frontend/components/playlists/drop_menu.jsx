@@ -21,9 +21,10 @@ class DropMenu extends React.Component {
   }
 
   handleRemove () {
-    this.props.deletePlaylistSong(
-      {song_id: this.props.selectedSong.id, playlist_id: this.props.match.params.playlistId}
-    );
+    this.props.deletePlaylistSong({
+      song_id: this.props.selectedSong.id,
+      playlist_id: this.props.match.params.playlistId
+    });
   }
 
   handleSaveSong (saveInfo) {
@@ -40,7 +41,8 @@ class DropMenu extends React.Component {
     dropmenu.classList.toggle("disp");
     const dropmenus = document.getElementsByClassName("dropmenu");
     for (let i = 0; i < dropmenus.length; i++) {
-      if (dropmenus[i].classList.contains('disp') && dropmenus[i].id !== `dropmenu-${this.props.song.id}`) {
+      if (dropmenus[i].classList.contains('disp') &&
+        dropmenus[i].id !== `dropmenu-${this.props.song.id}`) {
         dropmenus[i].classList.remove('disp');
       }
     }
@@ -104,14 +106,11 @@ class DropMenu extends React.Component {
     return (
       <div className="drop">
         <button onClick={this.handleDisp} className="drop-btn">•••</button>
-
-
           <ul className="dropmenu" id={`dropmenu-${this.props.song.id}`}>
             <div className="dropmenu-songinfo">
               <img src={this.props.album.photoUrl} />
               <h1>{this.props.song.title}</h1>
               <h2 id="mobile-drop-artist">{this.props.artist.name}</h2>
-
             </div>
             <li className="playlist-addto" onClick={() => this.handleAdd()}>
               <button className="playlist-addto-btn" >
@@ -121,7 +120,6 @@ class DropMenu extends React.Component {
             { removeButton }
             { saveButton }
           </ul>
-
       </div>
     )
   }
@@ -129,7 +127,6 @@ class DropMenu extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-
   return {
     selectedSong: state.ui.selectedSong,
     currentUser: state.entities.users[state.session.id],

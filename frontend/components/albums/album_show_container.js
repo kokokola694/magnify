@@ -8,16 +8,22 @@ import { fetchPlaySong, addQueue, clearQueue } from '../../actions/player_action
 
 const msp = (state, ownProps) => {
   const albumId = ownProps.match.params.albumId;
-  const album = state.entities.albums[albumId] || {};
-  const updatedAlbum = Object.assign({}, album, {artist: state.entities.artists[album.artist_id]});
-  const currentUser = state.entities.users[state.session.id];
+  const { albums, songs, users, artists } = state.entities;
+
+  const album = albums[albumId] || { song_ids: [] };
+  const updatedAlbum = Object.assign({}, album,
+    { artist: artists[album.artist_id] });
+
+  const currentUser = users[state.session.id];
   const savedIndicator = currentUser.saved_album_ids.includes(parseInt(albumId));
-  const songs = Object.values(state.entities.songs).filter(song => album.song_ids.includes(song.id));
+  const updatedSongs = Object.values(songs)
+    .filter(song => album.song_ids.includes(song.id));
+
   return {
     album: updatedAlbum,
+    songs: updatedSongs,
     currentUser,
     savedIndicator,
-    songs
   }
 }
 

@@ -10,18 +10,8 @@ class ArtistIndex extends React.Component {
     document.body.style.backgroundImage = "linear-gradient(#80495e, black)";
     if (this.props.match.path.slice(0,11) === "/collection") {
       this.props.fetchArtists(this.props.currentUser.saved_artist_ids);
-    } else if (this.props.match.path.slice(0,7) === "/search") {
-      this.props.searchArtists(this.props.input);
-    } else {
+    } else if (this.props.match.path.slice(0,7) === "/browse") {
       this.props.fetchArtists();
-    }
-  }
-
-  componentDidUpdate(oldProps) {
-    if (oldProps.location.pathname !== oldProps.location.pathname) {
-      if (this.props.match.path.slice(0,7) === "/search") {
-        this.props.searchArtists(this.props.input);
-      }
     }
   }
 

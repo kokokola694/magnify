@@ -28,15 +28,13 @@ class SessionForm extends React.Component {
     if (user.length > 0) {
       this.setState(
         { username: this.state.username + user.shift() }, () => {
-          window.setTimeout( () =>
-            this.demoHelper(user, password), 45);
+          window.setTimeout( () => this.demoHelper(user, password), 45);
         }
       );
     } else if (password.length > 0) {
       this.setState(
         { password: this.state.password + password.shift() }, () => {
-          window.setTimeout( () =>
-            this.demoHelper(user, password), 45);
+          window.setTimeout( () => this.demoHelper(user, password), 45);
         }
       );
     } else {
@@ -44,7 +42,7 @@ class SessionForm extends React.Component {
     }
   }
 
-  update(field) {
+  update (field) {
     return (e) => this.setState({
       [field]: e.currentTarget.value
     });
@@ -55,7 +53,8 @@ class SessionForm extends React.Component {
     const submitButton = loginPage ? "Log In" : "Sign up"
     const otherLinkPath = loginPage ? "/signup" : "/login";
     const otherLinkVal = loginPage ? "Sign up" : "Log In";
-    const otherLinkPretext = loginPage ? "Don't have an account?" : "Already have an account?";
+    const otherLinkPretext = loginPage ?
+      "Don't have an account?" : "Already have an account?";
 
     const errors = this.props.errors.map((err,i) => <li key={i}>{err}</li>);
 
@@ -65,7 +64,9 @@ class SessionForm extends React.Component {
           <div id="favicon-session"></div>
           <Link to='/'>Magnify</Link></header>
 
-        <button className="session-demo" onClick={this.handleDemo}>Demo Log In</button>
+        <button className="session-demo" onClick={this.handleDemo}>
+          Demo Log In
+        </button>
         <div className="session-demo-divider">
           <div className="session-demo-line"></div>
           <div className="session-demo-divider-text">or</div>
@@ -81,12 +82,17 @@ class SessionForm extends React.Component {
             value={this.state.username} placeholder="Username"/>
           <input type="password" onChange={this.update("password")}
             value={this.state.password} placeholder="Password"/>
-          <input className="session-submit-button" id="session-submit" type="submit" value={submitButton}></input>
+          <input className="session-submit-button" id="session-submit"
+            type="submit" value={submitButton}></input>
         </form>
+
         <div className="session-switch">
           <div className="session-bot-line"></div>
           <p>{otherLinkPretext}</p>
-          <Link onClick={this.props.clearErrors} className="session-switch-link" to={otherLinkPath}>{otherLinkVal}</Link>
+          <Link onClick={this.props.clearErrors} className="session-switch-link"
+            to={otherLinkPath}>
+            {otherLinkVal}
+          </Link>
         </div>
       </div>
     )

@@ -13,9 +13,10 @@ class PlaylistShow extends React.Component {
   }
 
   play() {
-    this.props.clearQueue();
-    this.props.addQueue(this.props.songs, this.shuffle(this.props.songs))
-    this.props.fetchPlaySong(this.props.songs[0].id);
+    const { clearQueue, addQueue, fetchPlaySong, songs } = this.props;
+    clearQueue();
+    addQueue(songs, this.shuffle(songs));
+    fetchPlaySong(songs[0].id);
   }
 
   shuffle (songs) {
@@ -35,8 +36,10 @@ class PlaylistShow extends React.Component {
   };
 
   render () {
-    const songIds = this.props.playlist.song_ids || {length: ""};
-    const belongsToCurrentUser = this.props.playlist.author_id === this.props.currentUser.id;
+    const { playlist, currentUser, savedIndicator, deleteSave,
+      createSave, openModal, firstPhoto } = this.props;
+    const songIds = playlist.song_ids || {length: ""};
+    const belongsToCurrentUser = playlist.author_id === currentUser.id;
     const extraInfo = belongsToCurrentUser ? (
       <>
         <h2 className="find-more">Find more of the music you love</h2>
@@ -58,35 +61,33 @@ class PlaylistShow extends React.Component {
       </section>
     ) : null;
 
-    const saveButton = this.props.savedIndicator ? (
-      <button className="show-save" onClick={() => this.props.deleteSave({
-          savable_id: this.props.playlist.id,
+    const saveButton = savedIndicator ? (
+      <button className="show-save" onClick={() => deleteSave({
+          savable_id: playlist.id,
           savable_type: "Playlist",
-          saver_id: this.props.currentUser.id
+          saver_id: currentUser.id
         })}>
         Remove From Your Library</button>
     ) : (
-      <button className="show-save" onClick={() => this.props.createSave({
-          savable_id: this.props.playlist.id,
+      <button className="show-save" onClick={() => createSave({
+          savable_id: playlist.id,
           savable_type: "Playlist",
-          saver_id: this.props.currentUser.id
+          saver_id: currentUser.id
         })}>
         Save To Your Library</button>
     );
 
-    const playlistSongs = this.props.playlist.song_ids || {length: ""};
-
+    const playlistSongs = playlist.song_ids || {length: ""};
+    const plural = playlistSongs.length === 1 ? "Song" : "Songs";
     const playButton = playlistSongs.length === 0 ? null : (
       <button onClick={this.play} className="green-play">Play</button>
     );
-    const plural = playlistSongs.length === 1 ? "Song" : "Songs";
 
-    const openModal = belongsToCurrentUser ? this.props.openModal : saveButton;
-
+    const openModalButton = belongsToCurrentUser ? openModal : saveButton;
     const photoUrl = playlistSongs.length === 0 ? (
-      this.props.playlist.photoUrl
+      playlist.photoUrl
     ) : (
-      this.props.firstPhoto
+      firstPhoto
     );
 
     return (
@@ -95,9 +96,9 @@ class PlaylistShow extends React.Component {
           <img className="show-img temp" src={photoUrl}/>
           <section className="show-info">
             <div className="show-title-author">
-              <h1>{this.props.playlist.title}</h1>
-              <h2><Link to={`/browse/users/${this.props.playlist.author_id}`}>
-                {this.props.playlist.author}
+              <h1>{playlist.title}</h1>
+              <h2><Link to={`/browse/users/${playlist.author_id}`}>
+                {playlist.author}
               </Link></h2>
             </div>
             <div className="show-play-length">
@@ -105,14 +106,14 @@ class PlaylistShow extends React.Component {
               <h3>{songIds.length} {plural}</h3>
             </div>
             <div id="delete-dropdown">
-              {openModal}
+              {openModalButton}
             </div>
           </section>
         </header>
         <main>
           {emptyDesc}
-          <SongIndexContainer className="show-songs" playlist={this.props.playlist}
-            songIds={this.props.playlist.song_ids}/>
+          <SongIndexContainer className="show-songs" playlist={playlist}
+            songIds={playlist.song_ids}/>
         </main>
       </section>
     )
