@@ -4,24 +4,29 @@ import { Link } from 'react-router-dom';
 class SessionForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { username: "", password: "" };
+    this.state = { username: "", password: "", demoClicked: false };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDemo = this.handleDemo.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const user = Object.assign({}, this.state);
-    this.props.processForm(user);
+    this.setState({ clicked: true }, ()=> {
+      const user = Object.assign({}, this.state);
+      this.props.processForm(user);
+    })
+
   }
 
   handleDemo (e) {
     e.preventDefault();
-    const user = 'demo'.split('');
-    const password = 'password'.split('');
-    this.setState( {username: '', password: ''}, () =>
-      this.demoHelper(user, password)
-    );
+    if (!this.state.clicked) {
+      const user = 'demo'.split('');
+      const password = 'password'.split('');
+      this.setState( {username: '', password: '', clicked: true}, () =>
+        this.demoHelper(user, password)
+      );
+    }
   }
 
   demoHelper (user, password) {
