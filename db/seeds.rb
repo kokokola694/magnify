@@ -275,8 +275,8 @@ s55 = Song.new(title: "Sunflower", artist_id: ar19.id, album_id: ab22.id, durati
 s56 = Song.new(title: "Warriors", artist_id: ar18.id, album_id: ab21.id, duration: "2:59")
   attach_audio(s56, "id_warriors.mp3")
 
-s57 = Song.new(title: "POP/STARS", artist_id: ar17.id, album_id: ab20.id, duration: "3:23")
-  attach_audio(s57, "kda_popstars.mp3")
+s6 = Song.new(title: "POP/STARS", artist_id: ar17.id, album_id: ab20.id, duration: "3:23")
+  attach_audio(s6, "kda_popstars.mp3")
 
 
 pl1 = Playlist.new(title: "Favorites", author_id: u1.id)
