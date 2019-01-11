@@ -11,6 +11,7 @@ import PlaylistShowContainer from '../playlists/playlist_show_container';
 import BrowseNavbarContainer from './browse_navbar_container';
 import UserShowContainer from '../users/user_show_container';
 import Featured from './featured';
+import Genre from './genre';
 
 const Browse = () => {
   return (
@@ -21,6 +22,7 @@ const Browse = () => {
       <main className="homepage-main">
         <Switch>
           <Route path='/browse/featured' component={Featured}/>
+          <Route path='/browse/genres' component={Genre}/>
           <Route path='/browse/playlists/:playlistId' component={PlaylistShowContainer}/>
           <Route path='/browse/playlists' component={PlaylistIndexContainer}/>
           <Route path='/browse/albums/:albumId' component={AlbumShowContainer}/>

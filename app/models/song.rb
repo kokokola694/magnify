@@ -23,6 +23,10 @@ class Song < ApplicationRecord
     through: :saves,
     source: :saver
 
+  has_many :recents,
+    foreign_key: :song_id,
+    class_name: :Recent
+
   has_one_attached :audio
 
 end

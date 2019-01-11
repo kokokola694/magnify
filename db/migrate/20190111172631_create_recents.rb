@@ -1,4 +1,4 @@
-class CreateGenres < ActiveRecord::Migration[5.2]
+class CreateRecents < ActiveRecord::Migration[5.2]
   def change
     create_table :recents do |t|
       t.integer :song_id, null: false
@@ -9,6 +9,6 @@ class CreateGenres < ActiveRecord::Migration[5.2]
     add_index :recents, :user_id
     add_index :recents, :song_id
     add_index :recents, :album_id
-    add_column :albums, :genre, :string, null: false
+    drop_table :recent
   end
 end

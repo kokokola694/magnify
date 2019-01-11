@@ -23,7 +23,7 @@ const msp = (state, ownProps) => {
   if (albumId) {
     songs = songs.filter(song => song.album_id == albumId);
   } else if (artistId) {
-    songs = songs.filter(song => song.artist_id == artistId);
+    songs = songs.filter(song => song.artist_id == artistId).slice(0,5);
   } else if (!!playlist) {
       const songIds = playlist.song_ids;
       songs = songIds.length === 0 ?

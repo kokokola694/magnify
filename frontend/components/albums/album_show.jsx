@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SongIndexContainer from '../songs/song_index_container';
 import { Link } from 'react-router-dom';
 
@@ -10,6 +11,7 @@ class AlbumShow extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(rgb(68, 52, 84), black)";
+    ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   componentDidUpdate (oldProps) {

@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import SongIndexContainer from '../songs/song_index_container';
 import AlbumIndexContainer from '../albums/album_index_container';
 
@@ -10,6 +11,7 @@ class ArtistShow extends React.Component {
 
   componentDidMount() {
     document.body.style.backgroundImage = "linear-gradient(#80495e, black)";
+    ReactDOM.findDOMNode(this).scrollIntoView();
   }
 
   play() {

@@ -50,6 +50,11 @@ class User < ApplicationRecord
     through: :follows,
     source: :followed
 
+  # Recently played items
+  has_many :recents,
+    foreign_key: :user_id,
+    class_name: :Recent
+
 
   attr_reader :password
 

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :users, only: [:show, :create]
 
+    resources :genres, only: [:index, :show]
     resources :follows, only: [:create, :destroy]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :show]
