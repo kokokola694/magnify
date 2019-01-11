@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchAlbums } from '../../actions/album_actions';
+import { fetchGenre } from '../../actions/genre_actions';
 import AlbumIndex from './album_index';
 import { withRouter } from 'react-router';
 
@@ -10,6 +11,7 @@ const msp = (state, ownProps) => {
   let albums = Object.values(state.entities.albums);
 
   const artistId = ownProps.match.params.artistId;
+  const genreId = ownProps.match.params.genreId;
   const artist = state.entities.artists[artistId] || {album_ids: []};
   const currentUser = state.entities.users[state.session.id];
   const pathUrl = ownProps.match.path;
@@ -24,6 +26,8 @@ const msp = (state, ownProps) => {
     if (artistId) {
       albums = albums.filter(album => album.artist_id == artistId);
       artistAlbumIds = artist.album_ids;
+    } else if (genreId) {
+      albums = albums.filter(album => album.genre_id == genreId);
     } else {
       albums = albums;
     }
@@ -43,13 +47,15 @@ const msp = (state, ownProps) => {
     albums: updatedAlbums,
     currentUser,
     input,
-    artistAlbumIds
+    artistAlbumIds,
+    genreId
   }
 }
 
 const mdp = dispatch => {
   return {
     fetchAlbums: (ids) => dispatch(fetchAlbums(ids)),
+    fetchGenre: (id) => dispatch(fetchGenre(id))
   }
 }
 

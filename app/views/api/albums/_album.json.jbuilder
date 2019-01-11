@@ -8,5 +8,5 @@
 #   json.extract! album.artist, :id, :name
 # end
 
-json.extract! album, :id, :title, :year, :song_ids, :artist_id
+json.extract! album, :id, :title, :year, :song_ids, :artist_id, :genre_id
 json.photoUrl url_for(album.photo)

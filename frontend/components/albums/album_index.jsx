@@ -7,15 +7,17 @@ class AlbumIndex extends React.Component {
   }
 
   componentDidMount() {
-    const { currentUser, fetchAlbums, artistAlbumIds } = this.props;
+    const { currentUser, fetchAlbums, artistAlbumIds, fetchGenre, genreId } = this.props;
     const pathUrl = this.props.match.path;
 
     document.body.style.backgroundImage = "linear-gradient(rgb(68, 52, 84), black)";
 
     if (pathUrl.slice(0,11) === "/collection") {
       fetchAlbums(currentUser.saved_album_ids);
-    } else if (pathUrl.slice(0,14) === "/browse/artists") {
+    } else if (pathUrl.slice(0,15) === "/browse/artists") {
       fetchAlbums(artistAlbumIds);
+    } else if (genreId) {
+      fetchGenre(genreId);
     } else if (pathUrl.slice(0,14) === "/browse/albums") {
       fetchAlbums();
     }
