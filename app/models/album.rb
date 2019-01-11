@@ -1,5 +1,5 @@
 class Album < ApplicationRecord
-  validates :title, presence: true
+  validates :title, :genre, presence: true
 
   has_one_attached :photo
 
