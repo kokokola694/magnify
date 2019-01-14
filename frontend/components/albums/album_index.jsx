@@ -31,10 +31,14 @@ class AlbumIndex extends React.Component {
       && albums.length > 0 ? (
       <h1 className="search-headings">Albums</h1>
     ) : null;
+    const genreHead = pathUrl.slice(0,14) === "/browse/genres" ? (
+      <h1 className="search-headings">{this.props.genreName}</h1>
+    ) : null;
 
     return (
       <>
         {searchHead}
+        {genreHead}
         <ul className="index-list">
           {albums}
         </ul>

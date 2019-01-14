@@ -15,7 +15,8 @@ const msp = (state, ownProps) => {
   const artist = state.entities.artists[artistId] || {album_ids: []};
   const currentUser = state.entities.users[state.session.id];
   const pathUrl = ownProps.match.path;
-
+  const genre = state.entities.genres[genreId] || {name: ""};
+  
   if (pathUrl.slice(0,11) === "/collection") {
     albums = albums.filter(album => currentUser.saved_album_ids
       .includes(album.id));
@@ -48,7 +49,8 @@ const msp = (state, ownProps) => {
     currentUser,
     input,
     artistAlbumIds,
-    genreId
+    genreId,
+    genreName: genre.name
   }
 }
 

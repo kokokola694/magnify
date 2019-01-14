@@ -20,7 +20,7 @@ class Genre extends React.Component {
 
     return (
       <div className="genre">
-        <h1 className="featured-head">Genres</h1>
+        <h1 className="featured-head">Genres & Moods</h1>
         <ul className="index-list">
           {genreList}
         </ul>
