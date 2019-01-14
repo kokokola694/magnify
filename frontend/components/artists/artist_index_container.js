@@ -13,7 +13,7 @@ const msp = (state, ownProps) => {
     artists = artists.filter(artist =>
       currentUser.saved_artist_ids.includes(artist.id));
   } else if (pathUrl.slice(0,16) === "/browse/featured") {
-    artists = artists.slice(2,16);
+    artists = artists.slice(6,16);
   } else if (pathUrl.slice(0,7) === "/browse") {
     artists = artists
   } else if (pathUrl.slice(0,7) === "/search") {
@@ -21,7 +21,7 @@ const msp = (state, ownProps) => {
     artists = artists.filter(artist =>
       artist.name.toLowerCase().includes(input.toLowerCase()));
   }
-  
+
   return {
     artists,
     currentUser,

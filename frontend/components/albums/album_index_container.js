@@ -16,13 +16,13 @@ const msp = (state, ownProps) => {
   const currentUser = state.entities.users[state.session.id];
   const pathUrl = ownProps.match.path;
   const genre = state.entities.genres[genreId] || {name: ""};
-  
+
   if (pathUrl.slice(0,11) === "/collection") {
     albums = albums.filter(album => currentUser.saved_album_ids
       .includes(album.id));
 
   } else if (pathUrl.slice(0,16) === "/browse/featured") {
-    albums = albums.slice(4,18);
+    albums = albums.slice(6,16);
   } else if (pathUrl.slice(0,7) === "/browse") {
     if (artistId) {
       albums = albums.filter(album => album.artist_id == artistId);

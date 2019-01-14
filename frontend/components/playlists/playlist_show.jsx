@@ -45,7 +45,7 @@ class PlaylistShow extends React.Component {
     const extraInfo = belongsToCurrentUser ? (
       <>
         <h2 className="find-more">Find more of the music you love</h2>
-        <Link to='/browse/playlists'>Browse</Link>
+        <Link to='/browse/featured'>Browse</Link>
       </>
   ) : null;
 
