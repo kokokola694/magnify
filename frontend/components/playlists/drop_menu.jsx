@@ -97,6 +97,12 @@ class DropMenu extends React.Component {
       )
     }
 
+    // <li className="playlist-addto" onClick={() => this.handleAddNext()}>
+    //   <button className="playlist-addto-btn" >
+    //     Add To Queue
+    //   </button>
+    // </li>
+
     window.onclick = (e) => {
       if (!e.target.matches('.drop-btn')) {
         const dropmenus = document.getElementsByClassName("dropmenu");
@@ -122,11 +128,7 @@ class DropMenu extends React.Component {
                 Add To Playlist
               </button>
             </li>
-            <li className="playlist-addto" onClick={() => this.handleAddNext()}>
-              <button className="playlist-addto-btn" >
-                Add To Queue
-              </button>
-            </li>
+
             { removeButton }
             { saveButton }
           </ul>
