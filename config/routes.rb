@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create]
 
     resources :genres, only: [:index, :show]
+    resources :recents, only: [:index, :create]
     resources :follows, only: [:create, :destroy]
     resource :session, only: [:create, :destroy]
     resources :songs, only: [:index, :show]

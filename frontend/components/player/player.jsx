@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link, withRouter, NavLink } from 'react-router-dom';
 import Queue from './queue';
 import {  fetchPlaySong, pauseSong, resumeSong,
-  shuffle, clearQueue } from '../../actions/player_actions';
+  shuffle, clearQueue, clearNext } from '../../actions/player_actions';
 
 class Player extends React.Component {
   constructor(props) {
@@ -39,12 +39,18 @@ class Player extends React.Component {
 
   componentDidUpdate (oldProps) {
     let player = this.player.current;
-    const { shuffled, shuffledQueue, queue, playSong } = this.props;
+    const { shuffled, shuffledQueue, queue, playSong, next } = this.props;
     const updatedQueue = shuffled ? shuffledQueue : queue;
     if (playSong && oldProps.playSong !== playSong) {
-        const queueIdArray = updatedQueue.map(song => song.id);
-        const index = queueIdArray.indexOf(playSong.song.id);
-        this.setPlayerInfo(index);
+      // debugger
+      const queueIdArray = updatedQueue.map(song => song.id);
+      let oldIndex = this.state.index;
+      let newIndex = queueIdArray.indexOf(playSong.song.id);
+      let index = newIndex === -1 ? oldIndex : newIndex;
+      if (next[0] && next[0].id === playSong.song.id) {
+        this.props.clearNext();
+      }
+      this.setPlayerInfo(index);
     }
   }
 
@@ -108,11 +114,13 @@ class Player extends React.Component {
   nextSong () {
     let player = this.player.current;
     const { repeat } = this.state;
-    const { queue, playing, shuffled, shuffledQueue, fetchPlaySong } = this.props;
-
+    const { queue, playing, shuffled, shuffledQueue,
+      fetchPlaySong, next, clearNext } = this.props;
     if (this.state.repeat === "one" || (repeat === "all" && queue.length === 1)) {
       player.currentTime = 0;
       if (player.paused && playing) player.play();
+    } else if (next.length > 0) {
+      fetchPlaySong(next[0].id);
     } else {
       let index = this.state.index + 1;
       const updatedQueue = shuffled ? shuffledQueue : queue;
@@ -179,9 +187,9 @@ class Player extends React.Component {
   }
 
   setPlayerInfo (index) {
-    const { shuffled, shuffledQueue, queue, clearQueue, playSong } = this.props;
+    const { shuffled, shuffledQueue, queue, clearQueue, playSong, next } = this.props;
     const updatedQueue = shuffled ? shuffledQueue : queue;
-    if (index < 0 || index >= updatedQueue.length) {
+    if (index < -1 || index >= updatedQueue.length) {
       clearQueue();
       this.setState({
         currentSong: null, currentTitle: null, currentArtist: null,
@@ -312,13 +320,14 @@ class Player extends React.Component {
 }
 
 const msp = (state, ownProps) => {
-  const { playSong, queue, shuffledQueue, playing, shuffled } = state.ui.player;
+  const { playSong, queue, shuffledQueue, playing, shuffled, next } = state.ui.player;
   return {
     playSong,
     queue,
     shuffledQueue,
     playing,
-    shuffled
+    shuffled,
+    next
   }
 }
 
@@ -328,6 +337,7 @@ const mdp = dispatch => {
     resumeSong: () => dispatch(resumeSong()),
     pauseSong: () => dispatch(pauseSong()),
     clearQueue: () => dispatch(clearQueue()),
+    clearNext: () => dispatch(clearNext()),
     shuffle: () => dispatch(shuffle())
   }
 }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { openModal, closeModal } from '../../actions/modal_actions';
 import { withRouter } from 'react-router';
 import { deletePlaylistSong } from '../../actions/playlist_actions';
+import { addNext } from '../../actions/player_actions';
 import { fetchSelectedSong } from '../../actions/song_actions';
 import { createSave, deleteSave } from '../../actions/save_actions';
 
@@ -33,6 +34,10 @@ class DropMenu extends React.Component {
 
   handleUnsaveSong (saveInfo) {
     this.props.deleteSave(saveInfo);
+  }
+
+  handleAddNext() {
+    this.props.addNext(this.props.selectedSong);
   }
 
   handleDisp () {
@@ -117,6 +122,11 @@ class DropMenu extends React.Component {
                 Add To Playlist
               </button>
             </li>
+            <li className="playlist-addto" onClick={() => this.handleAddNext()}>
+              <button className="playlist-addto-btn" >
+                Add To Queue
+              </button>
+            </li>
             { removeButton }
             { saveButton }
           </ul>
@@ -142,7 +152,8 @@ const mdp = dispatch => {
     deletePlaylistSong: (playlistSong) => dispatch(deletePlaylistSong(playlistSong)),
     fetchSelectedSong: (id) => dispatch(fetchSelectedSong(id)),
     createSave: (saveInfo) => dispatch(createSave(saveInfo)),
-    deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo))
+    deleteSave: (saveInfo) => dispatch(deleteSave(saveInfo)),
+    addNext: (song) => dispatch(addNext(song)),
   }
 }
 

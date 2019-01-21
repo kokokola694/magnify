@@ -1,8 +1,16 @@
-import { ADD_QUEUE, PLAY_SONG, PAUSE_SONG, RESUME_SONG,
+import { ADD_QUEUE, PLAY_SONG, PAUSE_SONG, RESUME_SONG, ADD_NEXT, CLEAR_NEXT,
   CLEAR_QUEUE, SHUFFLE, DELETE_QUEUE } from '../actions/player_actions';
 import merge from 'lodash/merge';
 
-const defaultState = { queue: [], shuffledQueue:[], playSong: null, playing: false, shuffled: false, recent: [] };
+const defaultState = {
+  queue: [],
+  shuffledQueue:[],
+  playSong: null,
+  playing: false,
+  shuffled: false,
+  recent: [],
+  next: []
+};
 
 const shuffle = (songs, firstSong) => {
   const shuffledSongs = songs.filter(song => song.id !== firstSong.id);
@@ -62,6 +70,16 @@ export default (state = defaultState, action) => {
       if (newState.shuffled && newState.queue.length > 0) {
         newState.shuffledQueue = shuffle(newState.queue, newState.playSong.song);
       }
+      return newState;
+
+    case ADD_NEXT:
+      newState = merge({}, state);
+      newState.next.push(action.song);
+      return newState;
+
+    case CLEAR_NEXT:
+      newState = merge({}, state);
+      newState.next.shift();
       return newState;
 
     default:

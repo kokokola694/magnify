@@ -14,6 +14,11 @@ class Queue extends React.Component {
   }
 
   render () {
+    const nextSongs = this.props.next.length === 0 ? null : (
+      <h2 className="queue-sub">Next in Queue</h2>
+      <SongIndexContainer queueSongs={this.props.next}/>
+    )
+
     const disp = (this.props.queueSongs.length === 0) ? (
       <div className="empty-queue">
         <p>Try playing a song!</p>
@@ -23,6 +28,7 @@ class Queue extends React.Component {
       <div>
         <h2 className="queue-sub">Now Playing</h2>
         <SongIndexContainer queueSongs={[this.props.queueSongs[0]]}/>
+        { nextSongs }
         <h2 className="queue-sub">Next Up</h2>
         <SongIndexContainer queueSongs={this.props.queueSongs.slice(1)}/>
       </div>
@@ -41,7 +47,7 @@ class Queue extends React.Component {
 }
 
 const msp = state => {
-  let { playSong, shuffled, queue, shuffledQueue } = state.ui.player;
+  let { playSong, shuffled, queue, shuffledQueue, next } = state.ui.player;
 
   playSong = playSong || {song: ""};
   const updatedQueue = !shuffled ? queue : shuffledQueue;
@@ -52,6 +58,7 @@ const msp = state => {
   return {
     queueSongs,
     shuffled,
+    next
   }
 }
 
