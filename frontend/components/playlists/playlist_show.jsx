@@ -86,12 +86,7 @@ class PlaylistShow extends React.Component {
     );
 
     const openModalButton = belongsToCurrentUser ? openModal : saveButton;
-    const photoUrl =
-    // playlistSongs.length === 0 ? (
-      playlist.photoUrl
-    // ) : (
-    //   firstPhoto
-    // );
+    const photoUrl = playlist.photoUrl;
 
     return (
       <section className="playlist-show show">

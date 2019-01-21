@@ -76,11 +76,12 @@ export const receiveErrors = (errors) => {
   }
 }
 
-export const receivePlaylistSong = ({song_id, playlist_id}) => {
+export const receivePlaylistSong = ({song_id, playlist_id, created_at}) => {
   return {
     type: RECEIVE_PLAYLIST_SONG,
     playlistId: playlist_id,
-    songId: song_id
+    songId: song_id,
+    createdAt: created_at
   }
 }
 
