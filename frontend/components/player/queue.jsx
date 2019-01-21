@@ -15,8 +15,10 @@ class Queue extends React.Component {
 
   render () {
     const nextSongs = this.props.next.length === 0 ? null : (
-      <h2 className="queue-sub">Next in Queue</h2>
-      <SongIndexContainer queueSongs={this.props.next}/>
+      <>
+        <h2 className="queue-sub">Next in Queue</h2>
+        <SongIndexContainer queueSongs={this.props.next}/>
+      </>
     )
 
     const disp = (this.props.queueSongs.length === 0) ? (
