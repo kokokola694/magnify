@@ -23,8 +23,9 @@ class AddToPlaylist extends React.Component {
 
     const playlists = this.props.playlists.map(pl => {
       const firstSong = songs.find(song => song.id == pl.song_ids[0]);
-      const photo = firstSong ?
-        albums.find(album => album.id == firstSong.album_id).photoUrl :
+      const photo =
+      // firstSong ?
+      //   albums.find(album => album.id == firstSong.album_id).photoUrl :
         pl.photoUrl;
 
       return (

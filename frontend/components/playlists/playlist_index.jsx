@@ -24,10 +24,11 @@ class PlaylistIndex extends React.Component {
 
     const pl = this.props.playlists.map(p => {
       const firstSong = songs.find(song => song.id == p.song_ids[0]);
-      const photo = firstSong ?
-        albums.find(album => album.id == firstSong.album_id).photoUrl :
+      const photo =
+      // firstSong ?
+      //   albums.find(album => album.id == firstSong.album_id).photoUrl :
         p.photoUrl;
-        
+
       return ( <PlaylistIndexItem key={p.id} playlist={p} photoUrl={photo}/> );
     });
 
