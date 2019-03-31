@@ -1,6 +1,6 @@
 # Magnify
 
-[Live](https://magnify-play.herokuapp.com/#/)
+[Live](https://magnifynyc.herokuapp.com/#/)
 
 ![magnify](app/assets/images/magnify-splash.png)
 
