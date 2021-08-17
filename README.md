@@ -1,7 +1,5 @@
 # Magnify
 
-[Live](https://magnifynyc.herokuapp.com/#/)
-
 ![magnify](app/assets/images/magnify-splash.png)
 
 Magnify is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
@@ -34,15 +32,6 @@ The music player appears as long as the user is logged in, and it continuously p
 This functionality was achieved by having the music player component interact with its corresponding Redux slice of state containing the songs to play. Upon clicking on any song, the state is updated with the song's information and is sent to the audio player.
 
 Music player related events, such as pausing the song and updating the progress bar, are controlled using a reference to the audio HTML element and calling the relevant methods (ex. play, pause, duration).
-
-```javascript
-play () {
-  let player = this.refs.player;
-  const action = player.paused || player.ended ? "play" : "pause";
-  player[action]();
-  this.changeButton(action);
-}
-```
 
 ### Search
 Users are able to search for their favorite artists, albums, songs, and playlists. Search results are updated as each letter is typed.
