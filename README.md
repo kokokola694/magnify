@@ -1,5 +1,8 @@
 # Magnify
 
+[Live](https://magnifynyc.herokuapp.com/#/)
+Note: Songs and images are no longer available from AWS. Heroku link may take few seconds to load.
+
 ![magnify](app/assets/images/magnify-splash.png)
 
 Magnify is inspired by Spotify - it allows users to continuously listen to songs across pages, search for artists and albums, save media to their library, follow users, and create playlists.
