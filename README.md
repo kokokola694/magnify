@@ -1,6 +1,7 @@
 # Magnify
 
 [Live](https://magnifynyc.herokuapp.com/#/)
+
 Note: Songs and images are no longer available from AWS. Heroku link may take few seconds to load.
 
 ![magnify](app/assets/images/magnify-splash.png)
